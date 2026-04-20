@@ -1,0 +1,74 @@
+# ===========================
+# OS & Editor
+# ===========================
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ===========================
+# Archives (do not commit)
+# ===========================
+*.rar
+*.zip
+*.tar.gz
+*.7z
+
+# ===========================
+# Laravel Backend (both projects)
+# ===========================
+**/backend/vendor/
+**/backend/.env
+**/backend/.env.backup
+**/backend/.env.production
+**/backend/node_modules/
+**/backend/storage/app/public/*
+**/backend/storage/framework/cache/*
+**/backend/storage/framework/sessions/*
+**/backend/storage/framework/testing/*
+**/backend/storage/framework/views/*
+**/backend/storage/logs/*.log
+**/backend/bootstrap/cache/*.php
+**/backend/public/storage
+**/backend/.phpunit.result.cache
+**/backend/phpunit.xml
+**/backend/.php_cs
+**/backend/.php_cs.cache
+**/backend/Homestead.json
+**/backend/Homestead.yaml
+**/backend/npm-debug.log
+**/backend/yarn-error.log
+**/backend/auth.json
+**/backend/_ide_helper.php
+**/backend/_ide_helper_models.php
+**/backend/.phpstorm.meta.php
+
+# ===========================
+# Next.js Frontend (both projects)
+# ===========================
+**/frontend/.next/
+**/frontend/out/
+**/frontend/build/
+**/frontend/node_modules/
+**/frontend/.env
+**/frontend/.env.local
+**/frontend/.env.development.local
+**/frontend/.env.test.local
+**/frontend/.env.production.local
+**/frontend/.env.production
+**/frontend/npm-debug.log*
+**/frontend/yarn-debug.log*
+**/frontend/yarn-error.log*
+**/frontend/.pnp
+**/frontend/.pnp.js
+**/frontend/coverage/
+**/frontend/.turbo/
+**/frontend/.vercel
