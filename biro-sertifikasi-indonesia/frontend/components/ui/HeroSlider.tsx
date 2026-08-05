@@ -7,28 +7,28 @@ import { useLang } from '@/lib/LanguageContext'
 const slides = [
   {
     id: 1,
-    title: { ID: 'PT. BIRO SERTIFIKASI INDONESIA', EN: 'PT. BIRO SERTIFIKASI INDONESIA' },
+    title: { ID: 'Amankan Tempat Kerja Anda dengan Audit SMK3 Profesional', EN: 'Secure Your Workplace with Professional SMK3 Audit' },
     subtitle: {
-      ID: 'Layanan Jasa Audit dan Sertifikasi Sistem Manajemen Independen',
-      EN: 'Independent Audit and Management System Certification Services'
+      ID: 'Lembaga Audit SMK3 berdasarkan PP No.50 Tahun 2012 · Ditunjuk oleh SK Menteri No.137 Tahun 2018',
+      EN: 'SMK3 Audit Agency under PP No.50/2012 · Appointed by Minister Decree No.137/2018'
     },
     bg: '/images/bsi-hero.png',
     stats: [
-      { value: '125k', label: { ID: 'Project Selesai', EN: 'Projects Done' } },
-      { value: '98%', label: { ID: 'Tingkat Kepuasan', EN: 'Satisfaction Rate' } },
+      { value: '50+', label: { ID: 'Klien Perusahaan', EN: 'Corporate Clients' } },
+      { value: '30+', label: { ID: 'Tahun Pengalaman Auditor', EN: 'Years Auditor Experience' } },
     ],
   },
   {
     id: 2,
-    title: { ID: 'CONSULTANT · TRAINING · INSPECTION', EN: 'CONSULTANT · TRAINING · INSPECTION' },
+    title: { ID: 'SERTIFIKASI · AUDIT · PELATIHAN K3', EN: 'CERTIFICATION · AUDIT · K3 TRAINING' },
     subtitle: {
-      ID: 'Layanan Profesional untuk Keunggulan Industri & Korporat',
-      EN: 'Professional Services for Industry & Corporate Excellence'
+      ID: 'SMK3, ISO 9001/14001/45001, SIMPPRO — Solusi audit independen & kompetitif untuk seluruh Indonesia',
+      EN: 'SMK3, ISO 9001/14001/45001, SIMPPRO — Independent & competitive audit solutions across Indonesia'
     },
     bg: '/images/hero-dip.jpg',
     stats: [
-      { value: '25+', label: { ID: 'Konsultan Ahli', EN: 'Expert Consultants' } },
-      { value: '500+', label: { ID: 'Proyek Selesai', EN: 'Projects Completed' } },
+      { value: '6+', label: { ID: 'Kantor Perwakilan', EN: 'Representative Offices' } },
+      { value: '100%', label: { ID: 'Independen & Objektif', EN: 'Independent & Objective' } },
     ],
   },
 ]

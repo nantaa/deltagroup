@@ -1,45 +1,52 @@
 'use client'
 import React from 'react'
-import { FileCheck, Search, ShieldCheck, CheckCircle, Users, TrendingUp } from 'lucide-react'
+import { FileCheck, Search, ShieldCheck, CheckCircle, Users, TrendingUp, BookOpen } from 'lucide-react'
 
 const PRODUCTS = [
   {
     id: 'prod1',
-    title: 'SMK3, SIMPRO & ISO Certification',
-    description: 'Sertifikasi SMK3 (PP No. 50 Tahun 2012), SIMPRO (Kepmen No. 156 Tahun 2021), serta sertifikasi ISO 9001, ISO 14001, dan ISO 45001.',
+    title: 'Sertifikasi SMK3, ISO & SIMPPRO',
+    description: 'Sertifikasi untuk memperoleh sertifikat SMK3 sesuai PP No.50 Tahun 2012, SIMPPRO (Kepmen No.156/2021), serta ISO 9001, ISO 14001, dan ISO 45001 dari auditor bersertifikat BNSP.',
     icon: FileCheck,
-    color: 'bg-blue-100 text-blue-600',
+    color: 'bg-primary-100 text-primary-700',
   },
   {
     id: 'prod2',
-    title: 'GAP Analysis',
-    description: 'Simulasi audit untuk memverifikasi tingkat pemenuhan terbaik dari sistem manajemen (SMK3, SIMPRO, atau ISO) sebelum audit sesungguhnya.',
+    title: 'Eksternal Audit',
+    description: 'Audit yang dilaksanakan oleh PT. BSI untuk melakukan verifikasi pemenuhan perundangan, peraturan, serta kewajiban perusahaan secara independen dan objektif.',
     icon: Search,
-    color: 'bg-emerald-100 text-emerald-600',
+    color: 'bg-amber-100 text-amber-700',
   },
   {
     id: 'prod3',
-    title: 'Internal Audit',
-    description: 'Pendampingan dalam melaksanakan Audit Internal di dalam perusahaan sebelum melaksanakan Audit Eksternal.',
+    title: 'Pelatihan Non-Kompetensi',
+    description: 'Sebelum memperoleh sertifikasi K3, para pemohon harus mengikuti sejumlah persiapan. BSI menyediakan pelatihan K3 yang relevan untuk memastikan kesiapan perusahaan.',
+    icon: BookOpen,
+    color: 'bg-emerald-100 text-emerald-700',
+  },
+  {
+    id: 'prod4',
+    title: 'GAP Analysis & Internal Audit',
+    description: 'Simulasi audit untuk memverifikasi tingkat pemenuhan sistem manajemen (SMK3, SIMPPRO, atau ISO) serta pendampingan audit internal sebelum pelaksanaan audit eksternal resmi.',
     icon: ShieldCheck,
-    color: 'bg-purple-100 text-purple-600',
+    color: 'bg-purple-100 text-purple-700',
   }
 ]
 
 const REASONS = [
   {
-    title: 'Guaranteed Quality',
-    desc: 'Memastikan objektivitas, akurasi & kecepatan sesuai dengan peraturan yang berlaku.',
+    title: 'Kualitas Terjamin',
+    desc: 'BSI menjamin kualitas hasil audit dengan memastikan objektivitas, keakuratan, dan kecepatan sesuai peraturan yang berlaku.',
     icon: CheckCircle
   },
   {
-    title: 'Professional Team',
-    desc: 'Personil yang sangat kompeten dengan pengalaman di berbagai industri.',
+    title: 'Team yang Profesional',
+    desc: 'Tim BSI terdiri dari orang-orang kompeten bersertifikat BNSP, dengan pengalaman lebih dari 6 tahun di berbagai jenis industri dan institusi.',
     icon: Users
   },
   {
-    title: 'Competitive Investment Cost',
-    desc: 'Memberikan nilai tambah dengan jaminan kualitas pada harga yang kompetitif.',
+    title: 'Biaya Investasi Kompetitif',
+    desc: 'BSI memberikan nilai tambah (value added) kepada pelanggan dengan kualitas hasil yang tetap terjamin dan investasi yang kompetitif.',
     icon: TrendingUp
   }
 ]
@@ -57,11 +64,11 @@ export default function ServicesSection() {
             Layanan <span className="text-primary-700">Audit & Sertifikasi</span>
           </h2>
           <p className="text-gray-600 text-lg">
-            Kami menyediakan layanan audit dan sertifikasi sistem manajemen untuk memastikan kepatuhan dan peningkatan performa perusahaan Anda.
+            Kami menyediakan layanan audit dan sertifikasi sistem manajemen berdasarkan PP No.50 Tahun 2012 dan SK Menteri No.137 Tahun 2018 untuk memastikan kepatuhan dan peningkatan kinerja K3 perusahaan Anda.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {PRODUCTS.map((prod) => (
             <div 
               key={prod.id} 

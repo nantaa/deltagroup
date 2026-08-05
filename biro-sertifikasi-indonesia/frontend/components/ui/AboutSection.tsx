@@ -17,11 +17,16 @@ export default function AboutSection() {
             </div>
             
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-              Lembaga Jasa Audit dan <span className="text-primary-700">Sertifikasi Sistem Manajemen</span> Terpercaya
+              Lembaga Audit <span className="text-primary-700">SMK3 & Sertifikasi Sistem Manajemen</span> Independen
             </h2>
             
-            <p className="text-gray-600 mb-8 leading-relaxed text-lg">
-              PT. Biro Sertifikasi Indonesia (BSI) adalah anak perusahaan PT. Delta Indonesia Group yang beroperasi sebagai lembaga jasa Audit dan Sertifikasi Sistem Manajemen yang independen, kompetitif, dan dapat diandalkan baik di tingkat nasional maupun internasional.
+            <p className="text-gray-600 mb-4 leading-relaxed text-lg">
+              PT. Biro Sertifikasi Indonesia (BSI) memfokuskan diri menjadi lembaga audit SMK3 PP No.50 Tahun 2012,
+              diperkuat dengan diterbitkannya Surat Keputusan Menteri No.137 Tahun 2018 tentang penunjukan PT. Biro Sertifikasi Indonesia sebagai Lembaga Audit SMK3.
+            </p>
+            <p className="text-gray-500 mb-8 leading-relaxed text-sm italic border-l-4 border-primary-200 pl-4">
+              &ldquo;PT BSI memfokuskan diri menjadi lembaga audit SMK3 yang independen, kompetitif, dan dapat diandalkan, baik di tingkat nasional maupun internasional.&rdquo;<br />
+              <span className="not-italic font-semibold text-gray-700">&mdash; S. Enggarwati, SE, MBA &mdash; Direktur PT. BSI</span>
             </p>
 
             {/* Vision & Mission Cards */}
@@ -35,7 +40,7 @@ export default function AboutSection() {
                   <div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">Visi Kami</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">
-                      Bertekad untuk menjadi Lembaga Jasa Audit dan Sertifikasi di bidang Sistem Manajemen yang Independen, Kompetitif serta Terpercaya, baik di tingkat nasional maupun Internasional.
+                      Menjadi Lembaga Audit Sistem Manajemen yang Terpercaya, Independen, dan Kompetitif di Indonesia.
                     </p>
                   </div>
                 </div>
@@ -51,9 +56,9 @@ export default function AboutSection() {
                     <h3 className="text-xl font-bold text-gray-900 mb-3">Misi Kami</h3>
                     <ul className="space-y-3">
                       {[
-                        'Membangun kemitraan dengan para pemangku kepentingan untuk menemukan solusi terbaik dalam pemenuhan persyaratan dan peningkatan kinerja.',
-                        'Mengembangkan SDM yang kompeten sesuai dengan nilai-nilai perusahaan.',
-                        'Memberikan layanan terbaik dan nilai tambah bagi pelanggan dalam pelaksanaan audit dan sertifikasi sistem manajemen.'
+                        'Melakukan kemitraan dengan para pemangku kepentingan untuk mendapatkan solusi terbaik dalam memastikan pemenuhan dan peningkatan kinerja K3.',
+                        'Mengembangkan Sumber Daya Manusia yang kompeten sesuai dengan nilai-nilai perusahaan.',
+                        'Melakukan kerjasama yang saling menguntungkan dalam mewujudkan pemenuhan dan layanan yang berkualitas bagi pelanggan.'
                       ].map((item, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
@@ -71,18 +76,18 @@ export default function AboutSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center text-center shadow-sm">
                     <ShieldCheck className="w-8 h-8 text-primary-600 mb-2" />
-                    <h4 className="font-bold text-gray-900 text-sm">Trustworthiness</h4>
-                    <p className="text-xs text-gray-500 mt-1">Dapat diandalkan dan dipercaya.</p>
+                    <h4 className="font-bold text-gray-900 text-sm">Trust</h4>
+                    <p className="text-xs text-gray-500 mt-1">PT. BSI dapat dipercaya dan diandalkan.</p>
                   </div>
                   <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center text-center shadow-sm">
                     <Award className="w-8 h-8 text-primary-600 mb-2" />
-                    <h4 className="font-bold text-gray-900 text-sm">Professionalism</h4>
-                    <p className="text-xs text-gray-500 mt-1">Fokus pada pelanggan, kompeten, objektif.</p>
+                    <h4 className="font-bold text-gray-900 text-sm">Be Professional</h4>
+                    <p className="text-xs text-gray-500 mt-1">Customer Focus, Kompeten, Objektif & Independen.</p>
                   </div>
                   <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col items-center text-center shadow-sm">
                     <Star className="w-8 h-8 text-primary-600 mb-2" />
                     <h4 className="font-bold text-gray-900 text-sm">Integrity</h4>
-                    <p className="text-xs text-gray-500 mt-1">Jujur dan terpercaya dalam semua operasi.</p>
+                    <p className="text-xs text-gray-500 mt-1">PT. BSI jujur serta amanah dalam setiap proses.</p>
                   </div>
                 </div>
               </div>
@@ -103,8 +108,8 @@ export default function AboutSection() {
               
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-                  <div className="text-2xl font-bold text-white mb-1">Audit & Sertifikasi</div>
-                  <div className="text-white/80 text-sm font-medium">Solusi independen, kompetitif, dan terpercaya</div>
+                  <div className="text-2xl font-bold text-white mb-1">SMK3 & ISO</div>
+                  <div className="text-white/80 text-sm font-medium">Ditunjuk SK Menteri No.137 Tahun 2018</div>
                 </div>
               </div>
             </div>

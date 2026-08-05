@@ -29,9 +29,9 @@ async function getBrands(): Promise<Brand[]> {
 
 // RESTORED: Your original Mock Data
 const MOCK_POSTS: Post[] = [
-  { id: 1, title: 'Pentingnya Keselamatan Kerja di Industri', slug: 'keselamatan-kerja', excerpt: 'Keselamatan kerja adalah prioritas utama dalam setiap operasional industri modern di Indonesia.', content: '', status: 'published', tags: ['K3', 'Keselamatan'], category: 'K3', created_at: '2026-10-12', updated_at: '' },
-  { id: 2, title: 'Jadwalkan Pemeriksaan dan Pengujian Alat 2026', slug: 'jadwal-pemeriksaan-pengujian-2026', excerpt: 'Program Riksa  Uji Alat untuk keselamatan dan kesehatan kerja (K3) para pekerja.', content: '', status: 'published', tags: ['Sertifikasi', 'Event'], category: 'Event', created_at: '2026-11-01', updated_at: '' },
-  { id: 3, title: 'Riksa Uji K3', slug: 'jadwal-riksa-uji-k3', excerpt: 'Jadwalkan segera Riksa Uji Alat di Biro Sertifikasi Indonesia.', content: '', status: 'published', tags: ['Training', 'Jadwal'], category: 'Training', created_at: '2026-11-03', updated_at: '' },
+  { id: 1, title: 'Mengenal Audit SMK3 PP No.50 Tahun 2012 dan Manfaatnya', slug: 'audit-smk3-pp50-2012', excerpt: 'Audit SMK3 adalah kewajiban bagi perusahaan untuk memastikan sistem manajemen K3 berjalan sesuai regulasi. Ketahui prosesnya bersama BSI.', content: '', status: 'published', tags: ['SMK3', 'K3', 'Audit'], category: 'K3', created_at: '2026-10-12', updated_at: '' },
+  { id: 2, title: 'Perbedaan Sertifikasi SMK3, ISO 45001, dan SIMPPRO', slug: 'smk3-vs-iso45001-simppro', excerpt: 'Banyak perusahaan bertanya mengenai perbedaan ketiga sertifikasi K3 ini. Simak penjelasan lengkap dari auditor bersertifikat BSI.', content: '', status: 'published', tags: ['ISO 45001', 'SMK3', 'SIMPPRO'], category: 'Sertifikasi', created_at: '2026-11-01', updated_at: '' },
+  { id: 3, title: 'Jadwalkan Riksa Uji Alat Anda Sebelum Batas Waktu', slug: 'jadwal-riksa-uji-alat', excerpt: 'Riksa Uji wajib dilakukan secara periodik. BSI melayani Riksa Uji Alat di seluruh Indonesia. Hubungi tim marketing kami sekarang.', content: '', status: 'published', tags: ['Riksa Uji', 'Alat K3'], category: 'Layanan', created_at: '2026-11-03', updated_at: '' },
 ]
 
 const MOCK_BRANDS: Brand[] = [

@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react'
 
 const DEFAULT_ANNOUNCEMENTS = [
-  'Dapatkan Suket/Sertifikat Laik Operasi (SLO)/Surat Lainnya — Info selengkapnya di deltaindo.co.id',
-  'Pemeriksaan dan Pengujian Alat 2026 — Info selengkapnya di deltaindo.co.id',
-  'Jadwalkan Riksa Uji Alat — Hubungi kami sekarang!',
-  'PT. Biro Sertifikasi Indonesia melayani Riksa Uji Alat seluruh Indonesia',
+  'Lembaga Audit SMK3 berdasarkan PP No.50 Tahun 2012 — Ditunjuk SK Menteri No.137 Tahun 2018',
+  'Sertifikasi ISO 9001 · ISO 14001 · ISO 45001 · SMK3 · SIMPPRO — Hubungi kami sekarang!',
+  'Riksa Uji Alat K3 seluruh Indonesia — Karawang · Gresik · Pekanbaru · Balikpapan · Medan',
+  'PT. Biro Sertifikasi Indonesia — Audit Sistem Manajemen yang Independen, Kompetitif & Terpercaya',
 ]
 
 const STORAGE_KEY = 'delta_topbar_announcements'
