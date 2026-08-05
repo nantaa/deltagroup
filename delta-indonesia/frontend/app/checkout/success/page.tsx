@@ -21,7 +21,7 @@ function formatIDR(amount: string | number): string {
   return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(num)
 }
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessContent() {
   const searchParams = useSearchParams()
   const invoiceNumber = searchParams?.get('invoice_number') ?? ''
 
@@ -206,5 +206,20 @@ export default function CheckoutSuccessPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function CheckoutSuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="flex items-center gap-2 justify-center text-sm text-primary-700 font-medium">
+          <Loader2 className="w-6 h-6 animate-spin" />
+          Memuat halaman...
+        </div>
+      </div>
+    }>
+      <CheckoutSuccessContent />
+    </Suspense>
   )
 }
