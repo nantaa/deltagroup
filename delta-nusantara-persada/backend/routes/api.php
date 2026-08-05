@@ -5,6 +5,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\CourseController;
+use App\Http\Controllers\Api\CourseRegistrationController;
+use App\Http\Controllers\Api\WebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +27,17 @@ Route::get('/posts/{slug}',   [PostController::class, 'show']);
 Route::get('/brands',         [BrandController::class, 'index']);
 Route::get('/brands/{brand}', [BrandController::class, 'show']);
 Route::get('/clients',        [ClientController::class, 'index']);
+
+// Course catalog (public)
+Route::get('/courses',        [CourseController::class, 'index']);
+Route::get('/courses/{slug}', [CourseController::class, 'show']);
+
+// Course checkout (public — no auth required for registration)
+Route::post('/course-registrations',                [CourseRegistrationController::class, 'store']);
+Route::get('/transactions/status/{invoice_number}', [CourseRegistrationController::class, 'status']);
+
+// Xendit webhook (public — verified by x-callback-token header)
+Route::post('/webhooks/xendit', [WebhookController::class, 'handleXendit']);
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +64,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/clients',            [ClientController::class, 'store']);
     Route::put('/clients/{client}',    [ClientController::class, 'update']);
     Route::delete('/clients/{client}', [ClientController::class, 'destroy']);
+
+    // Courses (admin CRUD)
+    Route::post('/courses',           [CourseController::class, 'store']);
+    Route::put('/courses/{course}',   [CourseController::class, 'update']);
+    Route::delete('/courses/{course}',[CourseController::class, 'destroy']);
+
+    // Registrations (admin management)
+    Route::get('/admin/registrations',                          [CourseRegistrationController::class, 'index']);
+    Route::patch('/admin/registrations/{id}/whatsapp-link',     [CourseRegistrationController::class, 'updateWhatsappLink']);
 });

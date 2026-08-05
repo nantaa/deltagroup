@@ -1,0 +1,127 @@
+# Course Selling & Xendit Payment Integration Plan (Simplified Flow)
+
+This document outlines the architectural plan for integrating course selling and Xendit payments across the PT. Delta Indonesia Group projects, aligned with your requirements.
+
+---
+
+## Architectural Decisions
+
+1.  **Separate Databases (Multi-Instance)**
+    *   Each sub-project frontend/backend operates on its own database (e.g., `delta_lembaga_kursus`, `delta_indonesia_pranenggar`) and ports.
+    *   This ensures isolated data storage, clean records, and ease of deployment on a single VPS.
+2.  **No Student Accounts / Client Authentication**
+    *   Learners do not need to register or log in.
+    *   Authentication is reserved solely for Administrators to manage blogs/content via the existing `/admin` routes.
+3.  **Streamlined WhatsApp Enrollment Flow (Data -> Pay -> Invite)**
+    *   We will capture lead data *before* redirecting to Xendit. If a customer drops off on the payment screen, the PIC team still has their WhatsApp/Email details to follow up manually.
+
+---
+
+## Refined Transaction & Invitation Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as User (Next.js)
+    participant BE as Laravel Backend
+    participant DB as MySQL Database
+    participant Xen as Xendit API
+
+    User->>User: Selects course & clicks "Daftar Sekarang"
+    User->>User: Fills Registration Form (Name, WA, Email, Company)
+    User->>BE: POST /api/course-registrations (form data + course_id)
+    BE->>DB: Save to `course_registrations` (status: pending)
+    BE->>DB: Save to `transactions` (status: pending)
+    BE->>Xen: Create Invoice (external_id: invoice_number, amount)
+    Xen-->>BE: Invoice URL & Invoice ID
+    BE->>DB: Update transaction with payment_url & xendit_invoice_id
+    BE-->>User: Return payment_url
+    User->>Xen: Redirect to Payment URL (Pay via QRIS/VA/E-wallet)
+    Note over User, Xen: User completes payment
+    Xen->>BE: POST /api/webhooks/xendit (with payment status)
+    BE->>DB: Update transaction to 'paid' & registration to 'completed'
+    BE-->>Xen: HTTP 200 OK
+    Xen-->>User: Redirect back to FE `/checkout/success?invoice_number=INV-xxx`
+    User->>BE: GET /api/transactions/status/{invoice_number}
+    BE-->>User: Return payment status ('paid') + WhatsApp Group Link
+    User->>User: Click "Gabung Grup WhatsApp" to chat with PIC
+```
+
+---
+
+## Proposed Changes
+
+### 1. Database Schema (Laravel)
+
+We only need three clean tables to manage this workflow:
+
+#### `courses` (To manage what courses are displayed and their prices)
+*   `id` (BIGINT, PK, Auto Increment)
+*   `title` (VARCHAR)
+*   `slug` (VARCHAR, Unique)
+*   `description` (TEXT)
+*   `price` (DECIMAL 10,2)
+*   `whatsapp_group_link` (VARCHAR) - The invite link users receive after payment.
+*   `is_active` (BOOLEAN, Default: true)
+*   `timestamps`
+
+#### `course_registrations` (To store student details)
+*   `id` (BIGINT, PK, Auto Increment)
+*   `course_id` (FOREIGN KEY -> `courses.id`)
+*   `name` (VARCHAR)
+*   `email` (VARCHAR)
+*   `whatsapp_number` (VARCHAR)
+*   `company_name` (VARCHAR, Nullable)
+*   `status` (ENUM: 'pending', 'completed')
+*   `timestamps`
+
+#### `transactions` (To track Xendit payments)
+*   `id` (BIGINT, PK, Auto Increment)
+*   `registration_id` (FOREIGN KEY -> `course_registrations.id`, Cascade on delete)
+*   `invoice_number` (VARCHAR, Unique)
+*   `amount` (DECIMAL 10,2)
+*   `status` (ENUM: 'pending', 'paid', 'expired', 'failed')
+*   `xendit_invoice_id` (VARCHAR, Nullable)
+*   `payment_url` (VARCHAR, Nullable)
+*   `paid_at` (TIMESTAMP, Nullable)
+*   `timestamps`
+
+---
+
+### 2. Backend API Endpoint Details
+
+#### Public Course Catalog
+*   `GET /api/courses` - Fetch courses for listing.
+*   `GET /api/courses/{slug}` - Fetch specific course.
+
+#### Checkout & Payments
+*   `POST /api/course-registrations` - Creates registration and transaction, calls Xendit Invoice, and returns `payment_url`.
+*   `GET /api/transactions/status/{invoice_number}` - Returns transaction status and the `whatsapp_group_link` if status is `'paid'`.
+*   `POST /api/webhooks/xendit` - Public callback endpoint that updates status and marks registration as `'completed'`.
+
+#### Admin CMS (Existing Sanctum Auth)
+*   `GET/POST/PUT/DELETE /api/courses` - Admin management of courses.
+*   `GET /api/admin/registrations` - List registrations (leads) showing name, WA, course, and payment status so PIC personnel can track.
+
+---
+
+### 3. Frontend Next.js Pages
+
+#### Course Section
+*   `/courses` - Course selection grid.
+*   `/courses/[slug]` - Course info with a "Daftar & Bayar" form.
+*   `/checkout/pending` - Page shown if redirect happens before webhook completes.
+*   `/checkout/success?invoice_number=INV-xxx` - Polling page that checks payment status; displays the **WhatsApp Group Invite Button** when payment is confirmed.
+
+---
+
+## Verification Plan
+
+### Automated Tests
+*   Verify that `POST /api/course-registrations` validates inputs (Name, Email, WhatsApp number format).
+*   Mock Xendit Invoice creation in sandbox mode.
+*   Simulate Xendit Webhook payload to confirm successful transition of transaction to `paid` status.
+
+### Manual Verification
+*   Complete sandbox transaction checkout.
+*   Verify redirect back to the Next.js frontend and display of the WhatsApp link.

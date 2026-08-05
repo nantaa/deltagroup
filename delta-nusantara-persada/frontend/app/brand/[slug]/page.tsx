@@ -11,7 +11,7 @@ const BRAND_DATA: Record<string, { name: string; description: string; longDesc: 
     name: 'Delta Indonesia Pranenggar',
     description: 'Consultant · Inspection',
     longDesc: 'Delta Indonesia Pranenggar adalah perusahaan konsultan profesional yang berfokus pada pengembangan SDM, keselamatan kerja (K3), dan pelatihan korporat. Kami telah melayani lebih dari 100+ perusahaan di seluruh Indonesia.',
-    website: 'https://deltaindonesia.com',
+    website: 'https://deltaindo.co.id',
   },
   'nusa-persada': {
     name: 'Delta Nusantara Persada',

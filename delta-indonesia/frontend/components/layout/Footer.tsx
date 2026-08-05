@@ -8,21 +8,21 @@ export default function Footer() {
   const { lang, t } = useLang()
 
   const services = [
-    { labelID: 'Pelatihan K3',                  labelEN: 'K3 Training',                   href: 'https://deltaindo.co.id/pelatihank3/'                  },
-    { labelID: 'Pelatihan Berbasis Kompetensi', labelEN: 'Competency-Based Training',      href: 'https://deltaindo.co.id/pelatihanbasiskompetensi'       },
-    { labelID: 'Lembaga Pelatihan Kerja (LPK)', labelEN: 'Vocational Training Institute',  href: 'https://deltaindo.co.id/lembagapelatihankerja/'         },
-    { labelID: 'Konsultan Manajemen',           labelEN: 'Management Consulting',          href: 'https://deltaindo.co.id/konsultan-manajemen'           },
-    { labelID: 'Riksa Uji',                     labelEN: 'Inspection & Testing',           href: 'https://nusantara.deltaindo.co.id/'                    },
-    { labelID: 'Audit & Sertifikasi',           labelEN: 'Audit & Certification',          href: 'https://sertifikasiindonesia.co.id/'                   },
+    { labelID: 'Pelatihan K3', labelEN: 'K3 Training', href: 'https://deltaindo.co.id/pelatihank3/' },
+    { labelID: 'Pelatihan Berbasis Kompetensi', labelEN: 'Competency-Based Training', href: 'https://deltaindo.co.id/pelatihanbasiskompetensi' },
+    { labelID: 'Lembaga Pelatihan Kerja (LPK)', labelEN: 'Vocational Training Institute', href: 'https://deltaindo.co.id/lembagapelatihankerja/' },
+    { labelID: 'Konsultan Manajemen', labelEN: 'Management Consulting', href: 'https://deltaindo.co.id/konsultan-manajemen' },
+    { labelID: 'Riksa Uji', labelEN: 'Inspection & Testing', href: 'https://nusantara.deltaindo.co.id/' },
+    { labelID: 'Audit & Sertifikasi', labelEN: 'Audit & Certification', href: 'https://sertifikasiindonesia.co.id/' },
   ]
 
   const menuItems = [
-    { labelID: 'Tentang Kami',       labelEN: 'About Us',          href: '/about'   },
-    { labelID: 'Brand Kami',         labelEN: 'Our Brands',        href: '/brand'   },
-    { labelID: 'Berita & Artikel',   labelEN: 'News & Articles',   href: '/berita'  },
-    { labelID: 'Hubungi Kami',       labelEN: 'Contact Us',        href: '/contact' },
-    { labelID: 'Klien Kami',         labelEN: 'Our Clients',       href: 'https://deltaindo.co.id/client-kami' },
-    { labelID: 'Akreditasi',         labelEN: 'Accreditation',     href: 'https://deltaindo.co.id/akreditasi'  },
+    { labelID: 'Tentang Kami', labelEN: 'About Us', href: '/about' },
+    { labelID: 'Brand Kami', labelEN: 'Our Brands', href: '/brand' },
+    { labelID: 'Berita & Artikel', labelEN: 'News & Articles', href: '/berita' },
+    { labelID: 'Hubungi Kami', labelEN: 'Contact Us', href: '/contact' },
+    { labelID: 'Klien Kami', labelEN: 'Our Clients', href: 'https://deltaindo.co.id/client-kami' },
+    { labelID: 'Akreditasi', labelEN: 'Accreditation', href: 'https://deltaindo.co.id/akreditasi' },
   ]
 
   const isID = lang === 'ID'
@@ -50,7 +50,7 @@ export default function Footer() {
                 <p className="text-primary-700 font-bold text-sm leading-tight">GROUP</p>
               </div>
             </div>
-            <p className="text-blue-200 text-sm leading-relaxed mb-5">
+            <p className="text-purple-200 text-sm leading-relaxed mb-5">
               {isID
                 ? 'PT. Delta Indonesia Group menyelenggarakan sertifikasi dan pelatihan K3 untuk karyawan maupun calon karyawan di seluruh Indonesia.'
                 : 'PT. Delta Indonesia Group provides K3 certification and training programs for employees and job seekers throughout Indonesia.'}
@@ -89,7 +89,7 @@ export default function Footer() {
             <h4 className="font-semibold text-white mb-4 text-sm tracking-wide uppercase">
               {isID ? 'Layanan' : 'Services'}
             </h4>
-            <ul className="space-y-2.5 text-sm text-blue-200">
+            <ul className="space-y-2.5 text-sm text-purple-200">
               {services.map((s) => (
                 <li key={s.href}>
                   <a
@@ -110,7 +110,7 @@ export default function Footer() {
             <h4 className="font-semibold text-white mb-4 text-sm tracking-wide uppercase">
               {isID ? 'Menu' : 'Menu'}
             </h4>
-            <ul className="space-y-2.5 text-sm text-blue-200">
+            <ul className="space-y-2.5 text-sm text-purple-200">
               {menuItems.map((m) => (
                 <li key={m.href}>
                   <Link href={m.href} className="hover:text-white transition-colors">
@@ -126,7 +126,7 @@ export default function Footer() {
             <h4 className="font-semibold text-white mb-4 text-sm tracking-wide uppercase">
               {isID ? 'Hubungi Kami' : 'Contact Us'}
             </h4>
-            <ul className="space-y-3 text-sm text-blue-200">
+            <ul className="space-y-3 text-sm text-purple-200">
               <li className="flex items-start gap-2.5">
                 <span className="mt-0.5 shrink-0 text-base">📍</span>
                 <span>
@@ -161,12 +161,12 @@ export default function Footer() {
             </ul>
 
             <a
-              href="https://deltaindo.co.id/jadwal-training-agustus-2025"
+              href="https://deltaindo.co.id/jadwal-training-agustus-2026"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-5 inline-block bg-accent/80 hover:bg-accent text-white text-xs font-semibold px-4 py-2 rounded-lg transition-colors"
             >
-              📅 {isID ? 'Lihat Jadwal Training 2025' : 'View Training Schedule 2025'}
+              📅 {isID ? 'Lihat Jadwal Training 2026' : 'View Training Schedule 2026'}
             </a>
           </div>
         </div>
@@ -175,8 +175,8 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-xs text-blue-300">
             {isID
-              ? '© 2025 PT. Delta Indonesia Group. Hak cipta dilindungi undang-undang.'
-              : '© 2025 PT. Delta Indonesia Group. All rights reserved.'}
+              ? '© 2026 PT. Delta Indonesia Group. Hak cipta dilindungi undang-undang.'
+              : '© 2026 PT. Delta Indonesia Group. All rights reserved.'}
           </p>
           <div className="flex items-center gap-4 text-xs text-blue-300">
             <Link href="/privacy" className="hover:text-white transition-colors">

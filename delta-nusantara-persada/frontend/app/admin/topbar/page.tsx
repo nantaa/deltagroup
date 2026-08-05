@@ -5,30 +5,30 @@ import { Plus, Trash2, GripVertical, Save, RotateCcw, CheckCircle2 } from 'lucid
 const STORAGE_KEY = 'delta_topbar_announcements'
 
 const DEFAULT_ANNOUNCEMENTS = [
-  'Jadwal Pelatihan K3 KEMNAKER RI 2025 — Daftar Sekarang!',
-  'Pembinaan & Sertifikasi Ahli K3 Umum — Info selengkapnya di deltaindo.co.id',
-  'Jadwal Training SERKOM BNSP 2025 tersedia — Hubungi kami sekarang!',
-  'Delta Indonesia melayani pelatihan K3 seluruh bidang di Indonesia',
+  'Dapatkan Suket/Sertifikat Laik Operasi (SLO)/Surat Lainnya — Info selengkapnya di deltaindo.co.id',
+  'Pemeriksaan dan Pengujian Alat 2026 — Info selengkapnya di deltaindo.co.id',
+  'Jadwalkan Riksa Uji Alat — Hubungi kami sekarang!',
+  'PT. Delta Nusantara Persada melayani Riksa Uji Alat seluruh Indonesia',
 ]
 
-export function getAnnouncements(): string[] {
+function getAnnouncements(): string[] {
   if (typeof window === 'undefined') return DEFAULT_ANNOUNCEMENTS
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
     if (stored) return JSON.parse(stored)
-  } catch {}
+  } catch { }
   return DEFAULT_ANNOUNCEMENTS
 }
 
-export function saveAnnouncements(items: string[]) {
+function saveAnnouncements(items: string[]) {
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
   }
 }
 
 export default function AdminTopBarPage() {
-  const [items, setItems]     = useState<string[]>([])
-  const [saved, setSaved]     = useState(false)
+  const [items, setItems] = useState<string[]>([])
+  const [saved, setSaved] = useState(false)
   const [dragIdx, setDragIdx] = useState<number | null>(null)
 
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function AdminTopBarPage() {
 
   // Simple drag-to-reorder
   const onDragStart = (idx: number) => setDragIdx(idx)
-  const onDragOver  = (e: React.DragEvent, idx: number) => {
+  const onDragOver = (e: React.DragEvent, idx: number) => {
     e.preventDefault()
     if (dragIdx === null || dragIdx === idx) return
     const next = [...items]
@@ -147,9 +147,8 @@ export default function AdminTopBarPage() {
                 onDragStart={() => onDragStart(idx)}
                 onDragOver={(e) => onDragOver(e, idx)}
                 onDragEnd={onDragEnd}
-                className={`flex items-center gap-3 px-4 py-3 transition-colors ${
-                  dragIdx === idx ? 'bg-blue-50' : 'hover:bg-gray-50'
-                }`}
+                className={`flex items-center gap-3 px-4 py-3 transition-colors ${dragIdx === idx ? 'bg-blue-50' : 'hover:bg-gray-50'
+                  }`}
               >
                 <GripVertical className="w-4 h-4 text-gray-300 shrink-0 cursor-grab active:cursor-grabbing" />
                 <span className="text-xs text-gray-400 shrink-0 w-5 text-center font-mono">

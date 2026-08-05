@@ -16,7 +16,14 @@ export default function Navbar() {
   const { lang, setLang, t } = useLang()
 
   const navItems = [
-    { labelKey: 'about', href: '/about' },
+    {
+      labelKey: 'about', href: '/about',
+      children: [
+        { label: t('nav', 'Tentang', 'tentang'), href: '/about/tentang' },
+        { label: t('nav', 'Struktur Organisasi', 'organisasi'), href: '/about/struktur-organisasi' },
+        { label: t('nav', 'Kebijakan Mutu', 'mutu'), href: '/about/kebijakan-mutu' },
+      ]
+    },
     {
       labelKey: 'brand',
       href: '/brand',

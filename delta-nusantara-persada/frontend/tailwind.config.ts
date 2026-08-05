@@ -25,7 +25,8 @@ module.exports = {
         gold: '#ffd60a',
       },
       fontFamily: {
-        sans: ['var(--font-inter)', 'sans-serif'],
+        sans: ['var(--font-montserrat)', 'sans-serif'],
+        heading: ['Gotham', 'var(--font-montserrat)', 'sans-serif'],
       },
     },
   },

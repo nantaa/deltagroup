@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react'
 
 const DEFAULT_ANNOUNCEMENTS = [
-  'Jadwal Pelatihan K3 KEMNAKER RI 2025 — Daftar Sekarang!',
-  'Pembinaan & Sertifikasi Ahli K3 Umum — Info selengkapnya di deltaindo.co.id',
-  'Jadwal Training SERKOM BNSP 2025 tersedia — Hubungi kami sekarang!',
-  'Delta Nusantara Persada melayani pelatihan K3 seluruh bidang di Indonesia',
+  'Dapatkan Suket/Sertifikat Laik Operasi (SLO)/Surat Lainnya — Info selengkapnya di deltaindo.co.id',
+  'Pemeriksaan dan Pengujian Alat 2026 — Info selengkapnya di deltaindo.co.id',
+  'Jadwalkan Riksa Uji Alat — Hubungi kami sekarang!',
+  'PT. Delta Nusantara Persada melayani Riksa Uji Alat seluruh Indonesia',
 ]
 
 const STORAGE_KEY = 'delta_topbar_announcements'
@@ -18,7 +18,7 @@ function loadAnnouncements(): string[] {
       const parsed: string[] = JSON.parse(stored)
       if (Array.isArray(parsed) && parsed.length > 0) return parsed
     }
-  } catch {}
+  } catch { }
   return DEFAULT_ANNOUNCEMENTS
 }
 

@@ -33,7 +33,7 @@ export const translations = {
     menu: { ID: 'Menu', EN: 'Menu' },
     contactUs: { ID: 'Hubungi Kami', EN: 'Contact Us' },
     followUs: { ID: 'Ikuti Kami', EN: 'Follow Us' },
-    copyright: { ID: '© 2025 PT. Delta Nusantara Persada. Hak cipta dilindungi.', EN: '© 2025 PT. Delta Nusantara Persada. All rights reserved.' },
+    copyright: { ID: '© 2026 PT. Delta Nusantara Persada. Hak cipta dilindungi.', EN: '© 2026 PT. Delta Nusantara Persada. All rights reserved.' },
     serviceItems: {
       k3: { ID: 'Pelatihan K3', EN: 'K3 Training' },
       kompetensi: { ID: 'Pelatihan Berbasis Kompetensi', EN: 'Competency-Based Training' },

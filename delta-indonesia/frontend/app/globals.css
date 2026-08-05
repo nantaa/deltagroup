@@ -16,7 +16,10 @@
   }
   body {
     @apply text-gray-800 bg-white;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-montserrat), sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6, .section-title, .font-heading {
+    font-family: 'Gotham', var(--font-montserrat), sans-serif;
   }
 }
 
