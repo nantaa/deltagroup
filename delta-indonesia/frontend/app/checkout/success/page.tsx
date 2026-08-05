@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState, useRef, useCallback } from 'react'
+import React, { useEffect, useState, useRef, useCallback, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { CheckCircle2, Clock, AlertCircle, MessageCircle, Loader2 } from 'lucide-react'
 import api from '@/lib/api'
