@@ -11,7 +11,7 @@ const DEFAULT_ANNOUNCEMENTS = [
   'PT. Delta Lembaga Kursus melayani Riksa Uji Alat seluruh Indonesia',
 ]
 
-export function getAnnouncements(): string[] {
+function getAnnouncements(): string[] {
   if (typeof window === 'undefined') return DEFAULT_ANNOUNCEMENTS
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
@@ -20,7 +20,7 @@ export function getAnnouncements(): string[] {
   return DEFAULT_ANNOUNCEMENTS
 }
 
-export function saveAnnouncements(items: string[]) {
+function saveAnnouncements(items: string[]) {
   if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
   }
