@@ -19,7 +19,7 @@ export default function Footer() {
             <div className="inline-flex items-center gap-3 bg-white rounded-2xl px-4 py-3 shadow-lg self-start">
               <div className="w-12 h-12 relative shrink-0">
                 <Image
-                  src="/images/logo-black.png"
+                  src="/images/BSI-LOGO.png"
                   alt="Biro Sertifikasi Indonesia"
                   width={48}
                   height={48}

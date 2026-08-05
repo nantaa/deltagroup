@@ -138,7 +138,7 @@ export default function HomeClient({ posts, brands }: { posts: Post[]; brands: B
               <Link
                 key={`brand-pill-${idx}-${brandIndex}`}
                 href="/brand"
-                className={`flex-1 flex flex-row items-center justify-center gap-2 px-2 py-4 sm:py-6 hover:bg-cyan-50 transition-colors ${idx < 2 ? 'border-r border-gray-200' : ''
+                className={`flex-1 flex flex-row items-center justify-center gap-2 px-2 py-4 sm:py-6 hover:bg-green-50 transition-colors ${idx < 2 ? 'border-r border-gray-200' : ''
                   }`}
               >
                 <div className="w-14 h-14 sm:w-16 sm:h-16 relative shrink-0">

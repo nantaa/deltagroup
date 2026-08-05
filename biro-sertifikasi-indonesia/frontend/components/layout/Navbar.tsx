@@ -47,7 +47,7 @@ export default function Navbar() {
             {/* The w-12 h-12 wrapper keeps your layout from shifting */}
             <div className="w-12 h-12 relative flex items-center justify-center">
               <Image
-                src="/images/logo1.png"
+                src="/images/BSI-LOGO.png"
                 alt="Biro Sertifikasi Indonesia Logo"
                 width={48}
                 height={48}
@@ -96,7 +96,7 @@ export default function Navbar() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-cyan-50 hover:text-primary-700 first:rounded-t-lg last:rounded-b-lg transition-colors"
+                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary-700 first:rounded-t-lg last:rounded-b-lg transition-colors"
                       >
                         {child.label}
                       </Link>
@@ -128,8 +128,8 @@ export default function Navbar() {
                       id={`lang-${l.toLowerCase()}`}
                       onClick={() => { setLang(l); setLangOpen(false) }}
                       className={clsx(
-                        'flex items-center gap-2 w-full px-4 py-2 text-sm hover:bg-cyan-50 hover:text-primary-700 transition-colors first:rounded-t-lg last:rounded-b-lg',
-                        lang === l && 'text-primary-700 font-semibold bg-cyan-50'
+                        'flex items-center gap-2 w-full px-4 py-2 text-sm hover:bg-green-50 hover:text-primary-700 transition-colors first:rounded-t-lg last:rounded-b-lg',
+                        lang === l && 'text-primary-700 font-semibold bg-green-50'
                       )}
                     >
                       <span className={clsx(
