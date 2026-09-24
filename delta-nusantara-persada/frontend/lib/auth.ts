@@ -1,12 +1,21 @@
-// Simple client-side auth helpers (no backend required yet)
-// Replace credentials check with API call when backend is ready.
+// Admin auth helpers.
+// Credentials are read from environment variables — never hardcode them here.
+// Set NEXT_PUBLIC_ADMIN_USER and NEXT_PUBLIC_ADMIN_PASS in .env.local (not committed to git).
+// TODO: Replace with a real backend API call (POST /api/admin/login) when backend is ready.
 
 export const ADMIN_TOKEN_KEY = 'delta_admin_token'
 const VALID_TOKEN = 'delta-admin-2025'
 
 export function login(username: string, password: string): boolean {
-  // TODO: Replace with API call: POST /api/admin/login
-  if (username === 'admin' && password === 'delta2025') {
+  const validUser = process.env.NEXT_PUBLIC_ADMIN_USER ?? ''
+  const validPass = process.env.NEXT_PUBLIC_ADMIN_PASS ?? ''
+
+  if (!validUser || !validPass) {
+    console.error('[auth] NEXT_PUBLIC_ADMIN_USER or NEXT_PUBLIC_ADMIN_PASS is not set.')
+    return false
+  }
+
+  if (username === validUser && password === validPass) {
     if (typeof window !== 'undefined') {
       localStorage.setItem(ADMIN_TOKEN_KEY, VALID_TOKEN)
     }

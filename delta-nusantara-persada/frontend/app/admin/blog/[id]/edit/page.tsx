@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation'
 import { ArrowLeft, X, Plus } from 'lucide-react'
 import api from '@/lib/api'
 import { Post } from '@/types'
+import RichTextEditor from '@/components/ui/RichTextEditor'
 
 export default function EditPostPage() {
   const router = useRouter()
@@ -57,8 +58,9 @@ export default function EditPostPage() {
     try {
       await api.put(`/posts/${id}`, form)
       router.push('/admin/blog')
-    } catch (err: any) {
-      setError(err?.response?.data?.message || 'Gagal menyimpan.')
+    } catch (err) {
+      const apiMsg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
+      setError(apiMsg ?? (err instanceof Error ? err.message : 'Gagal menyimpan.'))
     } finally {
       setLoading(false)
     }
@@ -98,9 +100,9 @@ export default function EditPostPage() {
 
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1.5">Konten *</label>
-            <textarea rows={8} required value={form.content}
-              onChange={(e) => setForm((p) => ({ ...p, content: e.target.value }))}
-              className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 resize-none"
+            <RichTextEditor
+              value={form.content}
+              onChange={(html) => setForm((p) => ({ ...p, content: html }))}
             />
           </div>
 

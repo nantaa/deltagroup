@@ -1,12 +1,12 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Plus, Trash2, GripVertical, Save, RotateCcw, CheckCircle2 } from 'lucide-react'
 
 const STORAGE_KEY = 'delta_topbar_announcements'
 
 const DEFAULT_ANNOUNCEMENTS = [
-  'Dapatkan Suket/Sertifikat Laik Operasi (SLO)/Surat Lainnya — Info selengkapnya di deltaindo.co.id',
-  'Pemeriksaan dan Pengujian Alat 2026 — Info selengkapnya di deltaindo.co.id',
+  'Dapatkan Suket/Sertifikat Laik Operasi (SLO)/Surat Lainnya — Info selengkapnya di deltanusa.co.id',
+  'Pemeriksaan dan Pengujian Alat 2026 — Info selengkapnya di deltanusa.co.id',
   'Jadwalkan Riksa Uji Alat — Hubungi kami sekarang!',
   'PT. Delta Nusantara Persada melayani Riksa Uji Alat seluruh Indonesia',
 ]
@@ -30,9 +30,11 @@ export default function AdminTopBarPage() {
   const [items, setItems] = useState<string[]>([])
   const [saved, setSaved] = useState(false)
   const [dragIdx, setDragIdx] = useState<number | null>(null)
+  const savedTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     setItems(getAnnouncements())
+    return () => { if (savedTimerRef.current) clearTimeout(savedTimerRef.current) }
   }, [])
 
   const update = (idx: number, val: string) => {
@@ -55,7 +57,8 @@ export default function AdminTopBarPage() {
     saveAnnouncements(cleaned)
     setItems(cleaned)
     setSaved(true)
-    setTimeout(() => setSaved(false), 3000)
+    if (savedTimerRef.current) clearTimeout(savedTimerRef.current)
+    savedTimerRef.current = setTimeout(() => setSaved(false), 3000)
   }
 
   const handleReset = () => {
@@ -174,7 +177,7 @@ export default function AdminTopBarPage() {
 
             {items.length === 0 && (
               <div className="px-4 py-8 text-center text-sm text-gray-400">
-                No announcements. Click "Add" to create one.
+                No announcements. Click &quot;Add&quot; to create one.
               </div>
             )}
           </div>

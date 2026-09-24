@@ -1,0 +1,60 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files — NEVER commit these
+.env
+.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Test artifacts & tooling
+.playwright-mcp/
+*.tmp
+*.log
+
+# Scratch notes & plans
+makeover_plan.md
+update-worth-considering-it.md
+COMPANY.md
+
+# Raw design folders
+public/Komponen website/
+public/komponen tambahan/
+public/temp-analysis/
+public/komponen_hero_raw/
+public/images/komponen_hero_raw/
+public/images/ChatGPT Image*
+public/images/*- Copy.*
+public/images/* - Copy.*

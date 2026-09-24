@@ -1,10 +1,17 @@
+import type { Metadata } from 'next'
 import React from 'react'
-import TopBar from '@/components/layout/TopBar'
-import Navbar from '@/components/layout/Navbar'
+import SiteHeader from '@/components/layout/SiteHeader'
 import Footer from '@/components/layout/Footer'
 import Breadcrumb from '@/components/ui/Breadcrumb'
 import PageHero from '@/components/ui/PageHero'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Brand Kami',
+  description:
+    'Ekosistem layanan PT Delta Nusantara Persada dan mitra afiliasi dalam pengujian K3, sertifikasi profesi, dan konsultasi keselamatan kerja.',
+  alternates: { canonical: '/brand' },
+}
 
 const brands = [
   {
@@ -30,12 +37,11 @@ const brands = [
 export default function BrandPage() {
   return (
     <>
-      <TopBar />
-      <Navbar />
+      <SiteHeader />
       <Breadcrumb crumbs={[{ label: 'Brand Kami' }]} />
       <PageHero
         title="Brand Kami"
-        subtitle="Harness the Future: AI Services Tailored for Success"
+        subtitle="Ekosistem Layanan K3, Sertifikasi Kompetensi, dan Inspeksi Teknis Delta Group"
       />
 
       <section className="py-16">

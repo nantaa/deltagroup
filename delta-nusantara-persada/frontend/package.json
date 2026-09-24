@@ -1,16 +1,24 @@
 {
-  "name": "delta-indonesia-frontend",
+  "name": "delta-nusantara-persada-frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node --test scripts/test-homepage-redesign.mjs scripts/test-route-integrity.mjs scripts/test-clients-and-hero-fix.mjs scripts/test-svg-rendering-integrity.mjs scripts/test-layout-whitespace-rhythm.mjs scripts/test-scroll-reveal-and-whitespace.mjs scripts/test-team-styles.mjs scripts/test-language-and-hover-elevation.mjs scripts/test-popup-and-navbar-consistency.mjs scripts/test-navbar-shortcuts-and-popup.mjs scripts/test-performance-and-assets.mjs scripts/test-statsbar-hover.mjs scripts/test-navbar-spreadout.mjs && node scripts/test-no-ai-slop.mjs"
   },
   "dependencies": {
-    "axios": "^1.7.2",
+    "@tiptap/extension-image": "^3.30.5",
+    "@tiptap/extension-link": "^3.30.5",
+    "@tiptap/pm": "^3.30.5",
+    "@tiptap/react": "^3.30.5",
+    "@tiptap/starter-kit": "^3.30.5",
+    "@types/dompurify": "^3.0.5",
+    "axios": "^1.20.0",
     "clsx": "^2.1.1",
+    "isomorphic-dompurify": "^3.19.0",
     "lucide-react": "^0.400.0",
     "next": "^14.2.35",
     "react": "^18",

@@ -21,12 +21,21 @@ module.exports = {
           800: '#005f72',
           900: '#003d4a',
         },
+        dnp: {
+          navy: '#08315F',
+          teal: '#005E86',
+          cyan: '#00D9FF',
+          wave: '#2A9FBC',
+          silver: '#DEE0E1',
+        },
         accent: '#ffd60a',  // golden yellow (replaces #2563EB)
         gold: '#ffd60a',
       },
       fontFamily: {
-        sans: ['var(--font-montserrat)', 'sans-serif'],
-        heading: ['Gotham', 'var(--font-montserrat)', 'sans-serif'],
+        sans: ['var(--font-dm-sans)', 'sans-serif'],
+        heading: ['var(--font-figtree)', 'sans-serif'],
+        figtree: ['var(--font-figtree)', 'sans-serif'],
+        'dm-sans': ['var(--font-dm-sans)', 'sans-serif'],
       },
     },
   },

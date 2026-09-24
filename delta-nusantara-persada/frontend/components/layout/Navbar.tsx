@@ -7,214 +7,238 @@ import { ChevronDown, Globe, Menu, X } from 'lucide-react'
 import clsx from 'clsx'
 import { useLang } from '@/lib/LanguageContext'
 import type { Language } from '@/lib/LanguageContext'
+import AboutModal from '@/components/ui/AboutModal'
 
 export default function Navbar() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [brandOpen, setBrandOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
+  const [aboutModalOpen, setAboutModalOpen] = useState(false)
   const { lang, setLang, t } = useLang()
 
-  const navItems = [
-    {
-      labelKey: 'about', href: '/about',
-      children: [
-        { label: t('nav', 'Tentang', 'tentang'), href: '/about/tentang' },
-        { label: t('nav', 'Struktur Organisasi', 'organisasi'), href: '/about/struktur-organisasi' },
-        { label: t('nav', 'Kebijakan Mutu', 'mutu'), href: '/about/kebijakan-mutu' },
-      ]
-    },
-    {
-      labelKey: 'brand',
-      href: '/brand',
-      children: [
-        { label: t('nav', 'brandChildren', 'pranenggar'), href: '/brand/pranenggar' },
-        { label: t('nav', 'brandChildren', 'nusa'), href: '/brand/nusa-persada' },
-        { label: t('nav', 'brandChildren', 'bsi'), href: '/brand/bsi' },
-      ],
-    },
-    { labelKey: 'news', href: '/berita' },
-  ]
-
-  const languages: Language[] = ['ID', 'EN']
+  const languages: Language[] = ['EN', 'ID']
 
   return (
-    <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0">
-            {/* The w-12 h-12 wrapper keeps your layout from shifting */}
-            <div className="w-12 h-12 relative flex items-center justify-center">
-              <Image
-                src="/images/logo1.png"
-                alt="Delta Nusantara Persada Logo"
-                width={48}
-                height={48}
-                className="object-contain"
-              />
-            </div>
+    <>
+      <nav className="bg-[#011E42] border-b border-white/10 relative z-50 transition-all">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-[72px]">
+            
+            {/* Logo matching Frame 2147224261.svg */}
+            <Link href="/" className="flex items-center gap-3 shrink-0 group">
+              <div className="h-11 relative flex items-center">
+                <Image
+                  src="/images/DNP-White.png"
+                  alt="Delta Nusantara Persada"
+                  width={220}
+                  height={55}
+                  className="h-10 w-auto object-contain"
+                  priority
+                />
+              </div>
+            </Link>
 
-            <div className="border-l border-gray-300 pl-3">
-              <p className="text-primary-700 font-bold text-sm leading-tight">DELTA NUSANTARA</p>
-              <p className="text-primary-700 font-bold text-sm leading-tight">PERSADA</p>
-              <p className="text-gray-400 text-[10px]">Consultant | Inspection</p>
-            </div>
-          </Link>
+            {/* Desktop Center Nav Links (Balanced Whitespace) */}
+            <div className="hidden md:flex items-center justify-center gap-5 lg:gap-7 xl:gap-8 flex-1 mx-4 lg:mx-8">
+              {/* Tentang Kami Popup Trigger */}
+              <button
+                type="button"
+                onClick={() => setAboutModalOpen(true)}
+                className="text-xs lg:text-sm font-semibold tracking-wider text-gray-200 hover:text-[#00D2FF] transition-colors focus:outline-none cursor-pointer"
+              >
+                {t('nav', 'about')}
+              </button>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <div key={item.href} className="relative group">
-                {item.children ? (
-                  <button
-                    onClick={() => setBrandOpen(!brandOpen)}
-                    className={clsx(
-                      'nav-link flex items-center gap-1',
-                      pathname.startsWith('/brand') && 'text-primary-700'
-                    )}
-                  >
-                    {t('nav', item.labelKey)}
-                    <ChevronDown className="w-3.5 h-3.5" />
-                  </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={clsx(
-                      'nav-link',
-                      pathname === item.href && 'text-primary-700 font-semibold'
-                    )}
-                  >
-                    {t('nav', item.labelKey)}
-                  </Link>
+              {/* Layanan Section Shortcut */}
+              <Link
+                href="/#layanan"
+                className="text-xs lg:text-sm font-semibold tracking-wider text-gray-200 hover:text-[#00D2FF] transition-colors"
+              >
+                {t('nav', 'services')}
+              </Link>
+
+              {/* Keunggulan Section Shortcut */}
+              <Link
+                href="/#keunggulan"
+                className="text-xs lg:text-sm font-semibold tracking-wider text-gray-200 hover:text-[#00D2FF] transition-colors"
+              >
+                {t('nav', 'whyChooseUs')}
+              </Link>
+
+              {/* Alur Kerja Section Shortcut */}
+              <Link
+                href="/#alur-kerja"
+                className="text-xs lg:text-sm font-semibold tracking-wider text-gray-200 hover:text-[#00D2FF] transition-colors"
+              >
+                {t('nav', 'process')}
+              </Link>
+
+              {/* Tim Ahli Section Shortcut */}
+              <Link
+                href="/#tim-ahli"
+                className="text-xs lg:text-sm font-semibold tracking-wider text-gray-200 hover:text-[#00D2FF] transition-colors"
+              >
+                {t('nav', 'team')}
+              </Link>
+
+              {/* Berita Page Link */}
+              <Link
+                href="/berita"
+                className={clsx(
+                  'text-xs lg:text-sm font-semibold tracking-wider transition-colors hover:text-[#00D2FF]',
+                  pathname === '/berita' ? 'text-[#00D2FF]' : 'text-gray-200'
                 )}
+              >
+                {t('nav', 'news')}
+              </Link>
+            </div>
 
-                {/* Dropdown */}
-                {item.children && (
-                  <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-100 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-4 py-3 text-sm text-gray-700 hover:bg-cyan-50 hover:text-primary-700 first:rounded-t-lg last:rounded-b-lg transition-colors"
+            {/* Desktop Right Actions: Language Selector + CTA */}
+            <div className="hidden md:flex items-center gap-4 shrink-0">
+              {/* Language Selector */}
+              <div className="relative flex items-center gap-1 border-l border-white/20 pl-4 py-1.5">
+                <button
+                  onClick={() => setLangOpen(!langOpen)}
+                  className="flex items-center gap-1.5 text-xs font-semibold text-gray-200 hover:text-[#00D2FF] transition-colors"
+                >
+                  <Globe className="w-3.5 h-3.5 text-[#00D2FF]" />
+                  <span>{lang.toUpperCase()}</span>
+                  <ChevronDown className="w-3 h-3 opacity-70" />
+                </button>
+
+                {langOpen && (
+                  <div className="absolute top-full right-0 mt-1 w-20 bg-[#011E42] border border-white/15 rounded-lg shadow-xl overflow-hidden py-1 z-50">
+                    {languages.map((l) => (
+                      <button
+                        key={l}
+                        onClick={() => {
+                          setLang(l)
+                          setLangOpen(false)
+                        }}
+                        className={clsx(
+                          'w-full text-left px-3 py-1.5 text-xs font-medium transition-colors block',
+                          lang === l ? 'bg-[#008CE4] text-white' : 'text-gray-300 hover:bg-white/10'
+                        )}
                       >
-                        {child.label}
-                      </Link>
+                        {l}
+                      </button>
                     ))}
                   </div>
                 )}
               </div>
-            ))}
 
-            {/* Divider */}
-            <span className="text-gray-300">|</span>
-
-            {/* Language Switcher */}
-            <div className="relative">
-              <button
-                id="lang-switcher-btn"
-                onClick={() => setLangOpen(!langOpen)}
-                className="nav-link flex items-center gap-1.5 text-sm"
+              {/* Hubungi Kami Action Button (Square 10px Gradient) */}
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center px-5 py-2.5 rounded-[10px] text-xs font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] hover:brightness-105 text-white transition-all duration-200 shadow-md shadow-[#008CE4]/30"
               >
-                <Globe className="w-4 h-4" />
-                {lang}
-                <ChevronDown className={clsx('w-3.5 h-3.5 transition-transform', langOpen && 'rotate-180')} />
-              </button>
-              {langOpen && (
-                <div className="absolute top-full right-0 mt-2 w-24 bg-white border border-gray-100 rounded-lg shadow-lg z-50">
-                  {languages.map((l) => (
-                    <button
-                      key={l}
-                      id={`lang-${l.toLowerCase()}`}
-                      onClick={() => { setLang(l); setLangOpen(false) }}
-                      className={clsx(
-                        'flex items-center gap-2 w-full px-4 py-2 text-sm hover:bg-cyan-50 hover:text-primary-700 transition-colors first:rounded-t-lg last:rounded-b-lg',
-                        lang === l && 'text-primary-700 font-semibold bg-cyan-50'
-                      )}
-                    >
-                      <span className={clsx(
-                        'w-2 h-2 rounded-full shrink-0',
-                        l === 'ID' ? 'bg-red-500' : 'bg-blue-500'
-                      )} />
-                      {l}
-                    </button>
-                  ))}
-                </div>
-              )}
+                {t('nav', 'contact')}
+              </Link>
             </div>
 
-            <Link href="/contact" className="btn-primary" id="contact-cta-btn">
-              {t('nav', 'contact')}
-            </Link>
+            {/* Mobile hamburger */}
+            <div className="flex md:hidden items-center gap-3">
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                className="p-2 text-white hover:text-[#00D2FF] transition-colors"
+                aria-label="Toggle menu"
+              >
+                {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
+
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            id="mobile-menu-btn"
-            className="md:hidden p-2 text-gray-600"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
-      </div>
 
-      {/* Mobile Nav */}
-      {mobileOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
-          {navItems.map((item) => (
-            <div key={item.href}>
+        {/* Mobile Menu */}
+        {mobileOpen && (
+          <div className="md:hidden bg-[#011E42] border-t border-white/10 px-4 pt-4 pb-6 space-y-3">
+            <button
+              type="button"
+              className="block w-full text-left text-sm font-semibold text-gray-200 hover:text-[#00D2FF] py-2"
+              onClick={() => {
+                setMobileOpen(false)
+                setAboutModalOpen(true)
+              }}
+            >
+              {t('nav', 'about')}
+            </button>
+            <Link
+              href="/#layanan"
+              className="block text-sm font-semibold text-gray-200 hover:text-[#00D2FF] py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t('nav', 'services')}
+            </Link>
+            <Link
+              href="/#keunggulan"
+              className="block text-sm font-semibold text-gray-200 hover:text-[#00D2FF] py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t('nav', 'whyChooseUs')}
+            </Link>
+            <Link
+              href="/#alur-kerja"
+              className="block text-sm font-semibold text-gray-200 hover:text-[#00D2FF] py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t('nav', 'process')}
+            </Link>
+            <Link
+              href="/#tim-ahli"
+              className="block text-sm font-semibold text-gray-200 hover:text-[#00D2FF] py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t('nav', 'team')}
+            </Link>
+            <Link
+              href="/berita"
+              className="block text-sm font-semibold text-gray-200 hover:text-[#00D2FF] py-2"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t('nav', 'news')}
+            </Link>
+
+            {/* Mobile Language Switcher */}
+            <div className="flex items-center justify-between py-2 border-t border-white/10">
+              <div className="flex items-center gap-1.5 text-xs text-gray-300">
+                <Globe className="w-4 h-4 text-[#00D2FF]" />
+                <span>Language:</span>
+              </div>
+              <div className="flex items-center gap-2">
+                {languages.map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => setLang(l)}
+                    className={clsx(
+                      'px-3 py-1 text-xs font-bold rounded-md transition-colors',
+                      lang === l ? 'bg-[#008CE4] text-white shadow-sm' : 'text-gray-300 bg-white/10 hover:bg-white/20'
+                    )}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="pt-2">
               <Link
-                href={item.href}
-                className="block text-sm font-medium text-gray-700 py-2 hover:text-primary-700"
+                href="/contact"
+                className="block w-full text-center py-3 rounded-[10px] text-xs font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] text-white shadow-md shadow-[#008CE4]/30"
                 onClick={() => setMobileOpen(false)}
               >
-                {t('nav', item.labelKey)}
+                {t('nav', 'contact')}
               </Link>
-              {item.children && (
-                <div className="ml-4 space-y-1">
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="block text-sm text-gray-500 py-1.5 hover:text-primary-700"
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
             </div>
-          ))}
-
-          {/* Mobile language toggle */}
-          <div className="flex gap-2 pt-1">
-            {languages.map((l) => (
-              <button
-                key={l}
-                onClick={() => setLang(l)}
-                className={clsx(
-                  'flex-1 py-2 rounded-md text-sm font-medium border transition-colors flex items-center justify-center gap-1.5',
-                  lang === l
-                    ? 'bg-accent text-gray-900 border-accent'
-                    : 'border-gray-200 text-gray-600 hover:border-primary-700 hover:text-primary-700'
-                )}
-              >
-                <span className={clsx(
-                  'w-2 h-2 rounded-full shrink-0',
-                  lang === l ? 'bg-gray-900' : l === 'ID' ? 'bg-red-400' : 'bg-blue-400'
-                )} />
-                {l}
-              </button>
-            ))}
           </div>
+        )}
+      </nav>
 
-          <Link href="/contact" className="btn-primary block text-center mt-4">
-            {t('nav', 'contact')}
-          </Link>
-        </div>
-      )}
-    </nav>
+      {/* Global Tentang Kami Popup Modal */}
+      <AboutModal
+        isOpen={aboutModalOpen}
+        onClose={() => setAboutModalOpen(false)}
+      />
+    </>
   )
 }

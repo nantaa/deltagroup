@@ -1,9 +1,12 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Eye, EyeOff, Lock, User, AlertCircle } from 'lucide-react'
 import { login, isAuthenticated } from '@/lib/auth'
+
+const MAX_ATTEMPTS = 5
+const LOCKOUT_SECONDS = 30
 
 export default function AdminLoginPage() {
   const router = useRouter()
@@ -12,6 +15,9 @@ export default function AdminLoginPage() {
   const [showPass, setShowPass] = useState(false)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+  const [attempts, setAttempts] = useState(0)
+  const [lockoutSeconds, setLockoutSeconds] = useState(0)
+  const lockoutRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   // Redirect if already logged in
   useEffect(() => {
@@ -20,8 +26,28 @@ export default function AdminLoginPage() {
     }
   }, [router])
 
+  // Cleanup lockout interval on unmount
+  useEffect(() => () => {
+    if (lockoutRef.current) clearInterval(lockoutRef.current)
+  }, [])
+
+  const startLockout = () => {
+    setLockoutSeconds(LOCKOUT_SECONDS)
+    lockoutRef.current = setInterval(() => {
+      setLockoutSeconds((s) => {
+        if (s <= 1) {
+          if (lockoutRef.current) clearInterval(lockoutRef.current)
+          setAttempts(0)
+          return 0
+        }
+        return s - 1
+      })
+    }, 1000)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    if (lockoutSeconds > 0) return
     setError('')
     setLoading(true)
 
@@ -32,10 +58,19 @@ export default function AdminLoginPage() {
     if (ok) {
       router.push('/admin/blog')
     } else {
-      setError('Username atau password salah.')
+      const newAttempts = attempts + 1
+      setAttempts(newAttempts)
+      if (newAttempts >= MAX_ATTEMPTS) {
+        setError(`Terlalu banyak percobaan. Coba lagi dalam ${LOCKOUT_SECONDS} detik.`)
+        startLockout()
+      } else {
+        setError(`Username atau password salah. (${newAttempts}/${MAX_ATTEMPTS} percobaan)`)
+      }
       setLoading(false)
     }
   }
+
+  const isLocked = lockoutSeconds > 0
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-700 via-blue-800 to-accent flex items-center justify-center px-4">
@@ -118,7 +153,7 @@ export default function AdminLoginPage() {
             <button
               id="admin-login-submit"
               type="submit"
-              disabled={loading}
+              disabled={loading || isLocked}
               className="w-full bg-accent text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-blue-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {loading ? (
@@ -129,7 +164,7 @@ export default function AdminLoginPage() {
                   </svg>
                   Masuk...
                 </>
-              ) : 'Masuk ke Dashboard'}
+              ) : isLocked ? `Tunggu ${lockoutSeconds}s...` : 'Masuk ke Dashboard'}
             </button>
           </form>
 

@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Search, ChevronDown, Plus, Eye, Pencil, Calendar, Tag } from 'lucide-react'
+import { Search, ChevronDown, Plus, Eye, Pencil, Trash2, Calendar, Tag } from 'lucide-react'
 import api from '@/lib/api'
 import { Post } from '@/types'
 import clsx from 'clsx'
@@ -20,6 +20,16 @@ export default function AdminBlogPage() {
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
   const [catOpen, setCatOpen] = useState(false)
+
+  const handleDelete = async (id: number, title: string) => {
+    if (!confirm(`Hapus post "${title}"?`)) return
+    try {
+      await api.delete(`/posts/${id}`)
+      setPosts((prev) => prev.filter((p) => p.id !== id))
+    } catch {
+      alert('Gagal menghapus post.')
+    }
+  }
 
   const total = posts.length
   const published = posts.filter((p) => p.status === 'published').length
@@ -140,6 +150,12 @@ export default function AdminBlogPage() {
                     <Link href={`/admin/blog/${post.id}/edit`} className="flex items-center gap-1 text-xs text-gray-500 hover:text-accent transition-colors">
                       <Pencil className="w-3.5 h-3.5" /> Edit
                     </Link>
+                    <button
+                      onClick={() => handleDelete(post.id, post.title)}
+                      className="flex items-center gap-1 text-xs text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" /> Delete
+                    </button>
                   </div>
                 </div>
               </div>

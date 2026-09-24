@@ -4,6 +4,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { GraduationCap, ArrowRight, Search } from 'lucide-react'
 import api from '@/lib/api'
+import SiteHeader from '@/components/layout/SiteHeader'
+import Footer from '@/components/layout/Footer'
 
 interface Course {
   id: number
@@ -49,7 +51,8 @@ export default function CoursesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <SiteHeader />
       {/* Hero Banner */}
       <section className="bg-primary-700 text-white py-16">
         <div className="max-w-6xl mx-auto px-4 text-center">
@@ -139,6 +142,7 @@ export default function CoursesPage() {
           </div>
         )}
       </section>
+      <Footer />
     </div>
   )
 }

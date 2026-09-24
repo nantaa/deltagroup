@@ -13,13 +13,14 @@
   }
   html {
     scroll-behavior: smooth;
+    font-size: 110%; /* Scale base rem by 10% — matches 110% browser zoom feel */
   }
   body {
     @apply text-gray-800 bg-white;
-    font-family: var(--font-montserrat), sans-serif;
+    font-family: var(--font-dm-sans), sans-serif;
   }
   h1, h2, h3, h4, h5, h6, .section-title, .font-heading {
-    font-family: 'Gotham', var(--font-montserrat), sans-serif;
+    font-family: var(--font-figtree), sans-serif;
   }
 }
 
@@ -37,7 +38,38 @@
     @apply text-sm text-primary-700 text-center mt-1;
   }
   .nav-link {
-    @apply text-gray-700 font-medium text-sm hover:text-primary-700 transition-colors;
+    @apply text-gray-300 font-medium text-sm hover:text-dnp-cyan transition-colors;
+  }
+  .dnp-text-gradient {
+    @apply bg-gradient-to-r from-dnp-cyan via-cyan-300 to-white bg-clip-text text-transparent;
+  }
+  .prose-dnp h1, .prose-dnp h2, .prose-dnp h3 {
+    @apply text-dnp-navy font-bold mt-6 mb-3;
+  }
+  .prose-dnp p {
+    @apply text-gray-700 leading-relaxed mb-4 text-base;
+  }
+  .prose-dnp ul {
+    @apply list-disc list-inside space-y-1.5 mb-4 text-gray-700;
+  }
+  .prose-dnp ol {
+    @apply list-decimal list-inside space-y-1.5 mb-4 text-gray-700;
+  }
+  .prose-dnp blockquote {
+    @apply border-l-4 border-dnp-cyan pl-4 italic text-gray-600 my-4;
+  }
+  .elevated-hover {
+    transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 400ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms ease, scale 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+  }
+  .elevated-hover:hover {
+    transform: translateY(-18px) scale(1.025) translateZ(0);
+    box-shadow:
+      0 32px 56px -10px rgba(0, 140, 228, 0.38),
+      0 20px 32px -8px rgba(1, 30, 66, 0.22),
+      0 8px 16px -4px rgba(0, 210, 255, 0.18);
+    border-color: rgba(0, 140, 228, 0.7);
   }
 }
 

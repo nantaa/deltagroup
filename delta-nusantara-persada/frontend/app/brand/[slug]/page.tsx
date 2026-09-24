@@ -1,6 +1,7 @@
+import type { Metadata } from 'next'
 import React from 'react'
-import TopBar from '@/components/layout/TopBar'
-import Navbar from '@/components/layout/Navbar'
+import { notFound } from 'next/navigation'
+import SiteHeader from '@/components/layout/SiteHeader'
 import Footer from '@/components/layout/Footer'
 import Breadcrumb from '@/components/ui/Breadcrumb'
 import PageHero from '@/components/ui/PageHero'
@@ -11,12 +12,12 @@ const BRAND_DATA: Record<string, { name: string; description: string; longDesc: 
     name: 'Delta Indonesia Pranenggar',
     description: 'Consultant · Inspection',
     longDesc: 'Delta Indonesia Pranenggar adalah perusahaan konsultan profesional yang berfokus pada pengembangan SDM, keselamatan kerja (K3), dan pelatihan korporat. Kami telah melayani lebih dari 100+ perusahaan di seluruh Indonesia.',
-    website: 'https://deltaindo.co.id',
   },
   'nusa-persada': {
     name: 'Delta Nusantara Persada',
     description: 'Technical Inspection · Quality Assurance',
     longDesc: 'Delta Nusantara Persada menyediakan layanan inspeksi teknis dan quality assurance untuk sektor industri, energi, dan manufaktur. Didukung oleh tenaga ahli bersertifikat internasional.',
+    website: 'https://deltanusa.co.id',
   },
   bsi: {
     name: 'Biro Sertifikasi Indonesia',
@@ -25,14 +26,28 @@ const BRAND_DATA: Record<string, { name: string; description: string; longDesc: 
   },
 }
 
+export function generateStaticParams() {
+  return Object.keys(BRAND_DATA).map((slug) => ({ slug }))
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const brand = BRAND_DATA[params.slug]
+  if (!brand) return { title: 'Brand Tidak Ditemukan' }
+
+  return {
+    title: `${brand.name} | Brand Kami`,
+    description: brand.longDesc,
+    alternates: { canonical: `/brand/${params.slug}` },
+  }
+}
+
 export default function BrandDetailPage({ params }: { params: { slug: string } }) {
   const brand = BRAND_DATA[params.slug]
-  if (!brand) return null
+  if (!brand) notFound()
 
   return (
     <>
-      <TopBar />
-      <Navbar />
+      <SiteHeader />
       <Breadcrumb crumbs={[{ label: 'Brand Kami', href: '/brand' }, { label: brand.name }]} />
       <PageHero title={brand.name} subtitle={brand.description} />
 

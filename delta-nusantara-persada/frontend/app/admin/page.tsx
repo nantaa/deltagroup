@@ -1,11 +1,5 @@
-'use client'
-import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
-export default function AdminRootPage() {
-  const router = useRouter()
-  useEffect(() => {
-    router.replace('/admin/blog')
-  }, [router])
-  return null
+export default function AdminPage() {
+  redirect('/admin/blog')
 }
