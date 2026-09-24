@@ -10,17 +10,13 @@ import {
   LogOut,
   ChevronRight,
   Megaphone,
-  GraduationCap,
-  Users,
 } from 'lucide-react'
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
 
 const navLinks = [
-  { label: 'Blog Management', href: '/admin/blog',           icon: FileText      },
-  { label: 'Courses',         href: '/admin/courses',        icon: GraduationCap },
-  { label: 'Registrations',   href: '/admin/registrations',  icon: Users         },
-  { label: 'TopBar Settings', href: '/admin/topbar',         icon: Megaphone     },
+  { label: 'Blog Management', href: '/admin/blog',   icon: FileText  },
+  { label: 'TopBar Settings', href: '/admin/topbar', icon: Megaphone },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

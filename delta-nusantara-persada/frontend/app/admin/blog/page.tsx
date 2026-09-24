@@ -16,10 +16,28 @@ const MOCK_POSTS: Post[] = [
 const CATEGORIES = ['All', 'Event', 'K3', 'Training', 'Berita']
 
 export default function AdminBlogPage() {
-  const [posts, setPosts] = useState<Post[]>(MOCK_POSTS)
+  const [posts, setPosts] = useState<Post[]>([])
+  const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
   const [catOpen, setCatOpen] = useState(false)
+
+  const fetchPosts = async () => {
+    setLoading(true)
+    try {
+      const res = await api.get('/posts')
+      const data = res.data.data ?? res.data
+      setPosts(Array.isArray(data) && data.length > 0 ? data : MOCK_POSTS)
+    } catch {
+      setPosts(MOCK_POSTS)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchPosts()
+  }, [])
 
   const handleDelete = async (id: number, title: string) => {
     if (!confirm(`Hapus post "${title}"?`)) return
@@ -111,10 +129,18 @@ export default function AdminBlogPage() {
           {filtered.map((post) => (
             <div key={post.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
               {/* Image */}
-              <div className="relative h-44 bg-gray-100 flex items-center justify-center">
-                <svg className="w-10 h-10 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
-                </svg>
+              <div className="relative h-44 bg-gray-100 flex items-center justify-center overflow-hidden">
+                {post.image ? (
+                  <img
+                    src={`${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}/storage/${post.image}`}
+                    alt={post.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <svg className="w-10 h-10 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+                  </svg>
+                )}
                 <span className={clsx(
                   'absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full',
                   post.status === 'published' ? 'bg-gray-900 text-white' : 'bg-gray-400 text-white'

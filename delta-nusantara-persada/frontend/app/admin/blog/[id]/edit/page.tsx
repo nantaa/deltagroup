@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, useParams } from 'next/navigation'
-import { ArrowLeft, X, Plus } from 'lucide-react'
+import { ArrowLeft, X, Plus, Upload } from 'lucide-react'
 import api from '@/lib/api'
 import { Post } from '@/types'
 import RichTextEditor from '@/components/ui/RichTextEditor'
@@ -20,6 +20,9 @@ export default function EditPostPage() {
     status: 'draft',
     tags: [] as string[],
   })
+  const [existingImage, setExistingImage] = useState<string | null>(null)
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [tagInput, setTagInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [fetching, setFetching] = useState(true)
@@ -38,6 +41,9 @@ export default function EditPostPage() {
           status: p.status,
           tags: p.tags ?? [],
         })
+        if (p.image) {
+          setExistingImage(p.image)
+        }
       })
       .catch(() => setError('Gagal memuat post.'))
       .finally(() => setFetching(false))
@@ -51,12 +57,39 @@ export default function EditPostPage() {
 
   const removeTag = (tag: string) => setForm((p) => ({ ...p, tags: p.tags.filter((t) => t !== tag) }))
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        alert('Ukuran gambar maksimal 2MB')
+        return
+      }
+      setImageFile(file)
+      setImagePreview(URL.createObjectURL(file))
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
     try {
-      await api.put(`/posts/${id}`, form)
+      if (imageFile) {
+        const formData = new FormData()
+        formData.append('_method', 'PUT')
+        formData.append('title', form.title)
+        formData.append('excerpt', form.excerpt)
+        formData.append('content', form.content)
+        formData.append('category', form.category)
+        formData.append('status', form.status)
+        form.tags.forEach((t, i) => formData.append(`tags[${i}]`, t))
+        formData.append('image', imageFile)
+        await api.post(`/posts/${id}`, formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
+      } else {
+        await api.put(`/posts/${id}`, form)
+      }
       router.push('/admin/blog')
     } catch (err) {
       const apiMsg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
@@ -149,6 +182,56 @@ export default function EditPostPage() {
               <button type="button" onClick={addTag} className="btn-primary flex items-center gap-1 text-sm">
                 <Plus className="w-4 h-4" /> Add
               </button>
+            </div>
+          </div>
+
+          {/* Upload image */}
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">Gambar Utama</label>
+            <div className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center hover:border-accent transition-colors relative">
+              {imagePreview ? (
+                <div className="relative inline-block">
+                  <img src={imagePreview} alt="Preview Baru" className="max-h-48 rounded-lg mx-auto object-cover" />
+                  <button
+                    type="button"
+                    onClick={() => { setImageFile(null); setImagePreview(null) }}
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : existingImage ? (
+                <div className="relative inline-block">
+                  <img
+                    src={existingImage.startsWith('http') ? existingImage : `${(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api').replace('/api', '')}/storage/${existingImage}`}
+                    alt="Current Image"
+                    className="max-h-48 rounded-lg mx-auto object-cover"
+                  />
+                  <label className="cursor-pointer block mt-3">
+                    <span className="text-xs font-semibold text-accent hover:underline flex items-center justify-center gap-1">
+                      <Upload className="w-3.5 h-3.5" /> Ganti Gambar
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/png,image/jpeg,image/jpg,image/webp"
+                      onChange={handleImageChange}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+              ) : (
+                <label className="cursor-pointer block">
+                  <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                  <p className="text-sm font-medium text-gray-600">Klik untuk upload gambar artikel</p>
+                  <p className="text-xs text-gray-400 mt-1">PNG, JPG, WebP hingga 2MB</p>
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg,image/webp"
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </label>
+              )}
             </div>
           </div>
 

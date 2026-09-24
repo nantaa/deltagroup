@@ -16,6 +16,8 @@ export default function NewPostPage() {
     status: 'draft',
     tags: [] as string[],
   })
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [tagInput, setTagInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -32,12 +34,38 @@ export default function NewPostPage() {
     setForm((prev) => ({ ...prev, tags: prev.tags.filter((t) => t !== tag) }))
   }
 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        alert('Ukuran gambar maksimal 2MB')
+        return
+      }
+      setImageFile(file)
+      setImagePreview(URL.createObjectURL(file))
+    }
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError('')
     try {
-      await api.post('/posts', form)
+      if (imageFile) {
+        const formData = new FormData()
+        formData.append('title', form.title)
+        formData.append('excerpt', form.excerpt)
+        formData.append('content', form.content)
+        formData.append('category', form.category)
+        formData.append('status', form.status)
+        form.tags.forEach((t, i) => formData.append(`tags[${i}]`, t))
+        formData.append('image', imageFile)
+        await api.post('/posts', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
+      } else {
+        await api.post('/posts', form)
+      }
       router.push('/admin/blog')
     } catch (err) {
       const apiMsg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
@@ -147,13 +175,34 @@ export default function NewPostPage() {
             </div>
           </div>
 
-          {/* Upload image placeholder */}
+          {/* Upload image */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">Gambar</label>
-            <div className="border-2 border-dashed border-gray-200 rounded-lg p-8 text-center hover:border-accent transition-colors cursor-pointer">
-              <Upload className="w-8 h-8 text-gray-300 mx-auto mb-2" />
-              <p className="text-sm text-gray-400">Klik untuk upload gambar (JPEG, PNG, max 2MB)</p>
-              <p className="text-xs text-gray-300 mt-1">Fitur upload terhubung ke Laravel storage</p>
+            <label className="block text-sm font-semibold text-gray-700 mb-1.5">Gambar Utama</label>
+            <div className="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center hover:border-accent transition-colors relative">
+              {imagePreview ? (
+                <div className="relative inline-block">
+                  <img src={imagePreview} alt="Preview" className="max-h-48 rounded-lg mx-auto object-cover" />
+                  <button
+                    type="button"
+                    onClick={() => { setImageFile(null); setImagePreview(null) }}
+                    className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 shadow-md hover:bg-red-600"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : (
+                <label className="cursor-pointer block">
+                  <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                  <p className="text-sm font-medium text-gray-600">Klik untuk upload gambar artikel</p>
+                  <p className="text-xs text-gray-400 mt-1">PNG, JPG, WebP hingga 2MB</p>
+                  <input
+                    type="file"
+                    accept="image/png,image/jpeg,image/jpg,image/webp"
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </label>
+              )}
             </div>
           </div>
 

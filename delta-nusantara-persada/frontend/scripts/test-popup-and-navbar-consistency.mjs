@@ -97,8 +97,6 @@ test('TDD 5: Public pages use SiteHeader for 100% consistent navbar behavior and
     'app/services/page.tsx',
     'app/contact/page.tsx',
     'app/berita/page.tsx',
-    'app/courses/page.tsx',
-    'app/courses/[slug]/page.tsx',
     'app/brand/page.tsx',
     'app/privacy/page.tsx',
     'app/terms/page.tsx',

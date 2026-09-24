@@ -7,9 +7,30 @@ import ServicesSection from '@/components/ui/ServicesSection'
 import WhyChooseUs from '@/components/ui/WhyChooseUs'
 import WorkProcessTraining from '@/components/ui/WorkProcessTraining'
 import TeamSection from '@/components/ui/TeamSection'
+import LatestBlog from '@/components/ui/LatestBlog'
 import TestimonialCTA from '@/components/ui/TestimonialCTA'
+import { Post } from '@/types'
+
+async function getPublishedPosts(): Promise<Post[]> {
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
+    const res = await fetch(`${apiUrl}/posts?status=published&limit=4`, {
+      next: { revalidate: 60 },
+    })
+    if (!res.ok) return []
+    const data = await res.json()
+    // Support either direct array or paginated data structure
+    if (Array.isArray(data)) return data
+    if (Array.isArray(data?.data)) return data.data
+    return []
+  } catch {
+    return []
+  }
+}
 
 export default async function HomePage() {
+  const posts = await getPublishedPosts()
+
   return (
     <div className="min-h-screen bg-white flex flex-col font-sans selection:bg-[#00D2FF] selection:text-[#011E42]">
       <SiteHeader />
@@ -33,7 +54,10 @@ export default async function HomePage() {
         {/* 6. Tim Profesional Kami (Pranan Jaya Barus, Terzha R. Perdanawan, Ricky Rumindo) */}
         <TeamSection />
 
-        {/* 7. Dual Card Banner: Testimonial & Consultation CTA */}
+        {/* 7. Latest Blog / News & HSE Insights Section */}
+        <LatestBlog posts={posts} />
+
+        {/* 8. Dual Card Banner: Testimonial & Consultation CTA */}
         <TestimonialCTA />
       </main>
 
