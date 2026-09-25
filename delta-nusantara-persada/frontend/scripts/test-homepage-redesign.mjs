@@ -36,7 +36,6 @@ test('Component: HeroSection.tsx implements background and reference copy', () =
   assert.match(combined, /Building Trust Through Professional/i, 'Headline must match reference');
   assert.match(combined, /Inspection/i, 'Headline must include Inspection accent');
   assert.match(combined, /PELAJARI LAYANAN/i, 'Must include Pelajari Layanan CTA button');
-  assert.match(combined, /HUBUNGI KAMI/i, 'Must include Hubungi Kami CTA button');
 });
 
 test('Component: StatsBar.tsx implements the 3 new reference metrics (5+, 1000+, 11+)', () => {
@@ -134,7 +133,6 @@ test('Component: TestimonialCTA.tsx implements dual card banner with Astra testi
   assert.match(combined, /Apa Kata Klien Kami/i, 'Must render testimonial title');
   assert.match(combined, /Astra International/i, 'Must feature Astra testimonial');
   assert.match(combined, /Siap Meningkatkan Standar Keselamatan/i, 'Must render consultation banner headline');
-  assert.match(combined, /HUBUNGI KAMI/i, 'Must render Hubungi Kami CTA button');
   assert.match(combined, /KONSULTASI GRATIS/i, 'Must render Konsultasi Gratis CTA button');
 });
 

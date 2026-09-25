@@ -27,13 +27,13 @@ git --version
 ```
 
 ### Langkah 2: Clone Awal Khusus Folder DNP
-Jalankan langkah ini di direktori web server VPS Anda (`/var/www/delta-nusantara/deltagroup`):
+Jalankan langkah ini di direktori web server VPS Anda (misalnya `/var/www/delta-nusantara`):
 
 ```bash
 # 1. Buat folder target di VPS
-sudo mkdir -p /var/www/delta-nusantara/deltagroup
-sudo chown -R $USER:$USER /var/www/delta-nusantara/deltagroup
-cd /var/www/delta-nusantara/deltagroup
+sudo mkdir -p /var/www/delta-nusantara
+sudo chown -R $USER:$USER /var/www/delta-nusantara
+cd /var/www/delta-nusantara
 
 # 2. Inisialisasi clone tanpa mengunduh file fisik (0 MB blob)
 git clone --filter=blob:none --no-checkout https://github.com/USERNAME/delta-group.git .
@@ -49,19 +49,15 @@ git checkout main
 ```
 
 > **Verifikasi di VPS:**
-> Jalankan perintah `ls -la`. Anda hanya akan melihat folder `delta-nusantara-persada/` dan `.git/`.
-> Masuk ke folder: `cd delta-nusantara-persada && ls`
-> Hasilnya: `PT_DNP_Summary_2024.md  SETUP.md  backend  frontend`
+> Jalankan perintah `ls -la`. Anda hanya akan melihat folder `delta-nusantara-persada/` dan `.git/`. Folder project lain sama sekali **tidak pernah diunduh** ke VPS!
 
 ---
 
 ## 3. Struktur Direktori di VPS Setelah Sparse-Checkout
 
 ```text
-/var/www/delta-nusantara/deltagroup/
+/var/www/delta-nusantara/
 └── delta-nusantara-persada/
-    ├── PT_DNP_Summary_2024.md
-    ├── SETUP.md
     ├── frontend/       <-- Next.js 14 App
     │   ├── app/
     │   ├── components/
@@ -82,7 +78,7 @@ git checkout main
 
 ### A. Setup Backend Laravel
 ```bash
-cd /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/backend
+cd /var/www/delta-nusantara/delta-nusantara-persada/backend
 
 # 1. Install dependencies
 composer install --no-dev --optimize-autoloader
@@ -106,7 +102,7 @@ sudo chmod -R 775 storage bootstrap/cache
 
 ### B. Setup Frontend Next.js
 ```bash
-cd /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/frontend
+cd /var/www/delta-nusantara/delta-nusantara-persada/frontend
 
 # 1. Install dependencies
 npm ci --production=false
@@ -133,7 +129,7 @@ pm2 startup
 Ketika Anda melakukan commit dan push dari komputer lokal ke GitHub, Anda **cukup menjalankan perintah ini di VPS**:
 
 ```bash
-cd /var/www/delta-nusantara/deltagroup
+cd /var/www/delta-nusantara
 
 # 1. Pull update terbaru (Hanya akan mengunduh perubahan delta-nusantara-persada)
 git pull origin main
@@ -157,9 +153,9 @@ pm2 reload dnp-frontend
 
 ## 6. Otomasi: Script Deploy 1-Klik (`deploy.sh`)
 
-Buat file script di VPS: `/var/www/delta-nusantara/deltagroup/deploy.sh`
+Buat file script di VPS: `/var/www/delta-nusantara/deploy.sh`
 ```bash
-nano /var/www/delta-nusantara/deltagroup/deploy.sh
+nano /var/www/delta-nusantara/deploy.sh
 ```
 
 Paste script berikut:
@@ -168,7 +164,7 @@ Paste script berikut:
 set -e
 
 echo "🚀 [1/4] Menarik update dari GitHub..."
-cd /var/www/delta-nusantara/deltagroup
+cd /var/www/delta-nusantara
 git pull origin main
 
 echo "📦 [2/4] Memperbarui Backend Laravel..."
@@ -191,12 +187,12 @@ echo "✅ [4/4] Deployment Selesai! Web siap digunakan."
 
 Beri izin eksekusi:
 ```bash
-chmod +x /var/www/delta-nusantara/deltagroup/deploy.sh
+chmod +x /var/www/delta-nusantara/deploy.sh
 ```
 
 Setiap kali Anda ingin update web di server, cukup ketik:
 ```bash
-/var/www/delta-nusantara/deltagroup/deploy.sh
+/var/www/delta-nusantara/deploy.sh
 ```
 
 ---
@@ -212,6 +208,6 @@ Jika Anda **tidak ingin** VPS terhubung ke monorepo sama sekali dan ingin repo t
    ```
 3. Di VPS, Anda tinggal melakukan clone biasa:
    ```bash
-   git clone git@github.com:USERNAME/delta-nusantara-persada.git /var/www/delta-nusantara/deltagroup/delta-nusantara-persada
+   git clone git@github.com:USERNAME/delta-nusantara-persada.git /var/www/delta-nusantara
    ```
 *(Catatan: Anda harus selalu menjalankan perintah `git subtree push` dari lokal setiap kali selesai mengedit).*

@@ -52,15 +52,8 @@ export default function HeroSection() {
             {/* CTA Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[10px] text-xs sm:text-sm font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] hover:brightness-105 text-white transition-all duration-200 shadow-lg shadow-[#008CE4]/30 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                {h.ctaContact[lang]}
-              </Link>
-
-              <Link
                 href="/services"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[10px] text-xs sm:text-sm font-semibold bg-transparent hover:bg-white/10 border border-white/80 text-white transition-all duration-200"
+                className="inline-flex items-center justify-center px-7 py-3.5 rounded-[10px] text-xs sm:text-sm font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] hover:brightness-105 text-white transition-all duration-200 shadow-lg shadow-[#008CE4]/30 hover:scale-[1.02] active:scale-[0.98]"
               >
                 {h.ctaServices[lang]}
               </Link>

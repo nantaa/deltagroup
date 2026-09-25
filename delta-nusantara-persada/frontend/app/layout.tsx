@@ -3,6 +3,7 @@ import { Figtree, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema'
+import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -110,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LocalBusinessSchema />
         <LanguageProvider>
           {children}
+          <FloatingWhatsApp />
         </LanguageProvider>
       </body>
     </html>

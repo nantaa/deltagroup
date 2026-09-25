@@ -87,8 +87,8 @@ test('TDD 3: Main action buttons must use rounded-[10px] with gradient and avoid
   );
   assert.doesNotMatch(
     heroContent,
-    /<Link[^>]*href=["']\/contact["'][^>]*rounded-full/,
-    'HeroSection CTA /contact must not use rounded-full'
+    /<Link[^>]*rounded-full/,
+    'HeroSection CTA must not use rounded-full'
   );
 
   const ctaContent = fs.readFileSync(TESTIMONIAL_CTA, 'utf8');
@@ -96,13 +96,6 @@ test('TDD 3: Main action buttons must use rounded-[10px] with gradient and avoid
     ctaContent,
     /rounded-\[10px\][\s\S]*?from-\[#04C5F4\]\s+to-\[#0D5EC4\]/,
     'TestimonialCTA primary button must use rounded-[10px] with gradient'
-  );
-
-  const navbarContent = fs.readFileSync(NAVBAR, 'utf8');
-  assert.match(
-    navbarContent,
-    /rounded-\[10px\][\s\S]*?from-\[#04C5F4\]\s+to-\[#0D5EC4\]/,
-    'Navbar Hubungi Kami button must use rounded-[10px] with gradient'
   );
 });
 

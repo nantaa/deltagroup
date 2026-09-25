@@ -140,22 +140,17 @@ export default function TestimonialCTA() {
 
             {/* CTA Buttons Row */}
             <div className="relative z-20 flex flex-wrap items-center gap-3.5 pt-6 sm:pt-8">
-              <Link
-                href="/contact"
-                className="px-7 py-3.5 rounded-[10px] text-xs sm:text-sm font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] hover:brightness-105 text-white transition-all duration-200 shadow-lg shadow-[#008CE4]/30 hover:scale-[1.02] active:scale-[0.98]"
-              >
-                {tc.ctaContact[lang]}
-              </Link>
-
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-3 px-6 py-3.5 rounded-[10px] text-xs sm:text-sm font-bold bg-[#022047]/90 hover:bg-[#032a5e] border border-white/25 text-white transition-all duration-200 shadow-md"
+              <a
+                href="https://wa.me/riksauji.dnp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-[10px] text-xs sm:text-sm font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] hover:brightness-105 text-white transition-all duration-200 shadow-lg shadow-[#008CE4]/30 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>{tc.ctaFree[lang]}</span>
                 <span className="w-6 h-6 rounded-md bg-white text-[#022047] flex items-center justify-center font-bold">
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>
-              </Link>
+              </a>
             </div>
 
           </div>

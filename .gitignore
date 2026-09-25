@@ -72,3 +72,34 @@ desktop.ini
 **/frontend/coverage/
 **/frontend/.turbo/
 **/frontend/.vercel
+
+# ===========================
+# Test Artifacts & Tooling
+# ===========================
+**/.playwright-mcp/
+clone-mediatama/
+*.tmp
+*.log
+
+# Root screenshot files & scratch plans
+/elevated_hover_screenshot.png
+/popup_en_modal.png
+/service_modal_screenshot.png
+/implementation_plan*
+
+# Scratch planning & analysis notes
+**/makeover_plan.md
+**/update-worth-considering-it.md
+**/COMPANY.md
+
+# ===========================
+# Raw Design & Heavy Unused Dumps
+# ===========================
+**/public/Komponen website/
+**/public/komponen tambahan/
+**/public/temp-analysis/
+**/public/komponen_hero_raw/
+**/public/images/komponen_hero_raw/
+**/public/images/ChatGPT Image*
+**/public/images/*- Copy.*
+**/public/images/* - Copy.*

@@ -236,13 +236,6 @@ export default function ShowcasePage() {
                 <span>Lihat Beranda Saat Ini</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/20 font-semibold text-xs uppercase tracking-wider px-7 py-3.5 rounded-full hover:bg-white/20 transition-colors"
-              >
-                <Phone className="w-4 h-4" />
-                <span>Hubungi Kantor Pusat</span>
-              </Link>
             </div>
           </div>
         </section>

@@ -93,7 +93,7 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Desktop Right Actions: Language Selector + CTA */}
+            {/* Desktop Right Actions: Language Selector */}
             <div className="hidden md:flex items-center gap-4 shrink-0">
               {/* Language Selector */}
               <div className="relative flex items-center gap-1 border-l border-white/20 pl-4 py-1.5">
@@ -126,14 +126,6 @@ export default function Navbar() {
                   </div>
                 )}
               </div>
-
-              {/* Hubungi Kami Action Button (Square 10px Gradient) */}
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center px-5 py-2.5 rounded-[10px] text-xs font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] hover:brightness-105 text-white transition-all duration-200 shadow-md shadow-[#008CE4]/30"
-              >
-                {t('nav', 'contact')}
-              </Link>
             </div>
 
             {/* Mobile hamburger */}
@@ -219,16 +211,6 @@ export default function Navbar() {
                   </button>
                 ))}
               </div>
-            </div>
-
-            <div className="pt-2">
-              <Link
-                href="/contact"
-                className="block w-full text-center py-3 rounded-[10px] text-xs font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] text-white shadow-md shadow-[#008CE4]/30"
-                onClick={() => setMobileOpen(false)}
-              >
-                {t('nav', 'contact')}
-              </Link>
             </div>
           </div>
         )}

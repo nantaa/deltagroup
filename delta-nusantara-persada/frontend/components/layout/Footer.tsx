@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#011E42] text-white pt-16 pb-8 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* 4-Column Grid matching Frame 2147224261.svg */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
 
@@ -55,60 +55,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2: LAYANAN */}
-          <div>
-            <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-4">
-              {t('footer', 'services')}
-            </h4>
-            <ul className="space-y-2.5 text-xs text-gray-300">
-              <li>
-                <Link href="/services#pesawat-angkat-angkut" className="hover:text-[#00D2FF] transition-colors">
-                  Inspection
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#pubt" className="hover:text-[#00D2FF] transition-colors">
-                  Consulting
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#elevator-eskalator" className="hover:text-[#00D2FF] transition-colors">
-                  Riksa Uji
-                </Link>
-              </li>
-              <li>
-                <Link href="/services#proteksi-kebakaran" className="hover:text-[#00D2FF] transition-colors">
-                  Consultant
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: INFORMASI / MENU */}
-          <div>
-            <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-4">
-              {t('footer', 'menu')}
-            </h4>
-            <ul className="space-y-2.5 text-xs text-gray-300">
-              <li>
-                <Link href="/about" className="hover:text-[#00D2FF] transition-colors">
-                  {t('footer', 'menuItems', 'about')}
-                </Link>
-              </li>
-              <li>
-                <Link href="/brand" className="hover:text-[#00D2FF] transition-colors">
-                  Brand Kami
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-[#00D2FF] transition-colors">
-                  Layanan Kami
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 4: KONTAK */}
+          {/* Col 2: KONTAK */}
           <div>
             <h4 className="font-bold text-white text-xs uppercase tracking-wider mb-4">
               {t('footer', 'contactUs')}

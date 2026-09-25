@@ -44,9 +44,9 @@ Jalankan di server VPS:
 
 ```bash
 # 1. Buat direktori aplikasi
-sudo mkdir -p /var/www/delta-nusantara
-sudo chown -R $USER:$USER /var/www/delta-nusantara
-cd /var/www/delta-nusantara
+sudo mkdir -p /var/www/delta-nusantara/deltagroup
+sudo chown -R $USER:$USER /var/www/delta-nusantara/deltagroup
+cd /var/www/delta-nusantara/deltagroup
 
 # 2. Clone metadata monorepo tanpa mengunduh file fisik (Blobless)
 git clone --filter=blob:none --no-checkout https://github.com/USERNAME/delta-group.git .
@@ -62,7 +62,9 @@ git checkout main
 ```
 
 > **Verifikasi:**
-> Jalankan `ls -la /var/www/delta-nusantara`. Anda hanya akan melihat folder `delta-nusantara-persada` dan folder tersembunyi `.git`. Folder project lain sama sekali **tidak pernah diunduh** ke harddisk VPS Anda.
+> Jalankan `ls -la /var/www/delta-nusantara/deltagroup`. Anda hanya akan melihat folder `delta-nusantara-persada` dan folder tersembunyi `.git`.
+> Saat Anda masuk ke `delta-nusantara-persada` (`cd /var/www/delta-nusantara/deltagroup/delta-nusantara-persada`), Anda akan melihat:
+> `PT_DNP_Summary_2024.md  SETUP.md  backend  frontend`
 
 ---
 
@@ -70,7 +72,7 @@ git checkout main
 
 Masuk ke folder backend:
 ```bash
-cd /var/www/delta-nusantara/delta-nusantara-persada/backend
+cd /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/backend
 
 # 1. Install dependensi PHP produksi
 composer install --no-dev --optimize-autoloader
@@ -121,7 +123,7 @@ sudo chmod -R 775 storage bootstrap/cache
 
 Masuk ke folder frontend:
 ```bash
-cd /var/www/delta-nusantara/delta-nusantara-persada/frontend
+cd /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/frontend
 
 # 1. Install dependensi
 npm ci
@@ -145,7 +147,7 @@ module.exports = {
       name: 'dnp-frontend',
       script: 'npm',
       args: 'start -- -p 3000',
-      cwd: '/var/www/delta-nusantara/delta-nusantara-persada/frontend',
+      cwd: '/var/www/delta-nusantara/deltagroup/delta-nusantara-persada/frontend',
       instances: 'max',
       exec_mode: 'cluster',
       autorestart: true,
@@ -198,7 +200,7 @@ server {
 # 2. BACKEND LARAVEL API (api.deltanusa.co.id)
 server {
     server_name api.deltanusa.co.id;
-    root /var/www/delta-nusantara/delta-nusantara-persada/backend/public;
+    root /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/backend/public;
 
     add_header X-Frame-Options "SAMEORIGIN";
     add_header X-Content-Type-Options "nosniff";
@@ -242,9 +244,9 @@ sudo certbot --nginx -d deltanusa.co.id -d www.deltanusa.co.id -d api.deltanusa.
 
 ## 7. Script Otomasi Update 1-Klik (`deploy.sh`)
 
-Buat file script di VPS: `/var/www/delta-nusantara/deploy.sh`
+Buat file script di VPS: `/var/www/delta-nusantara/deltagroup/deploy.sh`
 ```bash
-nano /var/www/delta-nusantara/deploy.sh
+nano /var/www/delta-nusantara/deltagroup/deploy.sh
 ```
 
 Paste script berikut:
@@ -253,7 +255,7 @@ Paste script berikut:
 set -e
 
 echo "🚀 [1/4] Menarik update Git terbaru khusus delta-nusantara-persada..."
-cd /var/www/delta-nusantara
+cd /var/www/delta-nusantara/deltagroup
 git pull origin main
 
 echo "📦 [2/4] Mengoptimasi Backend Laravel..."
@@ -276,12 +278,12 @@ echo "✅ [4/4] Deployment Berhasil! Sistem berjalan stabil tanpa downtime."
 
 Beri izin eksekusi:
 ```bash
-chmod +x /var/www/delta-nusantara/deploy.sh
+chmod +x /var/www/delta-nusantara/deltagroup/deploy.sh
 ```
 
 Kapan pun Anda melakukan `git push` dari komputer lokal, cukup ketik satu perintah ini di VPS:
 ```bash
-/var/www/delta-nusantara/deploy.sh
+/var/www/delta-nusantara/deltagroup/deploy.sh
 ```
 
 ---
@@ -298,4 +300,4 @@ Kapan pun Anda melakukan `git push` dari komputer lokal, cukup ketik satu perint
    Cek status dengan `pm2 status` dan log error dengan `pm2 logs dnp-frontend`.
 3. **Jika upload gambar Laravel gagal:**
    Pastikan folder `storage` memiliki izin tulis:
-   `sudo chown -R www-data:www-data /var/www/delta-nusantara/delta-nusantara-persada/backend/storage`
+   `sudo chown -R www-data:www-data /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/backend/storage`
