@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Post } from '@/types'
 import { useLang } from '@/lib/LanguageContext'
 import { ArrowRight, Calendar, Tag } from 'lucide-react'
+import { getPostImageUrl } from '@/lib/imageUrl'
 
 interface Props {
   post: Post
@@ -19,13 +20,15 @@ export default function PostCard({ post, readMoreLabel, compact = false }: Props
     ? new Date(post.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
     : null
 
+  const imageUrl = getPostImageUrl(post.image)
+
   return (
     <div className="border border-gray-100 rounded-xl overflow-hidden hover:shadow-md transition-all duration-200 flex flex-col group bg-white">
       {/* Thumbnail */}
       <div className={`${compact ? 'h-24 sm:h-28' : 'h-44'} bg-gray-50 flex items-center justify-center overflow-hidden shrink-0 relative`}>
-        {post.image ? (
+        {imageUrl ? (
           <img
-            src={`${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}/storage/${post.image}`}
+            src={imageUrl}
             alt={post.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />

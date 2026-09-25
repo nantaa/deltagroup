@@ -9,6 +9,7 @@ import api from '@/lib/api'
 import { Post } from '@/types'
 import { notFound } from 'next/navigation'
 import DOMPurify from 'isomorphic-dompurify'
+import { getPostImageUrl } from '@/lib/imageUrl'
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://deltanusa.co.id'
 const API_URL  = process.env.NEXT_PUBLIC_API_URL  ?? 'http://localhost:8000/api'
@@ -29,9 +30,7 @@ export async function generateMetadata(
   const post = await getPost(params.slug)
   if (!post) return { title: 'Artikel Tidak Ditemukan' }
 
-  const ogImage = post.image
-    ? `${SITE_URL}/storage/${post.image}`
-    : `${SITE_URL}/images/og-dnp.png`
+  const ogImage = getPostImageUrl(post.image) || `${SITE_URL}/images/og-dnp.png`
 
   return {
     title: post.title,
@@ -87,9 +86,7 @@ export default async function BeritaDetailPage({ params }: { params: { slug: str
   const fmt = (d: string) =>
     d ? new Date(d).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) : ''
 
-  const ogImage = post.image
-    ? `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}/storage/${post.image}`
-    : null
+  const ogImage = getPostImageUrl(post.image)
 
   // Article JSON-LD
   const articleSchema = {
