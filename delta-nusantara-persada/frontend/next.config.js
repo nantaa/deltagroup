@@ -8,6 +8,16 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
       },
       {
+        protocol: 'https',
+        hostname: 'api.deltanusa.co.id',
+        pathname: '/storage/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'deltanusa.co.id',
+        pathname: '/storage/**',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
         port: '8000',

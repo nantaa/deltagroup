@@ -12,6 +12,7 @@ import {
 } from 'lucide-react'
 import { useLang, translations } from '@/lib/LanguageContext'
 import { Post } from '@/types'
+import api from '@/lib/api'
 
 const DEFAULT_POSTS: Post[] = [
   {
@@ -80,7 +81,32 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
   const { lang } = useLang()
   const wp = translations.workProcess
 
-  const displayPosts = posts && posts.length > 0 ? posts : DEFAULT_POSTS
+  const [displayPosts, setDisplayPosts] = useState<Post[]>(() => {
+    return posts && posts.length > 0 ? posts : DEFAULT_POSTS
+  })
+
+  // Real-time synchronization with live backend API so admin changes appear immediately
+  React.useEffect(() => {
+    let isMounted = true
+    async function syncLivePosts() {
+      try {
+        const res = await api.get('/posts', {
+          params: { status: 'published', limit: 8 },
+        })
+        const items = res.data?.data ?? res.data
+        if (isMounted && Array.isArray(items) && items.length > 0) {
+          setDisplayPosts(items)
+        }
+      } catch {
+        // Fallback silently to initial posts on network error
+      }
+    }
+    syncLivePosts()
+    return () => {
+      isMounted = false
+    }
+  }, [])
+
   const totalSlides = Math.ceil(displayPosts.length / 2) || 1
 
   const handlePrev = () => {
@@ -147,7 +173,17 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
             {/* 2 Cards Grid matching Berita Terbaru Layout */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               {currentItems.map((post, idx) => {
-                const imageSrc = post.image || FALLBACK_IMAGES[(activeSlide * 2 + idx) % FALLBACK_IMAGES.length]
+                const rawImage = post.image
+                let imageSrc = FALLBACK_IMAGES[(activeSlide * 2 + idx) % FALLBACK_IMAGES.length]
+                if (rawImage) {
+                  if (rawImage.startsWith('http') || rawImage.startsWith('/')) {
+                    imageSrc = rawImage
+                  } else {
+                    const apiBase = (process.env.NEXT_PUBLIC_API_URL || 'https://api.deltanusa.co.id/api').replace(/\/api\/?$/, '')
+                    imageSrc = `${apiBase}/storage/${rawImage}`
+                  }
+                }
+
                 const dateStr = post.created_at
                   ? new Date(post.created_at).toLocaleDateString(lang === 'EN' ? 'en-US' : 'id-ID', {
                       day: 'numeric',
@@ -167,6 +203,7 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
                         src={imageSrc}
                         alt={post.title}
                         fill
+                        unoptimized
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                       <div className="absolute top-3 left-3">
