@@ -14,6 +14,8 @@ import { useLang, translations } from '@/lib/LanguageContext'
 import { Post } from '@/types'
 import api from '@/lib/api'
 
+// Commented out per user request:
+/*
 const DEFAULT_POSTS: Post[] = [
   {
     id: 1,
@@ -64,6 +66,7 @@ const DEFAULT_POSTS: Post[] = [
     updated_at: '2026-07-28T00:00:00.000Z',
   },
 ]
+*/
 
 const FALLBACK_IMAGES = [
   '/images/forklift-inspection.jpg',
@@ -82,7 +85,7 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
   const wp = translations.workProcess
 
   const [displayPosts, setDisplayPosts] = useState<Post[]>(() => {
-    return posts && posts.length > 0 ? posts : DEFAULT_POSTS
+    return posts && posts.length > 0 ? posts : []
   })
 
   // Real-time synchronization with live backend API so admin changes appear immediately
@@ -123,7 +126,7 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
     <section id="alur-kerja" className="py-14 sm:py-16 bg-white scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
-          
+
           {/* ── Left Column: ALUR PROSES (5 cols) ── */}
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
@@ -171,89 +174,101 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
             </div>
 
             {/* 2 Cards Grid matching Berita Terbaru Layout */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {currentItems.map((post, idx) => {
-                const rawImage = post.image
-                let imageSrc = FALLBACK_IMAGES[(activeSlide * 2 + idx) % FALLBACK_IMAGES.length]
-                if (rawImage) {
-                  if (rawImage.startsWith('http') || rawImage.startsWith('/')) {
-                    imageSrc = rawImage
-                  } else {
-                    const apiBase = (process.env.NEXT_PUBLIC_API_URL || 'https://api.deltanusa.co.id/api').replace(/\/api\/?$/, '')
-                    imageSrc = `${apiBase}/storage/${rawImage}`
+            {currentItems.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {currentItems.map((post, idx) => {
+                  const rawImage = post.image
+                  let imageSrc = FALLBACK_IMAGES[(activeSlide * 2 + idx) % FALLBACK_IMAGES.length]
+                  if (rawImage) {
+                    if (rawImage.startsWith('http') || rawImage.startsWith('/')) {
+                      imageSrc = rawImage
+                    } else {
+                      const apiBase = (process.env.NEXT_PUBLIC_API_URL || 'https://api.deltanusa.co.id/api').replace(/\/api\/?$/, '')
+                      imageSrc = `${apiBase}/storage/${rawImage}`
+                    }
                   }
-                }
 
-                const dateStr = post.created_at
-                  ? new Date(post.created_at).toLocaleDateString(lang === 'EN' ? 'en-US' : 'id-ID', {
+                  const dateStr = post.created_at
+                    ? new Date(post.created_at).toLocaleDateString(lang === 'EN' ? 'en-US' : 'id-ID', {
                       day: 'numeric',
                       month: 'short',
                       year: 'numeric',
                     })
-                  : '15 Agu 2026'
+                    : '15 Agu 2026'
 
-                return (
-                  <div
-                    key={post.id || idx}
-                    className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
-                  >
-                    {/* Card Photo with Category Badge */}
-                    <div className="relative h-48 w-full overflow-hidden bg-slate-100">
-                      <Image
-                        src={imageSrc}
-                        alt={post.title}
-                        fill
-                        unoptimized
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-3 left-3">
-                        <span className="px-3 py-1 rounded-md text-[10px] font-bold text-white uppercase bg-[#008CE4] shadow-sm">
-                          {post.category || 'K3'}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Card Body */}
-                    <div className="p-5 flex-1 flex flex-col justify-between">
-                      <div>
-                        <h3 className="font-extrabold text-[#011E42] text-base group-hover:text-[#008CE4] transition-colors leading-snug mb-2 line-clamp-2">
-                          <Link href={`/berita/${post.slug}`}>
-                            {post.title}
-                          </Link>
-                        </h3>
-
-                        <p className="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-3">
-                          {post.excerpt}
-                        </p>
-
-                        {/* Date Meta */}
-                        <div className="flex items-center gap-3 text-[11px] text-gray-500 border-t border-slate-100 pt-3">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-3.5 h-3.5 text-[#008CE4]" />
-                            {dateStr}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <FileText className="w-3.5 h-3.5 text-[#008CE4]" />
-                            {lang === 'EN' ? 'Article' : 'Artikel'}
+                  return (
+                    <div
+                      key={post.id || idx}
+                      className="group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                    >
+                      {/* Card Photo with Category Badge */}
+                      <div className="relative h-48 w-full overflow-hidden bg-slate-100">
+                        <Image
+                          src={imageSrc}
+                          alt={post.title}
+                          fill
+                          unoptimized
+                          className="object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-3 py-1 rounded-md text-[10px] font-bold text-white uppercase bg-[#008CE4] shadow-sm">
+                            {post.category || 'K3'}
                           </span>
                         </div>
                       </div>
 
-                      {/* Action Link */}
-                      <div className="pt-3 flex items-center justify-end">
-                        <Link
-                          href={`/berita/${post.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008CE4] hover:text-[#006BB0] transition-colors"
-                        >
-                          <span>{lang === 'EN' ? 'Read More' : 'Baca Selengkapnya'}</span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                        </Link>
+                      {/* Card Body */}
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-extrabold text-[#011E42] text-base group-hover:text-[#008CE4] transition-colors leading-snug mb-2 line-clamp-2">
+                            <Link href={`/berita/${post.slug}`}>
+                              {post.title}
+                            </Link>
+                          </h3>
+
+                          <p className="text-xs text-gray-500 leading-relaxed mb-4 line-clamp-3">
+                            {post.excerpt}
+                          </p>
+
+                          {/* Date Meta */}
+                          <div className="flex items-center gap-3 text-[11px] text-gray-500 border-t border-slate-100 pt-3">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-3.5 h-3.5 text-[#008CE4]" />
+                              {dateStr}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <FileText className="w-3.5 h-3.5 text-[#008CE4]" />
+                              {lang === 'EN' ? 'Article' : 'Artikel'}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Action Link */}
+                        <div className="pt-3 flex items-center justify-end">
+                          <Link
+                            href={`/berita/${post.slug}`}
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008CE4] hover:text-[#006BB0] transition-colors"
+                          >
+                            <span>{lang === 'EN' ? 'Read More' : 'Baca Selengkapnya'}</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )
-              })}
-            </div>
+                  )
+                })}
+              </div>
+            ) : (
+              <div className="py-16 px-6 text-center border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50/50 flex flex-col items-center justify-center">
+                <FileText className="w-10 h-10 text-slate-300 mb-3" />
+                <p className="text-slate-500 font-medium text-sm">
+                  {lang === 'EN' ? 'No published articles available.' : 'Belum ada artikel publikasi yang tersedia.'}
+                </p>
+                <p className="text-slate-400 text-xs mt-1">
+                  {lang === 'EN' ? 'Check back soon for latest safety updates.' : 'Silakan periksa kembali nanti untuk informasi terbaru.'}
+                </p>
+              </div>
+            )}
 
             {/* Pagination Controls */}
             {totalSlides > 1 && (
@@ -274,9 +289,8 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
                       type="button"
                       onClick={() => setActiveSlide(i)}
                       aria-label={`Slide ${i + 1}`}
-                      className={`h-2 rounded-full transition-all ${
-                        activeSlide === i ? 'w-6 bg-[#008CE4]' : 'w-2 bg-slate-300 hover:bg-slate-400'
-                      }`}
+                      className={`h-2 rounded-full transition-all ${activeSlide === i ? 'w-6 bg-[#008CE4]' : 'w-2 bg-slate-300 hover:bg-slate-400'
+                        }`}
                     />
                   ))}
                 </div>
