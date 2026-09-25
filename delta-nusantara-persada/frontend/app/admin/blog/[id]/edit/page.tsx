@@ -93,7 +93,12 @@ export default function EditPostPage() {
       router.push('/admin/blog')
     } catch (err) {
       const apiMsg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message
-      setError(apiMsg ?? (err instanceof Error ? err.message : 'Gagal menyimpan.'))
+      const rawMsg = apiMsg ?? (err instanceof Error ? err.message : 'Gagal menyimpan.')
+      if (rawMsg === 'Network Error' || (err as { code?: string })?.code === 'ERR_NETWORK') {
+        setError('Network Error: Gagal menghubungi server API (502 Bad Gateway / server offline). Pastikan backend Laravel dan PHP-FPM di VPS sedang aktif.')
+      } else {
+        setError(rawMsg)
+      }
     } finally {
       setLoading(false)
     }

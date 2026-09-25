@@ -33,6 +33,16 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
   },
   compress: true,
+  async rewrites() {
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'https://api.deltanusa.co.id/api'
+    const targetUrl = backendUrl.replace(/\/+$/, '')
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${targetUrl}/:path*`,
+      },
+    ]
+  },
   experimental: {
     optimizePackageImports: ['lucide-react'],
   },

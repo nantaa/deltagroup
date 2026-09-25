@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "node --test scripts/test-homepage-redesign.mjs scripts/test-route-integrity.mjs scripts/test-clients-and-hero-fix.mjs scripts/test-svg-rendering-integrity.mjs scripts/test-layout-whitespace-rhythm.mjs scripts/test-scroll-reveal-and-whitespace.mjs scripts/test-team-styles.mjs scripts/test-language-and-hover-elevation.mjs scripts/test-popup-and-navbar-consistency.mjs scripts/test-navbar-shortcuts-and-popup.mjs scripts/test-performance-and-assets.mjs scripts/test-statsbar-hover.mjs scripts/test-navbar-spreadout.mjs scripts/test-blog-and-course-cleanup.mjs scripts/test-floating-whatsapp.mjs && node scripts/test-no-ai-slop.mjs"
+    "test": "node --test scripts/test-homepage-redesign.mjs scripts/test-route-integrity.mjs scripts/test-clients-and-hero-fix.mjs scripts/test-svg-rendering-integrity.mjs scripts/test-layout-whitespace-rhythm.mjs scripts/test-scroll-reveal-and-whitespace.mjs scripts/test-team-styles.mjs scripts/test-language-and-hover-elevation.mjs scripts/test-popup-and-navbar-consistency.mjs scripts/test-navbar-shortcuts-and-popup.mjs scripts/test-performance-and-assets.mjs scripts/test-statsbar-hover.mjs scripts/test-navbar-spreadout.mjs scripts/test-blog-and-course-cleanup.mjs scripts/test-floating-whatsapp.mjs scripts/test-cors-and-api-config.mjs && node scripts/test-no-ai-slop.mjs"
   },
   "dependencies": {
     "@tiptap/extension-image": "^3.30.5",

@@ -301,3 +301,10 @@ Kapan pun Anda melakukan `git push` dari komputer lokal, cukup ketik satu perint
 3. **Jika upload gambar Laravel gagal:**
    Pastikan folder `storage` memiliki izin tulis:
    `sudo chown -R www-data:www-data /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/backend/storage`
+4. **Jika API mengembalikan 502 Bad Gateway atau Network Error:**
+   Masalah ini terjadi ketika versi PHP-FPM tidak cocok dengan socket di Nginx. Cukup jalankan script auto-fixer:
+   ```bash
+   cd /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/backend
+   chmod +x vps-fix-502.sh
+   ./vps-fix-502.sh
+   ```

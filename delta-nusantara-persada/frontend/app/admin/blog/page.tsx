@@ -6,30 +6,27 @@ import api from '@/lib/api'
 import { Post } from '@/types'
 import clsx from 'clsx'
 
-const MOCK_POSTS: Post[] = [
-  { id: 1, title: 'Importance of Data Protection', slug: 'data-protection-1', excerpt: 'Harness the power of the sun with our comprehensive solar panel installations and maintenance services.', content: '', status: 'published', tags: ['Event', 'K3', 'Training'], category: 'Event', created_at: '2026-10-12', updated_at: '' },
-  { id: 2, title: 'Importance of Data Protection', slug: 'data-protection-2', excerpt: 'Harness the power of the sun...', content: '', status: 'published', tags: ['Event', 'K3', 'Training'], category: 'K3', created_at: '2026-11-01', updated_at: '' },
-  { id: 3, title: 'Importance of Data Protection', slug: 'data-protection-3', excerpt: 'Harness the power of the sun...', content: '', status: 'draft', tags: ['Event', 'K3', 'Training'], category: 'Training', created_at: '2026-11-03', updated_at: '' },
-  { id: 4, title: 'Importance of Data Protection', slug: 'data-protection-4', excerpt: 'Harness the power of the sun...', content: '', status: 'published', tags: ['Event', 'K3', 'Training'], category: 'Event', created_at: '2026-11-03', updated_at: '' },
-]
-
 const CATEGORIES = ['All', 'Event', 'K3', 'Training', 'Berita']
 
 export default function AdminBlogPage() {
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('All')
   const [catOpen, setCatOpen] = useState(false)
 
   const fetchPosts = async () => {
     setLoading(true)
+    setError(null)
     try {
       const res = await api.get('/posts')
       const data = res.data.data ?? res.data
-      setPosts(Array.isArray(data) && data.length > 0 ? data : MOCK_POSTS)
-    } catch {
-      setPosts(MOCK_POSTS)
+      setPosts(Array.isArray(data) ? data : [])
+    } catch (err: unknown) {
+      console.error('[AdminBlog] Error fetching posts:', err)
+      setError('Gagal terhubung ke API backend (Network Error / 502 Bad Gateway). Periksa koneksi API server Anda.')
+      setPosts([])
     } finally {
       setLoading(false)
     }
@@ -110,6 +107,24 @@ export default function AdminBlogPage() {
           </Link>
         </div>
 
+        {/* Error Alert */}
+        {error && (
+          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <p className="font-semibold text-sm">{error}</p>
+              <p className="text-xs text-red-500 mt-0.5">
+                Pastikan backend Laravel dan PHP-FPM di VPS sedang berjalan normal.
+              </p>
+            </div>
+            <button
+              onClick={fetchPosts}
+              className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-semibold self-start sm:self-auto transition-colors"
+            >
+              Coba Lagi
+            </button>
+          </div>
+        )}
+
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           {[
@@ -124,9 +139,24 @@ export default function AdminBlogPage() {
           ))}
         </div>
 
-        {/* Post Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {filtered.map((post) => (
+        {/* Loading / Empty / Grid */}
+        {loading ? (
+          <div className="py-20 text-center text-gray-400 text-sm">
+            Memuat data artikel...
+          </div>
+        ) : filtered.length === 0 ? (
+          <div className="py-16 text-center border-2 border-dashed border-gray-200 rounded-2xl bg-white p-8">
+            <p className="text-gray-600 font-semibold mb-1">Belum ada artikel yang tersedia.</p>
+            <p className="text-xs text-gray-400 mb-4">
+              {search || category !== 'All' ? 'Tidak ada artikel yang cocok dengan pencarian.' : 'Mulai dengan menambahkan artikel baru.'}
+            </p>
+            <Link href="/admin/blog/new" className="inline-flex items-center gap-1.5 px-4 py-2 bg-accent text-white rounded-lg text-xs font-semibold hover:bg-accent/90 transition-colors">
+              <Plus className="w-4 h-4" /> Add New Post
+            </Link>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {filtered.map((post) => (
             <div key={post.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
               {/* Image */}
               <div className="relative h-44 bg-gray-100 flex items-center justify-center overflow-hidden">
@@ -188,6 +218,7 @@ export default function AdminBlogPage() {
             </div>
           ))}
         </div>
+        )}
       </main>
     </div>
   )
