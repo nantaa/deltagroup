@@ -37,9 +37,12 @@ class PostController extends Controller
         return response()->json($posts);
     }
 
-    public function show(string $slug)
+    public function show(string $identifier)
     {
-        $post = Post::where('slug', $slug)->firstOrFail();
+        $post = is_numeric($identifier)
+            ? Post::findOrFail($identifier)
+            : Post::where('slug', $identifier)->firstOrFail();
+
         return response()->json($post);
     }
 

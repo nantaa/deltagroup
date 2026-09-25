@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Search, ChevronDown, Plus, Eye, Pencil, Trash2, Calendar, Tag } from 'lucide-react'
 import api from '@/lib/api'
 import { Post } from '@/types'
+import { getPostImageUrl } from '@/lib/imageUrl'
 import clsx from 'clsx'
 
 const CATEGORIES = ['All', 'Event', 'K3', 'Training', 'Berita']
@@ -160,9 +161,9 @@ export default function AdminBlogPage() {
             <div key={post.id} className="bg-white border border-gray-200 rounded-xl overflow-hidden">
               {/* Image */}
               <div className="relative h-44 bg-gray-100 flex items-center justify-center overflow-hidden">
-                {post.image ? (
+                {getPostImageUrl(post.image) ? (
                   <img
-                    src={`${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '')}/storage/${post.image}`}
+                    src={getPostImageUrl(post.image)!}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />

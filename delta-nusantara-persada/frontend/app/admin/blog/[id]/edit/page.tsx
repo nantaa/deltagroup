@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation'
 import { ArrowLeft, X, Plus, Upload } from 'lucide-react'
 import api from '@/lib/api'
 import { Post } from '@/types'
+import { getPostImageUrl } from '@/lib/imageUrl'
 import RichTextEditor from '@/components/ui/RichTextEditor'
 
 export default function EditPostPage() {
@@ -208,7 +209,7 @@ export default function EditPostPage() {
               ) : existingImage ? (
                 <div className="relative inline-block">
                   <img
-                    src={existingImage.startsWith('http') ? existingImage : `${(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api').replace('/api', '')}/storage/${existingImage}`}
+                    src={getPostImageUrl(existingImage)!}
                     alt="Current Image"
                     className="max-h-48 rounded-lg mx-auto object-cover"
                   />
