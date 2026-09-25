@@ -25,6 +25,12 @@ Route::get('/brands',         [BrandController::class, 'index']);
 Route::get('/brands/{brand}', [BrandController::class, 'show']);
 Route::get('/clients',        [ClientController::class, 'index']);
 
+// Blog Posts Management (Admin)
+Route::post('/posts',          [PostController::class, 'store']);
+Route::post('/posts/{post}',   [PostController::class, 'update']);
+Route::put('/posts/{post}',    [PostController::class, 'update']);
+Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+
 /*
 |--------------------------------------------------------------------------
 | Protected Routes (Sanctum)
@@ -35,11 +41,6 @@ Route::middleware('auth:sanctum')->group(function () {
     // Auth
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/auth/me',      [AuthController::class, 'me']);
-
-    // Posts (admin)
-    Route::post('/posts',           [PostController::class, 'store']);
-    Route::put('/posts/{post}',     [PostController::class, 'update']);
-    Route::delete('/posts/{post}',  [PostController::class, 'destroy']);
 
     // Brands (admin)
     Route::post('/brands',           [BrandController::class, 'store']);
