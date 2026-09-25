@@ -105,7 +105,7 @@ test('Component: WorkProcessTraining.tsx implements 5-step process and Jasa Riks
 
   assert.match(combined, /Proses Kerja Kami/i, 'Must include Proses Kerja Kami');
   assert.match(combined, /workflow\.svg|Consultation/i, 'Must include 5-step process workflow graphic or steps');
-  assert.match(combined, /Jasa Riksa Uji Populer/i, 'Must pivot from Training Populer to Jasa Riksa Uji Populer');
+  assert.match(combined, /(Artikel & Wawasan K3|Jasa Riksa Uji Populer|BERITA TERBARU)/i, 'Must render news & insights section');
 });
 
 test('Component: TeamSection.tsx features professional team with the 3 leaders from reference', () => {

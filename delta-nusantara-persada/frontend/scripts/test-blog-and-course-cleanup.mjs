@@ -19,12 +19,12 @@ test('TDD 1: Admin layout excludes Courses and Registrations links', () => {
   assert.match(content, /\/admin\/topbar/i, 'Admin layout must link to /admin/topbar');
 });
 
-test('TDD 2: Landing page mounts LatestBlog news section', () => {
+test('TDD 2: Landing page mounts Berita Terbaru news section with posts', () => {
   const homePath = path.join(rootDir, 'app/page.tsx');
   assert.ok(fs.existsSync(homePath), 'app/page.tsx must exist');
   const content = fs.readFileSync(homePath, 'utf8');
 
-  assert.match(content, /LatestBlog/i, 'Landing page must import and render LatestBlog component');
+  assert.match(content, /<WorkProcessTraining\s+posts=\{posts\}\s*\/>/i, 'Landing page must render WorkProcessTraining with posts');
 });
 
 test('TDD 3: Admin blog management page fetches live posts on mount', () => {

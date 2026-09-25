@@ -7,7 +7,6 @@ import ServicesSection from '@/components/ui/ServicesSection'
 import WhyChooseUs from '@/components/ui/WhyChooseUs'
 import WorkProcessTraining from '@/components/ui/WorkProcessTraining'
 import TeamSection from '@/components/ui/TeamSection'
-import LatestBlog from '@/components/ui/LatestBlog'
 import TestimonialCTA from '@/components/ui/TestimonialCTA'
 import { Post } from '@/types'
 
@@ -48,16 +47,13 @@ export default async function HomePage() {
         {/* 4. Why Choose Us - Dark Navy Band with 4 Value Pillars */}
         <WhyChooseUs />
 
-        {/* 5. Split Section: Proses Kerja Kami (5-step flow) & Jasa Riksa Uji Populer */}
-        <WorkProcessTraining />
+        {/* 5. Split Section: Proses Kerja Kami (5-step flow) & Berita Terbaru (Artikel & Wawasan K3) */}
+        <WorkProcessTraining posts={posts} />
 
         {/* 6. Tim Profesional Kami (Pranan Jaya Barus, Terzha R. Perdanawan, Ricky Rumindo) */}
         <TeamSection />
 
-        {/* 7. Latest Blog / News & HSE Insights Section */}
-        <LatestBlog posts={posts} />
-
-        {/* 8. Dual Card Banner: Testimonial & Consultation CTA */}
+        {/* 7. Dual Card Banner: Testimonial & Consultation CTA */}
         <TestimonialCTA />
       </main>
 

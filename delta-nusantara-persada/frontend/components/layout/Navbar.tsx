@@ -23,7 +23,7 @@ export default function Navbar() {
       <nav className="bg-[#011E42] border-b border-white/10 relative z-50 transition-all">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-[72px]">
-            
+
             {/* Logo matching Frame 2147224261.svg */}
             <Link href="/" className="flex items-center gap-3 shrink-0 group">
               <div className="h-11 relative flex items-center">
@@ -48,14 +48,6 @@ export default function Navbar() {
               >
                 {t('nav', 'about')}
               </button>
-
-              {/* Layanan Section Shortcut */}
-              <Link
-                href="/#layanan"
-                className="text-xs lg:text-sm font-semibold tracking-wider text-gray-200 hover:text-[#00D2FF] transition-colors"
-              >
-                {t('nav', 'services')}
-              </Link>
 
               {/* Keunggulan Section Shortcut */}
               <Link

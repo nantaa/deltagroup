@@ -31,7 +31,7 @@ test('TDD 1: marketingContacts.ts exists and exports valid marketing contact lis
   assert.match(content, /Eko/i, 'Must include Eko');
 });
 
-test('TDD 2: FloatingWhatsApp.tsx implements popup UI matching reference', () => {
+test('TDD 2: FloatingWhatsApp.tsx implements popup UI matching cohesive landing page theme', () => {
   assert.ok(fs.existsSync(FLOATING_WA_PATH), 'FloatingWhatsApp.tsx must exist');
   const content = fs.readFileSync(FLOATING_WA_PATH, 'utf8');
 
@@ -39,9 +39,12 @@ test('TDD 2: FloatingWhatsApp.tsx implements popup UI matching reference', () =>
   assert.match(content, /Butuh Bantuan\?\s*Klik Disini/i, 'Must have trigger button copy');
   assert.match(content, /Butuh Bantuan\?\s*Silahkan Chat dengan salah satu marketing kami/i, 'Must have modal header copy');
   
-  // WhatsApp badges & icons
+  // Marketing list iteration
   assert.match(content, /MARKETING_CONTACTS/, 'Must iterate through MARKETING_CONTACTS');
   assert.match(content, /wa\.me|whatsapp/i, 'Must link to WhatsApp');
+
+  // Cohesive theme - no harsh green WhatsApp icons
+  assert.doesNotMatch(content, /#25D366/i, 'Must not use green #25D366 icon color');
 });
 
 test('TDD 3: Root layout mounts FloatingWhatsApp component', () => {
@@ -55,3 +58,4 @@ test('TDD 4: TestimonialCTA.tsx links Konsultasi Gratis to riksauji WhatsApp', (
   const content = fs.readFileSync(TESTIMONIAL_CTA_PATH, 'utf8');
   assert.match(content, /wa\.me/i, 'TestimonialCTA must link Konsultasi Gratis to WhatsApp');
 });
+
