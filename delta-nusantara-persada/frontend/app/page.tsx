@@ -10,11 +10,13 @@ import TeamSection from '@/components/ui/TeamSection'
 import TestimonialCTA from '@/components/ui/TestimonialCTA'
 import { Post } from '@/types'
 
+export const dynamic = 'force-dynamic'
+
 async function getPublishedPosts(): Promise<Post[]> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
-    const res = await fetch(`${apiUrl}/posts?status=published&limit=4`, {
-      next: { revalidate: 60 },
+    const res = await fetch(`${apiUrl}/posts?status=published&limit=8`, {
+      cache: 'no-store',
     })
     if (!res.ok) return []
     const data = await res.json()
