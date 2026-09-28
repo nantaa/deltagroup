@@ -7,7 +7,7 @@ export default function HeroPortal() {
     <div className="relative w-full max-w-[480px] sm:max-w-[560px] md:max-w-[620px] lg:max-w-[680px] xl:max-w-[740px] aspect-square flex items-center justify-center lg:-mr-16 xl:-mr-24 lg:translate-y-6 xl:translate-y-8 z-0">
       <div className="relative w-full h-full">
         <Image
-          src="/images/hero-character-portal.png"
+          src="/images/hero-character-portal.webp"
           alt="Inspektur Ahli K3 Delta Nusantara Persada"
           fill
           priority

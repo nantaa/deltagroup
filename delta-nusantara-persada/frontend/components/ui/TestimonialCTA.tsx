@@ -26,11 +26,10 @@ export default function TestimonialCTA() {
             {/* Refinery Reflection Background */}
             <div className="absolute inset-0 z-0">
               <Image
-                src="/images/extracted/update-testimonial-0.png"
+                src="/images/extracted/update-testimonial-0.webp"
                 alt="Industrial refinery backdrop"
                 fill
-                priority
-                unoptimized
+                sizes="(max-width: 1024px) 100vw, 400px"
                 className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#021B38] via-[#022859]/85 to-[#04336B]/80 mix-blend-multiply" />
