@@ -84,21 +84,21 @@ export const translations = {
     },
     members: {
       pranan: {
-        title: { ID: 'Direktur Utama', EN: 'President Director' },
+        title: { ID: '', EN: 'President Director' },
         bio: {
           ID: 'Berpengalaman lebih dari 15 tahun dalam manajemen strategis, tata kelola inspeksi teknik, dan kepatuhan regulasi K3 nasional untuk sektor migas dan manufaktur.',
           EN: 'Over 15 years of experience in strategic management, technical inspection governance, and national K3 regulatory compliance for the oil & gas and manufacturing sectors.',
         },
       },
       terzha: {
-        title: { ID: 'Direktur', EN: 'Director' },
+        title: { ID: '', EN: 'Director' },
         bio: {
           ID: 'Fokus pada keunggulan operasional, akselerasi kemitraan industri, dan efisiensi pelaksanaan sertifikasi riksa uji alat di seluruh wilayah Indonesia.',
           EN: 'Focused on operational excellence, accelerating industrial partnerships, and efficient execution of statutory inspection certifications across Indonesia.',
         },
       },
       ricky: {
-        title: { ID: 'Tim Ahli', EN: 'Expert Specialist' },
+        title: { ID: '', EN: 'Expert Specialist' },
         bio: {
           ID: 'Ahli K3 spesialis berlisensi Kemnaker RI dengan rekam jejak audit teknis pada pesawat angkat angkut, bejana tekan, elevator, dan instalasi proteksi kebakaran.',
           EN: 'Licensed K3 specialist from the Indonesian Ministry of Manpower with a track record of technical audits on lifting equipment, pressure vessels, elevators, and fire protection installations.',
