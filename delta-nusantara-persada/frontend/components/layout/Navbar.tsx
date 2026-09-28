@@ -7,7 +7,11 @@ import { ChevronDown, Globe, Menu, X } from 'lucide-react'
 import clsx from 'clsx'
 import { useLang } from '@/lib/LanguageContext'
 import type { Language } from '@/lib/LanguageContext'
-import AboutModal from '@/components/ui/AboutModal'
+import dynamic from 'next/dynamic'
+
+const AboutModal = dynamic(() => import('@/components/ui/AboutModal'), {
+  ssr: false,
+})
 
 export default function Navbar() {
   const pathname = usePathname()

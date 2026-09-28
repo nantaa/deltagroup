@@ -59,6 +59,10 @@ class PostController extends Controller
             'image'    => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
+        if (isset($validated['content'])) {
+            $validated['content'] = $this->sanitizeContent($validated['content']);
+        }
+
         if ($request->hasFile('image')) {
             $validated['image'] = $this->processAndStoreImage($request->file('image'));
         }
@@ -83,6 +87,10 @@ class PostController extends Controller
             'image'    => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
+        if (isset($validated['content'])) {
+            $validated['content'] = $this->sanitizeContent($validated['content']);
+        }
+
         if ($request->hasFile('image')) {
             if ($post->image) Storage::disk('public')->delete($post->image);
             $validated['image'] = $this->processAndStoreImage($request->file('image'));
@@ -97,6 +105,23 @@ class PostController extends Controller
         if ($post->image) Storage::disk('public')->delete($post->image);
         $post->delete();
         return response()->json(['message' => 'Post deleted.']);
+    }
+
+    /**
+     * Sanitize HTML content to prevent Stored XSS attacks (defense-in-depth).
+     */
+    private function sanitizeContent(string $html): string
+    {
+        // Strip dangerous tags like <script>, <style>, <iframe>, <object>, <embed>
+        $cleaned = preg_replace('/<\s*(script|style|iframe|object|embed)[^>]*>.*?<\s*\/\s*\1\s*>/is', '', $html);
+        
+        // Strip inline javascript handlers (e.g. onerror=, onclick=, onload=)
+        $cleaned = preg_replace('/(\s+)(on\w+)\s*=\s*(["\'][^"\']*["\']|[^\s>]+)/i', '', $cleaned);
+        
+        // Strip javascript: pseudo-protocols in href/src
+        $cleaned = preg_replace('/(href|src)\s*=\s*["\']\s*javascript:[^"\']*["\']/i', '', $cleaned);
+
+        return trim($cleaned);
     }
 
     /**
