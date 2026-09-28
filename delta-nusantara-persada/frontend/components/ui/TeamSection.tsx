@@ -89,18 +89,23 @@ export default function TeamSection() {
                     />
                   </div>
 
-                  {/* Leader Details with Centered Alignment */}
-                  <div className="relative z-10 px-5 pt-3 pb-6 flex-1 flex flex-col justify-center items-center w-full">
-                    <div className="flex flex-col justify-center items-center w-full my-auto">
+                  {/* Leader Details: Name directly under photo, bio vertically centered */}
+                  <div className="relative z-10 px-5 pt-4 pb-6 flex-1 flex flex-col items-center w-full">
+                    {/* Name & Title (1 space under photo) */}
+                    <div className="text-center w-full">
                       <h3 className="font-extrabold text-[#011E42] text-lg sm:text-[19px] leading-snug tracking-tight">
                         {m.name}
                       </h3>
                       {member.title[lang] && (
-                        <p className="text-[#008CE4] font-bold text-xs uppercase tracking-wider mt-1.5 mb-2">
+                        <p className="text-[#008CE4] font-bold text-xs uppercase tracking-wider mt-1 mb-1">
                           {member.title[lang]}
                         </p>
                       )}
-                      <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed text-center px-1 mt-2">
+                    </div>
+
+                    {/* Bio Description (Vertically Centered in remaining card body) */}
+                    <div className="flex-1 flex items-center justify-center w-full my-auto py-1">
+                      <p className="text-[13px] sm:text-sm text-slate-600 leading-relaxed text-center px-1">
                         {member.bio[lang]}
                       </p>
                     </div>
