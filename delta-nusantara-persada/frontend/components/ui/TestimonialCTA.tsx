@@ -18,11 +18,11 @@ export default function TestimonialCTA() {
 
   return (
     <section className="py-16 sm:py-20 bg-slate-50 border-t border-slate-100 relative overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 items-stretch">
+      <div className="max-w-[1520px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 xl:gap-8 items-stretch">
 
-          {/* ── Left Column: TESTIMONIAL / SUCCESS STORY (4 cols / ~33%) ── */}
-          <div className="lg:col-span-4 xl:col-span-4 relative rounded-3xl overflow-hidden shadow-2xl p-6 sm:p-7 flex flex-col justify-between min-h-[400px] lg:min-h-[420px]">
+          {/* ── Left Column: TESTIMONIAL / SUCCESS STORY (Compact: 4 cols on lg, 3 cols on xl) ── */}
+          <div className="lg:col-span-4 xl:col-span-3 relative rounded-3xl overflow-hidden shadow-2xl p-5 sm:p-6 flex flex-col justify-between min-h-[390px] lg:min-h-[410px]">
             {/* Refinery Reflection Background */}
             <div className="absolute inset-0 z-0">
               <Image
@@ -38,43 +38,43 @@ export default function TestimonialCTA() {
             </div>
 
             {/* Section Header */}
-            <div className="relative z-10 mb-4">
-              <p className="text-[#00D2FF] text-xs font-bold uppercase tracking-widest mb-1">
+            <div className="relative z-10 mb-3.5">
+              <p className="text-[#00D2FF] text-[11px] sm:text-xs font-bold uppercase tracking-widest mb-1">
                 {tc.testimonialEyebrow[lang]}
               </p>
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-tight">
                 {tc.testimonialTitle[lang]}
               </h3>
             </div>
 
             {/* Floating White Testimonial Card */}
-            <div className="relative z-10 bg-white rounded-2xl p-5 sm:p-6 shadow-2xl border border-white/80">
+            <div className="relative z-10 bg-white rounded-2xl p-4 sm:p-5 shadow-2xl border border-white/80">
               {/* Cyan Quote Icon */}
-              <div className="w-9 h-9 rounded-xl bg-[#0497DF] text-white flex items-center justify-center mb-2.5 shadow-md shadow-[#0497DF]/25">
-                <Quote className="w-4 h-4 fill-current" />
+              <div className="w-8 h-8 rounded-xl bg-[#0497DF] text-white flex items-center justify-center mb-2 shadow-md shadow-[#0497DF]/25">
+                <Quote className="w-3.5 h-3.5 fill-current" />
               </div>
 
               {/* Quote Text */}
-              <p className="text-slate-700 text-xs sm:text-sm leading-relaxed min-h-[54px]">
+              <p className="text-slate-700 text-xs sm:text-[13px] leading-relaxed min-h-[50px]">
                 &ldquo;{testimonial.quote[lang]}&rdquo;
               </p>
 
               {/* 5 Yellow Stars */}
-              <div className="flex gap-1 my-2.5">
+              <div className="flex gap-1 my-2">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
                 ))}
               </div>
 
               {/* Client Info & Next Chevron */}
-              <div className="flex items-center justify-between pt-2.5 border-t border-slate-100">
-                <div className="flex items-start gap-2.5">
-                  <div className="w-1 h-8 bg-amber-400 rounded-full mt-0.5 shrink-0" />
+              <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                <div className="flex items-start gap-2">
+                  <div className="w-1 h-7 bg-amber-400 rounded-full mt-0.5 shrink-0" />
                   <div>
-                    <h4 className="font-extrabold text-[#032853] text-xs sm:text-sm leading-tight">
+                    <h4 className="font-extrabold text-[#032853] text-xs leading-tight">
                       {testimonial.client}
                     </h4>
-                    <p className="text-[11px] text-slate-400 font-medium mt-0.5">
+                    <p className="text-[10.5px] text-slate-400 font-medium mt-0.5">
                       {testimonial.division}
                     </p>
                   </div>
@@ -83,7 +83,7 @@ export default function TestimonialCTA() {
                 <button
                   onClick={handleNext}
                   aria-label="Next testimonial"
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0497DF] hover:bg-[#0383C2] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md shadow-[#0497DF]/30 shrink-0 ml-2"
+                  className="w-8 h-8 rounded-full bg-[#0497DF] hover:bg-[#0383C2] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md shadow-[#0497DF]/30 shrink-0 ml-1.5"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </button>
@@ -92,10 +92,10 @@ export default function TestimonialCTA() {
 
           </div>
 
-          {/* ── Right Column: Consultation CTA Card (8 cols / ~67% — WIDE BANNER) ── */}
-          <div className="lg:col-span-8 xl:col-span-8 relative bg-[#01224D] text-white rounded-3xl p-7 sm:p-10 lg:p-12 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[400px] lg:min-h-[420px] border border-white/10">
+          {/* ── Right Column: Consultation CTA Card (Wide Panorama: 8 cols on lg, 9 cols on xl) ── */}
+          <div className="lg:col-span-8 xl:col-span-9 relative bg-[#01224D] text-white rounded-3xl p-7 sm:p-10 lg:p-12 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[390px] lg:min-h-[410px] border border-white/10">
 
-            {/* Background Graphic: ondos.svg filling the frame */}
+            {/* Background Graphic: ondos.svg filling the entire frame */}
             <div className="absolute inset-0 z-0 pointer-events-none">
               <Image
                 src="/images/ondos.svg"
@@ -110,12 +110,12 @@ export default function TestimonialCTA() {
             </div>
 
             {/* Text & Content (Left side of card with ample room) */}
-            <div className="relative z-10 max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl space-y-4 my-auto">
-              <h3 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[36px] font-extrabold text-white tracking-tight leading-snug drop-shadow-sm">
+            <div className="relative z-10 max-w-sm sm:max-w-md lg:max-w-xl xl:max-w-2xl space-y-4 my-auto">
+              <h3 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] font-extrabold text-white tracking-tight leading-snug drop-shadow-sm">
                 {tc.ctaTitle[lang]}
               </h3>
 
-              <p className="text-slate-200 text-xs sm:text-sm sm:leading-relaxed max-w-sm sm:max-w-md">
+              <p className="text-slate-200 text-xs sm:text-sm sm:leading-relaxed max-w-sm sm:max-w-md lg:max-w-lg">
                 {tc.ctaSubtitle[lang]}
               </p>
 
