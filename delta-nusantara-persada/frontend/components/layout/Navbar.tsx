@@ -28,17 +28,16 @@ export default function Navbar() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-[72px]">
 
-            {/* Logo matching Monochrome Logo.svg */}
+            {/* Logo matching high-res DNP logo */}
             <Link href="/" className="flex items-center gap-3 shrink-0 group">
               <div className="h-12 relative flex items-center">
                 <Image
-                  src="/images/Monochrome Logo.svg"
+                  src="/images/DNP-Secondary-Logo-A3-(Hires).png"
                   alt="Delta Nusantara Persada"
-                  width={240}
-                  height={60}
-                  unoptimized
-                  className="h-11 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                  width={230}
+                  height={50}
                   priority
+                  className="h-10 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 />
               </div>
             </Link>
