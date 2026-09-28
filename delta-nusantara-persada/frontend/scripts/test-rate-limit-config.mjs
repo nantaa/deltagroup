@@ -1,3 +1,4 @@
+import test from 'node:test'
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -7,17 +8,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const projectRoot = path.resolve(__dirname, '../..')
 
 const apiRoutesPath = path.join(projectRoot, 'backend', 'routes', 'api.php')
-const apiRoutesContent = fs.readFileSync(apiRoutesPath, 'utf-8')
 
-assert.ok(
-  apiRoutesContent.includes('throttle:5,1') || apiRoutesContent.includes('throttle:6,1') || apiRoutesContent.includes('throttle:10,1'),
-  'Login route must be protected by throttle rate limiting middleware'
-)
+test('Rate limiting and public registration lockdown in routes/api.php', () => {
+  const apiRoutesContent = fs.readFileSync(apiRoutesPath, 'utf-8')
 
-// Ensure public registration is not exposed unprotected
-assert.ok(
-  !apiRoutesContent.includes("Route::post('/register'"),
-  'Public registration must not be open to the internet without guard'
-)
+  assert.ok(
+    apiRoutesContent.includes('throttle:5,1') || apiRoutesContent.includes('throttle:6,1') || apiRoutesContent.includes('throttle:10,1'),
+    'Login route must be protected by throttle rate limiting middleware'
+  )
 
-console.log('✅ test-rate-limit-config passed!')
+  // Ensure public registration is not exposed unprotected
+  assert.ok(
+    !apiRoutesContent.includes("Route::post('/register'"),
+    'Public registration must not be open to the internet without guard'
+  )
+})
