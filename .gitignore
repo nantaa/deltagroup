@@ -87,10 +87,18 @@ clone-mediatama/
 /service_modal_screenshot.png
 /implementation_plan*
 
-# Scratch planning & analysis notes
+# Scratch planning, internal docs & deployment guides
 **/makeover_plan.md
 **/update-worth-considering-it.md
 **/COMPANY.md
+**/DEPLOY_VPS*.md
+**/PULL_ONLY*.md
+**/SETUP.md
+**/PT_DNP_Summary*.md
+**/OG_IMAGE_SPEC.md
+**/docs/
+**/backend/vps-fix-*.sh
+**/backend/README.md
 
 # ===========================
 # Raw Design & Heavy Unused Dumps
