@@ -19,6 +19,7 @@ export default function HeroSection() {
           alt="Delta Nusantara Persada Hero Background"
           fill
           priority
+          sizes="100vw"
           className="object-cover object-bottom"
         />
       </div>

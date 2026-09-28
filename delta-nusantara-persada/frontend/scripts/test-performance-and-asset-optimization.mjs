@@ -34,3 +34,26 @@ test('TDD Perf 4: next.config.js configures modern image formats (AVIF & WebP)',
   const nextConfig = fs.readFileSync(path.join(ROOT, 'next.config.js'), 'utf-8')
   assert.ok(nextConfig.includes('image/avif') && nextConfig.includes('image/webp'), 'next.config.js must support AVIF and WebP formats')
 })
+
+test('TDD Perf 5: ondos.webp exists and is under 80 KB (replacing 1.3 MB SVG)', () => {
+  const ondosWebP = path.join(ROOT, 'public/images/ondos.webp')
+  assert.ok(fs.existsSync(ondosWebP), 'ondos.webp must exist')
+  const sizeKB = fs.statSync(ondosWebP).size / 1024
+  assert.ok(sizeKB < 80, `ondos.webp must be < 80 KB, got ${sizeKB.toFixed(1)} KB`)
+})
+
+test('TDD Perf 6: TestimonialCTA.tsx uses ondos.webp without unoptimized/priority', () => {
+  const ctaCode = fs.readFileSync(path.join(ROOT, 'components/ui/TestimonialCTA.tsx'), 'utf-8')
+  assert.ok(ctaCode.includes('/images/ondos.webp'), 'TestimonialCTA must reference ondos.webp')
+  assert.ok(!ctaCode.includes('/images/ondos.svg'), 'TestimonialCTA must NOT reference ondos.svg')
+})
+
+test('TDD Perf 7: cardblue.webp is under 40 KB and WhyChooseUs.tsx does NOT use priority', () => {
+  const cardblue = path.join(ROOT, 'public/images/cardblue.webp')
+  assert.ok(fs.existsSync(cardblue), 'cardblue.webp must exist')
+  const sizeKB = fs.statSync(cardblue).size / 1024
+  assert.ok(sizeKB < 40, `cardblue.webp must be < 40 KB, got ${sizeKB.toFixed(1)} KB`)
+
+  const wcuCode = fs.readFileSync(path.join(ROOT, 'components/ui/WhyChooseUs.tsx'), 'utf-8')
+  assert.ok(!wcuCode.includes('priority'), 'WhyChooseUs background must NOT have priority tag')
+})

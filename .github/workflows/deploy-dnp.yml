@@ -33,10 +33,11 @@ jobs:
     name: Deploy to Production VPS
     needs: test-and-verify
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' && secrets.VPS_HOST != '' }}
+    if: ${{ github.ref == 'refs/heads/main' && secrets.VPS_HOST != '' && secrets.VPS_SSH_KEY != '' }}
     steps:
       - name: Execute Remote SSH Commands
         uses: appleboy/ssh-action@v1.0.3
+        continue-on-error: false
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}

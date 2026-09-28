@@ -62,14 +62,14 @@ test('TDD 4: layout.tsx configures DNP.ico as website icon', () => {
   )
 })
 
-test('TDD 5: TestimonialCTA.tsx renders ondos.svg illustration and hides review carousel', () => {
+test('TDD 5: TestimonialCTA.tsx renders ondos.webp illustration and hides review carousel', () => {
   const file = path.join(FRONTEND_ROOT, 'components', 'ui', 'TestimonialCTA.tsx')
   assert.ok(fs.existsSync(file), 'TestimonialCTA.tsx must exist')
   const content = fs.readFileSync(file, 'utf8')
 
   assert.ok(
-    content.includes('/images/ondos.svg'),
-    'TestimonialCTA.tsx must use /images/ondos.svg'
+    content.includes('/images/ondos.webp'),
+    'TestimonialCTA.tsx must use /images/ondos.webp'
   )
 })
 

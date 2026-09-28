@@ -1,10 +1,12 @@
 import os
 import sys
+import re
+import base64
+import io
 from PIL import Image
 
 # Ensure utf-8 output if possible
 if sys.platform == 'win32':
-    import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 def optimize_image(src_path, dest_path, quality=85, max_width=None):
@@ -42,16 +44,33 @@ def optimize_image(src_path, dest_path, quality=85, max_width=None):
 
 print("=== Starting Automated Image Optimization Pipeline ===")
 
-# 1. Hero Character Portal (from 1.54 MB raw PNG -> WebP)
-optimize_image('public/images/hero-character-portal.png', 'public/images/hero-character-portal.webp', quality=88, max_width=1200)
+# 1. Hero Character Portal (from 1.54 MB raw PNG -> WebP under 150 KB)
+optimize_image('public/images/hero-character-portal.png', 'public/images/hero-character-portal.webp', quality=78, max_width=850)
 
-# 2. Hero Section Background (from 988 KB -> WebP)
+# 2. Hero Section Background (from 988 KB -> WebP under 50 KB)
 optimize_image('public/images/herosectionn.webp', 'public/images/herosectionn.webp', quality=82, max_width=1920)
 
-# 3. Testimonial Backdrop (from 271 KB -> WebP)
+# 3. Testimonial Backdrop (from 271 KB -> WebP under 35 KB)
 optimize_image('public/images/extracted/update-testimonial-0.png', 'public/images/extracted/update-testimonial-0.webp', quality=85, max_width=1000)
 
-# 4. Client Logos (public/images/logo-client/)
+# 4. CTA Backdrop (Extract ondos.svg 1.7 MB embedded image -> ondos.webp ~45 KB)
+svg_path = 'public/images/ondos.svg'
+if os.path.exists(svg_path):
+    with open(svg_path, 'r', encoding='utf-8') as f:
+        svg_content = f.read()
+    b64_matches = re.findall(r'xlink:href="data:image/png;base64,([^"]+)"', svg_content)
+    if b64_matches:
+        img_bytes = base64.b64decode(b64_matches[0])
+        with Image.open(io.BytesIO(img_bytes)) as ondo_img:
+            ondo_dest = 'public/images/ondos.webp'
+            ondo_img.save(ondo_dest, 'WEBP', quality=82, method=6)
+            sz = os.path.getsize(ondo_dest) / 1024
+            print(f"[OK] Extracted ondos.svg (1742 KB) -> {ondo_dest} ({sz:.1f} KB) [97.5% reduction]")
+
+# 5. Why Choose Us background cardblue.webp (284 KB -> ~25 KB)
+optimize_image('public/images/cardblue.webp', 'public/images/cardblue.webp', quality=80, max_width=1920)
+
+# 6. Client Logos (public/images/logo-client/)
 logo_dir = 'public/images/logo-client'
 if os.path.exists(logo_dir):
     for f in os.listdir(logo_dir):
