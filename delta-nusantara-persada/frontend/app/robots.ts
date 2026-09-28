@@ -11,10 +11,20 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           '/admin',
           '/admin/',
-          '/checkout',
-          '/checkout/',
           '/api/',
+          '/_next/',
         ],
+      },
+      // Block aggressive scrapers & raw AI trainers from draining 2GB VPS bandwidth
+      {
+        userAgent: ['CCBot', 'Bytespider', 'Scrapy', 'SemrushBot'],
+        disallow: ['/'],
+      },
+      // Explicitly encourage major search engines
+      {
+        userAgent: ['Googlebot', 'Bingbot', 'YandexBot'],
+        allow: '/',
+        disallow: ['/admin', '/admin/', '/api/'],
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
