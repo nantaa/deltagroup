@@ -33,15 +33,15 @@ cat << 'EOF' | sudo tee /etc/logrotate.d/deltanusa > /dev/null
 EOF
 
 # Test logrotate configuration
-sudo logrotate -d /etc/logrotate.d/deltanusa > /dev/null 2>&1
+sudo logrotate -d /etc/logrotate.d/deltanusa > /dev/null 2>&1 || true
 echo "✅ Logrotate configured successfully (Keeps max 7 days of logs to save 20GB SSD)."
 
 echo "🛡️ [2/3] Setting up Fail2ban for SSH & HTTP brute-force protection..."
 sudo apt-get update -qq
 sudo apt-get install -y fail2ban -qq
 sudo systemctl enable fail2ban
-sudo systemctl start fail2ban
-echo "✅ Fail2ban active."
+sudo systemctl restart fail2ban
+echo "✅ Fail2ban active and protecting SSH."
 
 echo "🛡️ [3/3] Setting up automated daily database backup cron job..."
 CRON_JOB="0 2 * * * /var/www/delta-nusantara/deltagroup/delta-nusantara-persada/backend/scripts/backup-db.sh >> /var/log/dnp-backup.log 2>&1"
