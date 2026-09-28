@@ -23,8 +23,8 @@ const TABS: TabData[] = [
     id: 'tentang-kami',
     num: '01',
     title: { ID: 'Tentang Kami', EN: 'About Us' },
-    icon: '/komponen tambahan/mdi_account-hard-hat-outline.svg',
-    pic: '/komponen tambahan/TentangKamiPic.png',
+    icon: '/images/about/mdi_account-hard-hat-outline.svg',
+    pic: '/images/about/TentangKamiPic.webp',
     content: {
       ID: (
         <p className="text-xs sm:text-[13.5px] text-[#4A6482] leading-relaxed">
@@ -42,8 +42,8 @@ const TABS: TabData[] = [
     id: 'visi-kami',
     num: '02',
     title: { ID: 'Visi Kami', EN: 'Our Vision' },
-    icon: '/komponen tambahan/glyphs_binoculars-bold.svg',
-    pic: '/komponen tambahan/VisiKamiPic.png',
+    icon: '/images/about/glyphs_binoculars-bold.svg',
+    pic: '/images/about/VisiKamiPic.webp',
     content: {
       ID: (
         <p className="text-xs sm:text-[13.5px] text-[#4A6482] leading-relaxed italic">
@@ -61,8 +61,8 @@ const TABS: TabData[] = [
     id: 'misi-kami',
     num: '03',
     title: { ID: 'Misi Kami', EN: 'Our Missions' },
-    icon: '/komponen tambahan/mage_goals.svg',
-    pic: '/komponen tambahan/MisiKamiPic.png',
+    icon: '/images/about/mage_goals.svg',
+    pic: '/images/about/MisiKamiPic.webp',
     content: {
       ID: (
         <ol className="list-decimal list-inside space-y-2 text-xs sm:text-[13px] text-[#4A6482] leading-relaxed">
@@ -90,8 +90,8 @@ const TABS: TabData[] = [
     id: 'kebijakan-mutu',
     num: '04',
     title: { ID: 'Kebijakan Mutu', EN: 'Quality Policy' },
-    icon: '/komponen tambahan/carbon_policy.svg',
-    pic: '/komponen tambahan/KebijakanMutuPic.png',
+    icon: '/images/about/carbon_policy.svg',
+    pic: '/images/about/KebijakanMutuPic.webp',
     content: {
       ID: (
         <ul className="space-y-1 text-[11px] sm:text-xs text-[#4A6482] leading-snug">
@@ -171,8 +171,8 @@ const TABS: TabData[] = [
     id: 'kebijakan-k3',
     num: '05',
     title: { ID: 'Kebijakan K3', EN: 'HSE Policy' },
-    icon: '/komponen tambahan/carbon_deployment-policy.svg',
-    pic: '/komponen tambahan/KebijakanK3Pic.png',
+    icon: '/images/about/carbon_deployment-policy.svg',
+    pic: '/images/about/KebijakanK3Pic.webp',
     content: {
       ID: (
         <ul className="space-y-2 text-xs sm:text-[13px] text-[#4A6482] leading-relaxed">

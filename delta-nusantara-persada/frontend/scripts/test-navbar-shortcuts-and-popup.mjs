@@ -99,17 +99,17 @@ test('TDD 3: Main action buttons must use rounded-[10px] with gradient and avoid
   );
 });
 
-test('TDD 4: AboutModal.tsx must exist, support tabs and use assets from komponen tambahan', () => {
+test('TDD 4: AboutModal.tsx must exist, support tabs and use assets from images/about', () => {
   assert.ok(fs.existsSync(ABOUT_MODAL), 'AboutModal.tsx must exist');
   const modalContent = fs.readFileSync(ABOUT_MODAL, 'utf8');
 
   assert.match(modalContent, /useLang/, 'AboutModal must use useLang for bilingual support');
-  assert.match(modalContent, /komponen tambahan/, 'AboutModal must reference assets in /komponen tambahan');
-  assert.match(modalContent, /(?:TentangKamiPic|Tentang Kami)\.png/, 'AboutModal must use Tentang Kami pic');
-  assert.match(modalContent, /(?:VisiKamiPic|Visi Kami)\.png/, 'AboutModal must use Visi Kami pic');
-  assert.match(modalContent, /(?:MisiKamiPic|Misi Kami)\.png/, 'AboutModal must use Misi Kami pic');
-  assert.match(modalContent, /(?:KebijakanMutuPic|Kebijakan Mutu)\.png/, 'AboutModal must use Kebijakan Mutu pic');
-  assert.match(modalContent, /(?:KebijakanK3Pic|Kebijakan K3)\.png/, 'AboutModal must use Kebijakan K3 pic');
+  assert.match(modalContent, /\/images\/about\//, 'AboutModal must reference assets in /images/about/');
+  assert.match(modalContent, /(?:TentangKamiPic|Tentang Kami)\.webp/, 'AboutModal must use Tentang Kami pic');
+  assert.match(modalContent, /(?:VisiKamiPic|Visi Kami)\.webp/, 'AboutModal must use Visi Kami pic');
+  assert.match(modalContent, /(?:MisiKamiPic|Misi Kami)\.webp/, 'AboutModal must use Misi Kami pic');
+  assert.match(modalContent, /(?:KebijakanMutuPic|Kebijakan Mutu)\.webp/, 'AboutModal must use Kebijakan Mutu pic');
+  assert.match(modalContent, /(?:KebijakanK3Pic|Kebijakan K3)\.webp/, 'AboutModal must use Kebijakan K3 pic');
   assert.match(modalContent, /card\.svg/, 'AboutModal must reuse card.svg wave ornament from ServiceDetailModal');
   assert.match(modalContent, /Escape/, 'AboutModal must support Escape key listener');
 });
