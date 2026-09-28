@@ -154,29 +154,11 @@ export const translations = {
     testimonials: [
       {
         quote: {
-          ID: 'Inspeksi K3 berkala pada lini perakitan kami selesai tepat waktu dengan sertifikasi resmi Disnaker. Efisiensi dan kepatuhan K3 pabrik meningkat signifikan.',
-          EN: 'Periodic statutory K3 inspections across our assembly lines were delivered on schedule with official Disnaker certification, significantly elevating plant safety compliance.',
+          ID: 'Kami berkomitmen memberikan beragam jasa pelayanan Konsultan, pemeriksaan dan pengujian peralatan kerja, dalam mendukung peningkatan produktivitas dan keselamatan kerja di instansi pemerintahan maupun swasta',
+          EN: 'We are committed to providing a comprehensive range of consulting, inspection, and testing services for workplace equipment, supporting enhanced productivity and occupational safety across government and private institutions.',
         },
-        client: 'PT. Astra International Tbk',
-        division: 'Divisi Manufaktur & HSE',
-        rating: 5,
-      },
-      {
-        quote: {
-          ID: 'Uji berkala bejana tekan & boiler beroperasi lancar tanpa downtime produksi. Suket kelayakan terbit tepat waktu dengan dokumentasi lengkap.',
-          EN: 'Periodic pressure vessel & boiler testing was performed seamlessly without production downtime. Statutory compliance certificates were issued promptly with complete documentation.',
-        },
-        client: 'PT. Pertamina Lubricants',
-        division: 'HSE & Plant Operations',
-        rating: 5,
-      },
-      {
-        quote: {
-          ID: 'Pemeriksaan load test tower crane dan alat angkut di proyek strategis nasional berjalan aman dengan rekomendasi teknis yang sangat presisi.',
-          EN: 'Load testing of tower cranes and lifting machinery on national strategic infrastructure projects proceeded safely with highly precise engineering recommendations.',
-        },
-        client: 'PT. Waskita Karya (Persero) Tbk',
-        division: 'Divisi Alat Berat & K3L',
+        client: 'Direktur',
+        division: 'PT. DELTA NUSANTARA Persada',
         rating: 5,
       },
     ],

@@ -43,7 +43,7 @@ const CHECKS = [
     name: 'TestimonialCTA.tsx - Zero neon blur balls',
     file: 'components/ui/TestimonialCTA.tsx',
     forbidden: ['bg-dnp-cyan/10 rounded-full blur-3xl'],
-    mustInclude: ['Kisah Sukses Klien Kami'],
+    mustInclude: ['Kisah Sukses Kami'],
   },
 ]
 

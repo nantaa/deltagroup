@@ -87,3 +87,26 @@ test('TDD 6: Footer.tsx includes Member of DELTA INDONESIA Group and official Ti
     'Footer.tsx must render real SVG TikTok logo instead of text Tk'
   )
 })
+
+test('TDD 7: LanguageContext.tsx and TestimonialCTA.tsx feature Director Commitment and compact non-overlapping framing', () => {
+  const langFile = path.join(FRONTEND_ROOT, 'lib', 'LanguageContext.tsx')
+  const ctaFile = path.join(FRONTEND_ROOT, 'components', 'ui', 'TestimonialCTA.tsx')
+  assert.ok(fs.existsSync(langFile), 'LanguageContext.tsx must exist')
+  assert.ok(fs.existsSync(ctaFile), 'TestimonialCTA.tsx must exist')
+
+  const langContent = fs.readFileSync(langFile, 'utf8')
+  const ctaContent = fs.readFileSync(ctaFile, 'utf8')
+
+  assert.ok(
+    langContent.includes('Kami berkomitmen memberikan beragam jasa pelayanan Konsultan') &&
+    langContent.includes('Direktur') &&
+    langContent.includes('DELTA NUSANTARA'),
+    'LanguageContext.tsx must contain the official Director commitment statement'
+  )
+
+  assert.ok(
+    ctaContent.includes('max-w-7xl') || ctaContent.includes('max-w-[1340px]') || ctaContent.includes('max-w-[1380px]'),
+    'TestimonialCTA.tsx must use a compact container'
+  )
+})
+
