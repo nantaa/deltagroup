@@ -161,7 +161,7 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
                   <span className="w-8 h-0.5 bg-[#008CE4]" />
                 </p>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#011E42] tracking-tight">
-                  {lang === 'EN' ? 'Safety Insights & Articles' : 'Artikel & Wawasan K3'}
+                  {lang === 'EN' ? 'Latest Riksa Uji' : 'Riksa Uji Terbaru'}
                 </h2>
               </div>
               <Link
