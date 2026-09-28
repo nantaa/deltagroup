@@ -31,6 +31,12 @@ export const metadata: Metadata = {
     template: '%s | PT Delta Nusantara Persada',
   },
 
+  icons: {
+    icon: '/images/DNP.ico',
+    shortcut: '/images/DNP.ico',
+    apple: '/images/DNP.ico',
+  },
+
   description:
     'PT Delta Nusantara Persada — jasa riksa uji pesawat dan riksa uji alat kerja yang ditunjuk resmi Kemnaker RI. Melayani pemeriksaan & pengujian K3: crane, boiler, elevator, instalasi listrik, proteksi kebakaran, dan pesawat tenaga produksi di seluruh Indonesia.',
 

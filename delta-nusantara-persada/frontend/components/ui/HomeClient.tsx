@@ -129,14 +129,14 @@ export default function HomeClient() {
                   <div
                     key={`${client.id}-${idx}`}
                     title={client.name}
-                    className="h-16 bg-white rounded-xl p-2 flex items-center justify-center border border-gray-100 hover:border-[#008CE4]/40 hover:shadow-md transition-all duration-300 group cursor-pointer"
+                    className="h-16 bg-white rounded-xl p-2 flex items-center justify-center border border-gray-100 hover:border-[#008CE4]/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
                   >
                     <div className="w-full h-10 relative flex items-center justify-center">
                       <Image
                         src={client.logo}
                         alt={client.name}
                         fill
-                        className="object-contain filter grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300"
+                        className="object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300"
                       />
                     </div>
                   </div>
