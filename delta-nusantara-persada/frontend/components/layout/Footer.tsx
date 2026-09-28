@@ -32,7 +32,7 @@ export default function Footer() {
               {t('footer', 'description')}
             </p>
 
-            <p className="font-figtree font-bold text-white text-xs tracking-wide">
+            <p className="font-figtree font-bold text-white text-sm sm:text-[15px] tracking-wide">
               Member of <span className="text-[#00D2FF]">DELTA INDONESIA Group</span>
             </p>
 
