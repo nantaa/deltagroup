@@ -53,19 +53,42 @@ optimize_image('public/images/herosectionn.webp', 'public/images/herosectionn.we
 # 3. Testimonial Backdrop (from 271 KB -> WebP under 35 KB)
 optimize_image('public/images/extracted/update-testimonial-0.png', 'public/images/extracted/update-testimonial-0.webp', quality=85, max_width=1000)
 
-# 4. CTA Backdrop (Extract ondos.svg 1.7 MB embedded image -> ondos.webp ~45 KB)
+# 4. CTA Backdrop (Composite ondos.svg 3 layers: refinery + mesh waves + inspector model -> ondos.webp ~58 KB)
 svg_path = 'public/images/ondos.svg'
 if os.path.exists(svg_path):
     with open(svg_path, 'r', encoding='utf-8') as f:
         svg_content = f.read()
     b64_matches = re.findall(r'xlink:href="data:image/png;base64,([^"]+)"', svg_content)
-    if b64_matches:
-        img_bytes = base64.b64decode(b64_matches[0])
-        with Image.open(io.BytesIO(img_bytes)) as ondo_img:
-            ondo_dest = 'public/images/ondos.webp'
-            ondo_img.save(ondo_dest, 'WEBP', quality=82, method=6)
-            sz = os.path.getsize(ondo_dest) / 1024
-            print(f"[OK] Extracted ondos.svg (1742 KB) -> {ondo_dest} ({sz:.1f} KB) [97.5% reduction]")
+    if len(b64_matches) >= 3:
+        canvas = Image.new('RGBA', (859, 319), (0, 0, 0, 0))
+        # Layer 0: Background refinery
+        im0 = Image.open(io.BytesIO(base64.b64decode(b64_matches[0]))).convert('RGBA')
+        canvas.paste(im0, (0, 0))
+        # Gradient blue overlay
+        grad = Image.new('RGBA', (859, 319), (0, 0, 0, 0))
+        for x in range(859):
+            t = max(0.0, min(1.0, (x - 50) / 638.5))
+            r = int(1 * (1 - t) + 1 * t)
+            g = int(47 * (1 - t) + 99 * t)
+            b = int(115 * (1 - t) + 205 * t)
+            a = int(220 * (1 - t) + 120 * t)
+            for y in range(319):
+                grad.putpixel((x, y), (r, g, b, a))
+        canvas = Image.alpha_composite(canvas, grad)
+        # Layer 1: Mesh waves
+        im1 = Image.open(io.BytesIO(base64.b64decode(b64_matches[1]))).convert('RGBA')
+        im1_resized = im1.resize((1128, 953), Image.Resampling.LANCZOS)
+        im1_rot = im1_resized.rotate(-17.8, resample=Image.Resampling.BICUBIC, expand=True)
+        canvas.paste(im1_rot, (100, -200), im1_rot)
+        # Layer 2: Inspector model (orange vest & white hard hat)
+        im2 = Image.open(io.BytesIO(base64.b64decode(b64_matches[2]))).convert('RGBA')
+        im2_resized = im2.resize((348, 348), Image.Resampling.LANCZOS)
+        canvas.paste(im2_resized, (495, -8), im2_resized)
+        
+        ondo_dest = 'public/images/ondos.webp'
+        canvas.save(ondo_dest, 'WEBP', quality=85, method=6)
+        sz = os.path.getsize(ondo_dest) / 1024
+        print(f"[OK] Composited ondos.svg (1742 KB) -> {ondo_dest} with Model ({sz:.1f} KB) [96.7% reduction]")
 
 # 5. Why Choose Us background cardblue.webp (284 KB -> ~25 KB)
 optimize_image('public/images/cardblue.webp', 'public/images/cardblue.webp', quality=80, max_width=1920)
