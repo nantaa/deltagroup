@@ -35,7 +35,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 pt-2">
               <span className="text-xs text-gray-400">{t('footer', 'followUs')}</span>
               <a
-                href="https://www.instagram.com/deltaindonesia/"
+                href="https://www.instagram.com/riksauji.dnp/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -44,7 +44,7 @@ export default function Footer() {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="https://www.tiktok.com"
+                href="https://www.tiktok.com/@riksauji.dnp"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="TikTok"
