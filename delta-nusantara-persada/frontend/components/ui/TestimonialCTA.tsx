@@ -98,8 +98,6 @@ export default function TestimonialCTA() {
                 sizes="(max-width: 1024px) 100vw, 850px"
                 className="object-cover object-right"
               />
-              {/* Left gradient overlay ensuring 100% typography legibility */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#01224D] via-[#01224D]/90 via-45% to-transparent" />
             </div>
 
             {/* Text & Content (Constrained to left side so it NEVER overlays the inspector model) */}
