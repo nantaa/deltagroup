@@ -92,9 +92,10 @@ export default function TestimonialCTA() {
             {/* Background Graphic: ondos.svg filling the entire frame */}
             <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
               <Image
-                src="/images/ondos.webp"
+                src="/images/ondos.svg"
                 alt="Delta Nusantara Persada Riksa Uji K3"
                 fill
+                unoptimized
                 sizes="(max-width: 1024px) 100vw, 850px"
                 className="object-cover object-right"
               />

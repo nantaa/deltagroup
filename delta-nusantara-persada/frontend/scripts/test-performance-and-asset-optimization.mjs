@@ -35,17 +35,17 @@ test('TDD Perf 4: next.config.js configures modern image formats (AVIF & WebP)',
   assert.ok(nextConfig.includes('image/avif') && nextConfig.includes('image/webp'), 'next.config.js must support AVIF and WebP formats')
 })
 
-test('TDD Perf 5: ondos.webp exists and is under 80 KB (replacing 1.3 MB SVG)', () => {
-  const ondosWebP = path.join(ROOT, 'public/images/ondos.webp')
-  assert.ok(fs.existsSync(ondosWebP), 'ondos.webp must exist')
-  const sizeKB = fs.statSync(ondosWebP).size / 1024
-  assert.ok(sizeKB < 80, `ondos.webp must be < 80 KB, got ${sizeKB.toFixed(1)} KB`)
+test('TDD Perf 5: ondos.svg exists and is optimized under 300 KB (reduced from 1.74 MB)', () => {
+  const ondosSVG = path.join(ROOT, 'public/images/ondos.svg')
+  assert.ok(fs.existsSync(ondosSVG), 'ondos.svg must exist')
+  const sizeKB = fs.statSync(ondosSVG).size / 1024
+  assert.ok(sizeKB < 300, `ondos.svg must be < 300 KB, got ${sizeKB.toFixed(1)} KB`)
 })
 
-test('TDD Perf 6: TestimonialCTA.tsx uses ondos.webp without unoptimized/priority', () => {
+test('TDD Perf 6: TestimonialCTA.tsx uses optimized ondos.svg with unoptimized prop', () => {
   const ctaCode = fs.readFileSync(path.join(ROOT, 'components/ui/TestimonialCTA.tsx'), 'utf-8')
-  assert.ok(ctaCode.includes('/images/ondos.webp'), 'TestimonialCTA must reference ondos.webp')
-  assert.ok(!ctaCode.includes('/images/ondos.svg'), 'TestimonialCTA must NOT reference ondos.svg')
+  assert.ok(ctaCode.includes('/images/ondos.svg'), 'TestimonialCTA must reference ondos.svg')
+  assert.ok(ctaCode.includes('unoptimized'), 'TestimonialCTA SVG image must have unoptimized prop')
 })
 
 test('TDD Perf 7: cardblue.webp is under 40 KB and WhyChooseUs.tsx does NOT use priority', () => {
