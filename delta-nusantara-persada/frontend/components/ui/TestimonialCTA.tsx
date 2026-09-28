@@ -97,20 +97,19 @@ export default function TestimonialCTA() {
           {/* ── Right Column: Consultation CTA Card (7 cols on lg, 8 cols on xl — Compact & No Overlap) ── */}
           <div className="lg:col-span-7 xl:col-span-8 relative bg-[#01224D] text-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-9 shadow-xl overflow-hidden flex flex-col justify-between min-h-[350px] sm:min-h-[360px] border border-white/10">
 
-            {/* Background Graphic: ondos.svg anchored cleanly on right half */}
-            <div className="absolute right-0 bottom-0 top-0 w-full sm:w-[50%] lg:w-[46%] xl:w-[44%] pointer-events-none z-0">
+            {/* Background Graphic: ondos.svg filling the entire frame */}
+            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
               <Image
                 src="/images/ondos.svg"
                 alt="Delta Nusantara Persada Riksa Uji K3"
                 fill
                 priority
                 unoptimized
-                className="object-contain object-right-bottom"
+                className="object-cover object-right"
               />
+              {/* Left gradient overlay ensuring 100% typography legibility */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#01224D] via-[#01224D]/90 via-45% to-transparent" />
             </div>
-
-            {/* Soft subtle gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#01224D] via-[#01224D]/85 to-transparent w-full sm:w-3/5 pointer-events-none z-0" />
 
             {/* Text & Content (Constrained to left side so it NEVER overlays the inspector model) */}
             <div className="relative z-10 max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg space-y-3.5 my-auto">
