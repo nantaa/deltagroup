@@ -30,14 +30,14 @@ export default function Navbar() {
 
             {/* Logo matching Monochrome Logo.svg */}
             <Link href="/" className="flex items-center gap-3 shrink-0 group">
-              <div className="h-11 relative flex items-center">
+              <div className="h-12 relative flex items-center">
                 <Image
                   src="/images/Monochrome Logo.svg"
                   alt="Delta Nusantara Persada"
-                  width={220}
-                  height={55}
+                  width={240}
+                  height={60}
                   unoptimized
-                  className="h-10 w-auto object-contain"
+                  className="h-11 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                   priority
                 />
               </div>

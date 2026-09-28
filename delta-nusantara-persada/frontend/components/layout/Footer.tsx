@@ -17,14 +17,14 @@ export default function Footer() {
 
           {/* Col 1: Logo, Bio & Social (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-block">
+            <Link href="/" className="inline-block group">
               <Image
                 src="/images/Monochrome Logo.svg"
                 alt="Delta Nusantara Persada"
-                width={200}
-                height={50}
+                width={240}
+                height={60}
                 unoptimized
-                className="h-10 w-auto object-contain"
+                className="h-11 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
             </Link>
 
