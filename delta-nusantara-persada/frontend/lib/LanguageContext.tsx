@@ -140,7 +140,7 @@ export const translations = {
   },
   testimonialCTA: {
     testimonialEyebrow: { ID: 'CERITA SUKSES', EN: 'SUCCESS STORY' },
-    testimonialTitle: { ID: 'Kisah Sukses Klien Kami', EN: 'Client Success Stories' },
+    testimonialTitle: { ID: 'Kisah Sukses Kami', EN: 'Our Success Stories' },
     ctaTitle: {
       ID: 'Siap Meningkatkan Standar Keselamatan & Kinerja Industri Anda?',
       EN: 'Ready to Elevate Your Industry Safety Standards & Performance?',
