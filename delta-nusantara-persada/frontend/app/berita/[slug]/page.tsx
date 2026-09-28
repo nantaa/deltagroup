@@ -5,7 +5,6 @@ import Footer from '@/components/layout/Footer'
 import Breadcrumb from '@/components/ui/Breadcrumb'
 import JsonLd from '@/components/seo/JsonLd'
 import { Calendar, Tag } from 'lucide-react'
-import api from '@/lib/api'
 import { Post } from '@/types'
 import { notFound } from 'next/navigation'
 import DOMPurify from 'isomorphic-dompurify'
@@ -16,8 +15,11 @@ const API_URL  = process.env.NEXT_PUBLIC_API_URL  ?? 'http://localhost:8000/api'
 
 async function getPost(slug: string): Promise<Post | null> {
   try {
-    const res = await api.get(`/posts/${slug}`)
-    return res.data
+    const res = await fetch(`${API_URL}/posts/${encodeURIComponent(slug)}`, {
+      next: { revalidate: 60, tags: [`post-${slug}`, 'posts'] },
+    })
+    if (!res.ok) return null
+    return await res.json()
   } catch {
     return null
   }
@@ -68,7 +70,7 @@ export async function generateMetadata(
 export async function generateStaticParams() {
   try {
     const res = await fetch(`${API_URL}/posts?status=published&limit=200`, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 3600, tags: ['posts'] },
     })
     if (!res.ok) return []
     const body = await res.json()
