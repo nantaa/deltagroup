@@ -58,13 +58,6 @@ export default function TestimonialCTA() {
                 &ldquo;{testimonial.quote[lang]}&rdquo;
               </p>
 
-              {/* 5 Yellow Stars */}
-              <div className="flex gap-1 my-2">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-
               {/* Client Info (Direktur PT. DELTA NUSANTARA Persada) */}
               <div className="flex items-center justify-between pt-2 border-t border-slate-100">
                 <div className="flex items-start gap-2">
