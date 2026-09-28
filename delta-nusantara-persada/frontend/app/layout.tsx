@@ -1,9 +1,11 @@
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { Figtree, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/lib/LanguageContext'
 import LocalBusinessSchema from '@/components/seo/LocalBusinessSchema'
-import FloatingWhatsApp from '@/components/ui/FloatingWhatsApp'
+
+const FloatingWhatsApp = dynamic(() => import('@/components/ui/FloatingWhatsApp'), { ssr: false })
 
 const figtree = Figtree({
   subsets: ['latin'],

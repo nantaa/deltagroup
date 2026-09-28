@@ -10,6 +10,34 @@ interface ScrollRevealProps {
   threshold?: number
 }
 
+let sharedObserver: IntersectionObserver | null = null
+const callbacks = new Map<Element, () => void>()
+
+function getObserver(): IntersectionObserver | null {
+  if (typeof window === 'undefined') return null
+  if (!sharedObserver && 'IntersectionObserver' in window) {
+    sharedObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cb = callbacks.get(entry.target)
+            if (cb) {
+              cb()
+              callbacks.delete(entry.target)
+            }
+            sharedObserver?.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -20px 0px',
+      }
+    )
+  }
+  return sharedObserver
+}
+
 export default function ScrollReveal({
   children,
   className = '',
@@ -28,30 +56,23 @@ export default function ScrollReveal({
       return
     }
 
-    const currentRef = ref.current
-    if (!currentRef) return
+    const el = ref.current
+    if (!el) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true)
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      {
-        threshold,
-        rootMargin: '0px 0px -30px 0px',
-      }
-    )
+    const obs = getObserver()
+    if (!obs) {
+      setIsVisible(true)
+      return
+    }
 
-    observer.observe(currentRef)
+    callbacks.set(el, () => setIsVisible(true))
+    obs.observe(el)
 
     return () => {
-      if (currentRef) observer.unobserve(currentRef)
+      callbacks.delete(el)
+      obs.unobserve(el)
     }
-  }, [threshold])
+  }, [])
 
   // Compute offset transform based on direction
   const getInitialTransform = () => {
