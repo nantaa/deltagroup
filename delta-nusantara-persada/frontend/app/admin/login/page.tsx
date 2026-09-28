@@ -54,8 +54,8 @@ export default function AdminLoginPage() {
     // Simulate network delay for UX feedback
     await new Promise((r) => setTimeout(r, 600))
 
-    const ok = login(username.trim(), password)
-    if (ok) {
+    const res = await login(username.trim(), password)
+    if (res.success) {
       router.push('/admin/blog')
     } else {
       const newAttempts = attempts + 1
@@ -64,7 +64,7 @@ export default function AdminLoginPage() {
         setError(`Terlalu banyak percobaan. Coba lagi dalam ${LOCKOUT_SECONDS} detik.`)
         startLockout()
       } else {
-        setError(`Username atau password salah. (${newAttempts}/${MAX_ATTEMPTS} percobaan)`)
+        setError(res.message || `Email/username atau password salah. (${newAttempts}/${MAX_ATTEMPTS} percobaan)`)
       }
       setLoading(false)
     }

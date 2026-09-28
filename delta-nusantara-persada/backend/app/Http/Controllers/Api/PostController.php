@@ -56,11 +56,11 @@ class PostController extends Controller
             'status'   => 'in:draft,published',
             'tags'     => 'nullable|array',
             'tags.*'   => 'string|max:50',
-            'image'    => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'image'    => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('posts', 'public');
+            $validated['image'] = $this->processAndStoreImage($request->file('image'));
         }
 
         $validated['slug'] = Str::slug($validated['title']) . '-' . Str::random(6);
@@ -80,12 +80,12 @@ class PostController extends Controller
             'status'   => 'in:draft,published',
             'tags'     => 'nullable|array',
             'tags.*'   => 'string|max:50',
-            'image'    => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'image'    => 'nullable|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
         if ($request->hasFile('image')) {
             if ($post->image) Storage::disk('public')->delete($post->image);
-            $validated['image'] = $request->file('image')->store('posts', 'public');
+            $validated['image'] = $this->processAndStoreImage($request->file('image'));
         }
 
         $post->update($validated);
@@ -97,5 +97,66 @@ class PostController extends Controller
         if ($post->image) Storage::disk('public')->delete($post->image);
         $post->delete();
         return response()->json(['message' => 'Post deleted.']);
+    }
+
+    /**
+     * Process uploaded image: clamp maximum width to 1600px and compress into WebP format.
+     */
+    private function processAndStoreImage($file): string
+    {
+        if (! extension_loaded('gd')) {
+            return $file->store('posts', 'public');
+        }
+
+        $path = $file->getRealPath();
+        $mime = $file->getMimeType();
+        $image = null;
+
+        switch ($mime) {
+            case 'image/jpeg':
+            case 'image/jpg':
+                $image = @imagecreatefromjpeg($path);
+                break;
+            case 'image/png':
+                $image = @imagecreatefrompng($path);
+                if ($image) {
+                    imagepalettetotruecolor($image);
+                    imagealphablending($image, true);
+                    imagesavealpha($image, true);
+                }
+                break;
+            case 'image/webp':
+                $image = @imagecreatefromwebp($path);
+                break;
+        }
+
+        if (! $image) {
+            return $file->store('posts', 'public');
+        }
+
+        $width = imagesx($image);
+        $height = imagesy($image);
+        $maxWidth = 1600;
+
+        if ($width > $maxWidth) {
+            $newHeight = (int) ($height * ($maxWidth / $width));
+            $resized = imagescale($image, $maxWidth, $newHeight);
+            if ($resized) {
+                imagedestroy($image);
+                $image = $resized;
+            }
+        }
+
+        $filename = 'posts/' . Str::random(40) . '.webp';
+        $fullPath = storage_path('app/public/' . $filename);
+
+        if (! file_exists(dirname($fullPath))) {
+            mkdir(dirname($fullPath), 0755, true);
+        }
+
+        imagewebp($image, $fullPath, 80);
+        imagedestroy($image);
+
+        return $filename;
     }
 }
