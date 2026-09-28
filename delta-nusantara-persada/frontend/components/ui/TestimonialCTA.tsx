@@ -93,18 +93,20 @@ export default function TestimonialCTA() {
           </div>
 
           {/* ── Right Column: Consultation CTA Card (67% width / 8 cols — WIDE) ── */}
-          <div className="lg:col-span-8 relative bg-gradient-to-br from-[#01224D] via-[#022D65] to-[#043E7E] text-white rounded-3xl p-7 sm:p-10 lg:p-12 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[440px] border border-white/10">
+          <div className="lg:col-span-8 relative bg-[#01224D] text-white rounded-3xl p-7 sm:p-10 lg:p-12 shadow-2xl overflow-hidden flex flex-col justify-between min-h-[440px] border border-white/10">
 
-            {/* Background Illustration with ondos.svg */}
-            <div className="absolute right-0 top-0 bottom-0 w-full lg:w-3/5 pointer-events-none opacity-30 lg:opacity-90 z-0">
+            {/* Background Graphic: ondos.svg filling the entire frame */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
               <Image
                 src="/images/ondos.svg"
                 alt="Delta Nusantara Persada Riksa Uji K3"
                 fill
                 priority
                 unoptimized
-                className="object-cover lg:object-contain object-right"
+                className="object-cover object-right"
               />
+              {/* Soft overlay on left side for maximum typography readability */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#01224D] via-[#01224D]/80 to-transparent w-full md:w-3/5 lg:w-1/2 z-0" />
             </div>
 
             {/* Text & Content (Left side of card with ample room) */}

@@ -139,8 +139,8 @@ export const translations = {
     },
   },
   testimonialCTA: {
-    testimonialEyebrow: { ID: 'TESTIMONIAL', EN: 'TESTIMONIAL' },
-    testimonialTitle: { ID: 'Apa Kata Klien Kami', EN: 'What Our Clients Say' },
+    testimonialEyebrow: { ID: 'CERITA SUKSES', EN: 'SUCCESS STORY' },
+    testimonialTitle: { ID: 'Kisah Sukses Klien Kami', EN: 'Client Success Stories' },
     ctaTitle: {
       ID: 'Siap Meningkatkan Standar Keselamatan & Kinerja Industri Anda?',
       EN: 'Ready to Elevate Your Industry Safety Standards & Performance?',
@@ -154,26 +154,26 @@ export const translations = {
     testimonials: [
       {
         quote: {
-          ID: 'Layanan Delta Nusantara Persada sangat profesional. Timnya kompeten, responsif, dan hasil kerjanya melebihi ekspektasi kami.',
-          EN: 'Delta Nusantara Persada\'s service is highly professional. Their team is competent, responsive, and the results exceeded our expectations.',
+          ID: 'Inspeksi K3 berkala pada lini perakitan kami selesai tepat waktu dengan sertifikasi resmi Disnaker. Efisiensi dan kepatuhan K3 pabrik meningkat signifikan.',
+          EN: 'Periodic statutory K3 inspections across our assembly lines were delivered on schedule with official Disnaker certification, significantly elevating plant safety compliance.',
         },
         client: 'PT. Astra International Tbk',
-        division: 'Procurement Division',
+        division: 'Divisi Manufaktur & HSE',
         rating: 5,
       },
       {
         quote: {
-          ID: 'Inspeksi berkala bejana tekan dan boiler pabrik kami dilaksanakan teliti sesuai regulasi Kemnaker. Suket terbit tepat waktu.',
-          EN: 'Periodic inspections of our pressure vessels and factory boilers were carried out thoroughly in accordance with Kemnaker regulations. Certificates issued on time.',
+          ID: 'Uji berkala bejana tekan & boiler beroperasi lancar tanpa downtime produksi. Suket kelayakan terbit tepat waktu dengan dokumentasi lengkap.',
+          EN: 'Periodic pressure vessel & boiler testing was performed seamlessly without production downtime. Statutory compliance certificates were issued promptly with complete documentation.',
         },
         client: 'PT. Pertamina Lubricants',
-        division: 'HSE & Maintenance Plant',
+        division: 'HSE & Plant Operations',
         rating: 5,
       },
       {
         quote: {
-          ID: 'Pengujian load test overhead crane dan elevator berlangsung aman tanpa mengganggu lini produksi pabrik yang sedang berjalan.',
-          EN: 'Load testing of overhead crane and elevator was conducted safely without disrupting the ongoing production line.',
+          ID: 'Pemeriksaan load test tower crane dan alat angkut di proyek strategis nasional berjalan aman dengan rekomendasi teknis yang sangat presisi.',
+          EN: 'Load testing of tower cranes and lifting machinery on national strategic infrastructure projects proceeded safely with highly precise engineering recommendations.',
         },
         client: 'PT. Waskita Karya (Persero) Tbk',
         division: 'Divisi Alat Berat & K3L',

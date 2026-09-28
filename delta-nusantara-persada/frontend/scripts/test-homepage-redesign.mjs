@@ -130,7 +130,7 @@ test('Component: TestimonialCTA.tsx implements dual card banner with Astra testi
   const langContent = fs.existsSync(langContextPath) ? fs.readFileSync(langContextPath, 'utf8') : '';
   const combined = content + '\n' + langContent;
 
-  assert.match(combined, /Apa Kata Klien Kami/i, 'Must render testimonial title');
+  assert.match(combined, /(Apa Kata Klien Kami|Kisah Sukses Klien Kami|Cerita Sukses)/i, 'Must render testimonial/success story title');
   assert.match(combined, /Astra International/i, 'Must feature Astra testimonial');
   assert.match(combined, /Siap Meningkatkan Standar Keselamatan/i, 'Must render consultation banner headline');
   assert.match(combined, /KONSULTASI GRATIS/i, 'Must render Konsultasi Gratis CTA button');
