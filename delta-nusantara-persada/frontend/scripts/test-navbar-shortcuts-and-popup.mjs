@@ -61,6 +61,11 @@ test('TDD 2: Homepage sections must have dedicated anchor IDs and scroll-mt offs
   );
   assert.match(
     workProcessContent,
+    /id=["']berita["']/,
+    'WorkProcessTraining.tsx must have id="berita"'
+  );
+  assert.match(
+    workProcessContent,
     /scroll-mt-\d+/,
     'WorkProcessTraining.tsx must have scroll-mt offset'
   );
@@ -149,6 +154,11 @@ test('TDD 5: Navbar.tsx must remove Brand Kami and provide section shortcuts wit
     navbarContent,
     /tim-ahli/,
     'Navbar.tsx must include shortcut to #tim-ahli or /#tim-ahli'
+  );
+  assert.match(
+    navbarContent,
+    /berita/,
+    'Navbar.tsx must include shortcut to #berita or /#berita'
   );
 
   // About modal integration

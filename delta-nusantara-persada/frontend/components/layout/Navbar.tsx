@@ -77,13 +77,10 @@ export default function Navbar() {
                 {t('nav', 'team')}
               </Link>
 
-              {/* Berita Page Link */}
+              {/* Berita Section Shortcut */}
               <Link
-                href="/berita"
-                className={clsx(
-                  'text-xs lg:text-sm font-semibold tracking-wider transition-colors hover:text-[#00D2FF]',
-                  pathname === '/berita' ? 'text-[#00D2FF]' : 'text-gray-200'
-                )}
+                href="/#berita"
+                className="text-xs lg:text-sm font-semibold tracking-wider text-gray-200 hover:text-[#00D2FF] transition-colors"
               >
                 {t('nav', 'news')}
               </Link>
@@ -180,7 +177,7 @@ export default function Navbar() {
               {t('nav', 'team')}
             </Link>
             <Link
-              href="/berita"
+              href="/#berita"
               className="block text-sm font-semibold text-gray-200 hover:text-[#00D2FF] py-2"
               onClick={() => setMobileOpen(false)}
             >

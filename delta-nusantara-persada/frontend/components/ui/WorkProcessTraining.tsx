@@ -153,7 +153,7 @@ export default function WorkProcessTraining({ posts }: WorkProcessTrainingProps)
           </div>
 
           {/* ── Right Column: BERITA TERBARU (Artikel & Wawasan K3) (7 cols) ── */}
-          <div className="lg:col-span-7">
+          <div id="berita" className="lg:col-span-7 scroll-mt-24 sm:scroll-mt-28">
             <div className="mb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
               <div>
                 <p className="text-[#008CE4] text-xs font-bold uppercase tracking-widest mb-1.5 flex items-center gap-2">
