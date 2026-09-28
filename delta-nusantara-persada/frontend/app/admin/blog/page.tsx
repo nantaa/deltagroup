@@ -42,8 +42,17 @@ export default function AdminBlogPage() {
     try {
       await api.delete(`/posts/${id}`)
       setPosts((prev) => prev.filter((p) => p.id !== id))
-    } catch {
-      alert('Gagal menghapus post.')
+    } catch (err: unknown) {
+      let msg = 'Gagal menghapus post.'
+      if (typeof err === 'object' && err !== null && 'response' in err) {
+        const resp = (err as { response?: { status?: number; data?: { message?: string } } }).response
+        if (resp?.status === 401) {
+          msg = 'Sesi login telah berakhir atau token tidak valid. Silakan login kembali.'
+        } else if (resp?.data?.message) {
+          msg = resp.data.message
+        }
+      }
+      alert(msg)
     }
   }
 

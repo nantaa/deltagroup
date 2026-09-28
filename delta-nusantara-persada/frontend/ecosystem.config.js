@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'dnp-frontend',
-      script: '.next/standalone/delta-nusantara-persada/frontend/server.js',
+      script: '.next/standalone/server.js',
       cwd: '/var/www/delta-nusantara/deltagroup/delta-nusantara-persada/frontend',
       instances: 1,
       exec_mode: 'fork',
