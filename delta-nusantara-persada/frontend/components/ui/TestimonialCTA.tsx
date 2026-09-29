@@ -101,13 +101,16 @@ export default function TestimonialCTA() {
               />
             </div>
 
-            {/* Text & Content (Constrained to left side so it NEVER overlays the inspector model) */}
+            {/* Mobile Readability Gradient Overlay: provides high contrast on mobile while preserving clean desktop layout */}
+            <div className="absolute inset-0 pointer-events-none z-[1] bg-gradient-to-t from-[#011838]/95 via-[#01224D]/85 to-[#01224D]/50 sm:hidden" />
+
+            {/* Text & Content (Constrained to left side so it NEVER overlays the inspector model on desktop) */}
             <div className="relative z-10 max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg space-y-3.5 my-auto">
-              <h3 className="text-xl sm:text-2xl lg:text-[28px] xl:text-[32px] font-extrabold text-white tracking-tight leading-snug drop-shadow-sm">
+              <h3 className="text-xl sm:text-2xl lg:text-[28px] xl:text-[32px] font-extrabold text-white tracking-tight leading-snug drop-shadow-md">
                 {tc.ctaTitle[lang]}
               </h3>
 
-              <p className="text-slate-200 text-xs sm:text-[13.5px] sm:leading-relaxed max-w-xs sm:max-w-sm lg:max-w-md">
+              <p className="text-slate-100 sm:text-slate-200 text-xs sm:text-[13.5px] sm:leading-relaxed max-w-xs sm:max-w-sm lg:max-w-md drop-shadow-sm font-medium sm:font-normal">
                 {tc.ctaSubtitle[lang]}
               </p>
 
