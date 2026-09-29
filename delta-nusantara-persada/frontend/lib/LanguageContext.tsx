@@ -86,22 +86,22 @@ export const translations = {
       pranan: {
         title: { ID: '', EN: '' },
         bio: {
-          ID: 'Berpengalaman lebih dari 15 tahun dalam manajemen strategis, tata kelola inspeksi teknik, dan kepatuhan regulasi K3 nasional untuk sektor migas dan manufaktur.',
-          EN: 'Over 15 years of experience in strategic management, technical inspection governance, and national K3 regulatory compliance for the oil & gas and manufacturing sectors.',
+          ID: 'Pimpinan PT Delta Nusantara Persada sekaligus tenaga ahli spesialis yang berpengalaman di bidang Pesawat Angkat dan Pesawat Angkut, Ketenagalistrikan, serta Proteksi Kebakaran.',
+          EN: 'Director of PT Delta Nusantara Persada and an experienced specialist in Lifting and Conveyance Equipment, Electrical Systems, and Fire Protection.',
         },
       },
       terzha: {
         title: { ID: '', EN: '' },
         bio: {
-          ID: 'Fokus pada keunggulan operasional, akselerasi kemitraan industri, dan efisiensi pelaksanaan sertifikasi riksa uji alat di seluruh wilayah Indonesia.',
-          EN: 'Focused on operational excellence, accelerating industrial partnerships, and efficient execution of statutory inspection certifications across Indonesia.',
+          ID: 'Ahli K3 Spesialis berlisensi Kementerian Ketenagakerjaan Republik Indonesia (Kemnaker RI) dengan pengalaman dan kompetensi di bidang Instalasi Proteksi Kebakaran, Pesawat Tenaga dan Produksi, serta Pesawat Uap dan Bejana Tekanan.',
+          EN: 'A Ministry of Manpower of the Republic of Indonesia (Kemnaker RI) licensed Occupational Safety and Health (K3) Specialist, with experience and expertise in Fire Protection Installations, Power and Production Equipment, and Steam Boilers and Pressure Vessels.',
         },
       },
       ricky: {
         title: { ID: '', EN: '' },
         bio: {
-          ID: 'Ahli K3 spesialis berlisensi Kemnaker RI dengan rekam jejak audit teknis pada pesawat angkat angkut, bejana tekan, elevator, dan instalasi proteksi kebakaran.',
-          EN: 'Licensed K3 specialist from the Indonesian Ministry of Manpower with a track record of technical audits on lifting equipment, pressure vessels, elevators, and fire protection installations.',
+          ID: 'Ahli K3 Spesialis berlisensi Kementerian Ketenagakerjaan Republik Indonesia (Kemnaker RI) dengan pengalaman dan kompetensi di bidang Instalasi Elevator dan Eskalator.',
+          EN: 'A Ministry of Manpower of the Republic of Indonesia (Kemnaker RI) licensed Occupational Safety and Health (K3) Specialist, with experience and expertise in Elevator and Escalator Installations.',
         },
       },
     },

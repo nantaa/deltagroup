@@ -27,6 +27,9 @@ delta-group/
 ├── delta-lembaga-kursus/        # PT. Delta Lembaga Kursus (DLK)
 │   └── frontend/                # Next.js 14 Frontend (DLK customization)
 │
+├── clone-mediatama/             # PT. Delta Indonesia Pranenggar (Full-Stack K3 Platform)
+│   └── k3-platform/             # Next.js 16 + Turbopack + Drizzle ORM + MySQL
+│
 └── replace_brand.js             # Script to automate brand string replacement
 ```
 
@@ -41,8 +44,9 @@ delta-group/
 | **`biro-sertifikasi-indonesia`** | **PT. Biro Sertifikasi Indonesia (BSI)** | Management system audit & certification (SMK3, ISO 9001/14001/45001). | Next.js 14 (App Router) | `3002` (FE)* | `http://localhost:8001/api` (Local Dev) |
 | **`delta-indonesia-pranenggar`** | **PT. Delta Indonesia Pranenggar (DIP)** | Occupational Safety & Health (K3) training and HR development. | Next.js 14 (App Router) | `3003` (FE)* | `http://localhost:8001/api` (Local Dev) |
 | **`delta-lembaga-kursus`** | **PT. Delta Lembaga Kursus (DLK)** | Vocational training school (LPK) for individuals and groups. | Next.js 14 (App Router) | `3004` (FE)* | `http://localhost:8001/api` (Local Dev) |
+| **`clone-mediatama`** | **PT. Delta Indonesia Pranenggar (K3 Platform)** | Full-stack K3 portal: 63 routes, catalog, batches, vouchers, SKP renewal, admin CMS, leads. | Next.js 16.3 + Drizzle ORM + MySQL | `3005` (Fullstack)* | `/api/v1` (Integrated) |
 
-> *\*Note: Ports `3002`, `3003`, and `3004` are recommended default development ports to prevent local collision when running concurrently.*
+> *\*Note: Ports `3002`, `3003`, `3004`, and `3005` are recommended default development ports to prevent local collision when running concurrently.*
 
 ---
 
@@ -75,6 +79,17 @@ delta-group/
 
 ### 📂 Delta Lembaga Kursus (DLK)
 *   **Purpose**: Vocational training center (LPK) focused on skill certification and individual training programs.
+
+### 📂 Clone Mediatama (k3-platform - PT Delta Indonesia Pranenggar)
+*   **Purpose**: Standalone, highly-optimized full-stack web application for K3 training catalog, Kemnaker RI / BNSP certification batches, SKP license renewal, flyer promos, and administrative CMS.
+*   **Architecture**:
+    *   **Framework**: Next.js 16.3.3 App Router with Turbopack.
+    *   **Database & ORM**: Drizzle ORM + `mysql2` connecting to MySQL (`delta_k3` database). Replaced heavyweight Prisma for optimal RAM/disk performance on 2 CPU / 2 GB RAM VPS instances.
+    *   **Two-Tier User Access**:
+        *   **Public Visitors**: Unauthenticated browsing of course catalog, schedule batches, SKP renewal pricing, blogs, and WhatsApp booking CTAs with resilient fallback to static data if database is cold.
+        *   **Administrator**: Authenticated (`/admin/*`) via `/api/v1/auth/login` (or `x-admin-key`) to manage courses, batches, voucher codes, leads, and promotional flyers.
+*   **Disk & Memory Optimization**: 831 MB total footprint (down from 2.25 GB, >63% disk reduction), pure TypeScript ORM with zero Rust binary bloat.
+*   **Test Suite**: 6 Vitest suites (9 tests) covering architecture, Drizzle schema, admin forms, API handlers, and fallback services.
 
 ---
 
