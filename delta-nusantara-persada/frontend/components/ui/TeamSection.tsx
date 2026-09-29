@@ -15,7 +15,7 @@ const LEADERS = [
   },
   {
     id: 2,
-    name: 'Terzha R. Perdanawan S.M.',
+    name: 'Terzha R. Perdanawan, S.M.',
     memberKey: 'terzha' as const,
     photo: '/images/extracted/mas-terzha.jpg',
     photoScale: 'scale-[1.55] origin-[center_18%]',

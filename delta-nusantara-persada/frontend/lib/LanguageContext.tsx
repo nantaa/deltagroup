@@ -37,13 +37,13 @@ export const translations = {
         'Dapatkan Suket/Sertifikat Laik Operasi (SLO)/Surat Lainnya — Info selengkapnya di deltanusa.co.id',
         'Pemeriksaan dan Pengujian Alat 2026 — Info selengkapnya di deltanusa.co.id',
         'Jadwalkan Riksa Uji Alat — Hubungi kami sekarang!',
-        'PT. Delta Nusantara Persada melayani Riksa Uji Alat seluruh Indonesia',
+        'PT. DELTA NUSANTARA Persada melayani Riksa Uji Alat seluruh Indonesia',
       ],
       EN: [
         'Obtain your Operational Permit / Certificate of Fitness (SLO) — learn more at deltanusa.co.id',
         'Equipment Inspection & Testing 2026 — learn more at deltanusa.co.id',
         'Schedule a Statutory Inspection — Contact us now!',
-        'PT. Delta Nusantara Persada serves nationwide statutory inspections across Indonesia',
+        'PT. DELTA NUSANTARA Persada serves nationwide statutory inspections across Indonesia',
       ],
     },
     badge: { ID: 'INFO K3', EN: 'K3 INFO' },
@@ -86,8 +86,8 @@ export const translations = {
       pranan: {
         title: { ID: '', EN: '' },
         bio: {
-          ID: 'Pimpinan PT Delta Nusantara Persada sekaligus tenaga ahli spesialis yang berpengalaman di bidang Pesawat Angkat dan Pesawat Angkut, Ketenagalistrikan, serta Proteksi Kebakaran.',
-          EN: 'Director of PT Delta Nusantara Persada and an experienced specialist in Lifting and Conveyance Equipment, Electrical Systems, and Fire Protection.',
+          ID: 'Pimpinan PT. DELTA NUSANTARA Persada sekaligus tenaga ahli spesialis yang berpengalaman di bidang Pesawat Angkat dan Pesawat Angkut, Ketenagalistrikan, serta Proteksi Kebakaran.',
+          EN: 'Director of PT. DELTA NUSANTARA Persada and an experienced specialist in Lifting and Conveyance Equipment, Electrical Systems, and Fire Protection.',
         },
       },
       terzha: {
@@ -270,14 +270,14 @@ export const translations = {
   },
   footer: {
     description: {
-      ID: 'Delta Nusantara Persada menyelenggarakan Sertifikasi dan pembinaan pelatihan K3 untuk para karyawan maupun calon karyawan di seluruh Indonesia.',
-      EN: 'Delta Nusantara Persada provides K3 certification, statutory inspection, and training programs across Indonesia.',
+      ID: 'PT. DELTA NUSANTARA Persada menyelenggarakan Sertifikasi dan pembinaan pelatihan K3 untuk para karyawan maupun calon karyawan di seluruh Indonesia.',
+      EN: 'PT. DELTA NUSANTARA Persada provides K3 certification, statutory inspection, and training programs across Indonesia.',
     },
     services: { ID: 'Layanan', EN: 'Services' },
     menu: { ID: 'Menu', EN: 'Menu' },
     contactUs: { ID: 'Hubungi Kami', EN: 'Contact Us' },
     followUs: { ID: 'Ikuti Kami', EN: 'Follow Us' },
-    copyright: { ID: '© 2026 PT. Delta Nusantara Persada. Hak cipta dilindungi.', EN: '© 2026 PT. Delta Nusantara Persada. All rights reserved.' },
+    copyright: { ID: '© 2026 PT. DELTA NUSANTARA Persada. Hak cipta dilindungi.', EN: '© 2026 PT. DELTA NUSANTARA Persada. All rights reserved.' },
     serviceItems: {
       k3: { ID: 'Pelatihan K3', EN: 'K3 Training' },
       kompetensi: { ID: 'Pelatihan Berbasis Kompetensi', EN: 'Competency-Based Training' },
@@ -295,7 +295,7 @@ export const translations = {
   },
   about: {
     title: { ID: 'Tentang Kami', EN: 'About Us' },
-    subtitle: { ID: 'PT. Delta Nusantara Persada', EN: 'PT. Delta Nusantara Persada' },
+    subtitle: { ID: 'PT. DELTA NUSANTARA Persada', EN: 'PT. DELTA NUSANTARA Persada' },
   },
   berita: {
     title: { ID: 'Berita & Artikel', EN: 'News & Articles' },
@@ -457,8 +457,8 @@ export const translations = {
       eyebrow: { ID: 'PEMERIKSAAN · PENGUJIAN · SERTIFIKASI K3', EN: 'INSPECTION · TESTING · K3 CERTIFICATION' },
       title: { ID: 'Layanan Riksa Uji Pesawat & Alat K3', EN: 'Statutory Inspection Services for Industrial Machinery' },
       subtitle: {
-        ID: 'PT Delta Nusantara Persada adalah Perusahaan Jasa Keselamatan dan Kesehatan Kerja (PJK3) bidang Riksa Uji yang ditunjuk resmi oleh Kementerian Ketenagakerjaan RI. Seluruh riksa uji dilaksanakan oleh Ahli K3 Spesialis berpenunjukan resmi, didukung kompetensi NDT dan Welding Inspector.',
-        EN: 'PT Delta Nusantara Persada is an officially appointed Inspection & Testing Company (PJK3) by the Indonesian Ministry of Manpower. All statutory inspections are conducted by licensed K3 specialists backed by NDT and Welding Inspector certifications.',
+        ID: 'PT. DELTA NUSANTARA Persada adalah Perusahaan Jasa Keselamatan dan Kesehatan Kerja (PJK3) bidang Riksa Uji yang ditunjuk resmi oleh Kementerian Ketenagakerjaan RI. Seluruh riksa uji dilaksanakan oleh Ahli K3 Spesialis berpenunjukan resmi, didukung kompetensi NDT dan Welding Inspector.',
+        EN: 'PT. DELTA NUSANTARA Persada is an officially appointed Inspection & Testing Company (PJK3) by the Indonesian Ministry of Manpower. All statutory inspections are conducted by licensed K3 specialists backed by NDT and Welding Inspector certifications.',
       },
       ctaConsult: { ID: 'Konsultasi Riksa Uji', EN: 'Request Inspection Consultation' },
     },
@@ -483,8 +483,8 @@ export const translations = {
     },
     companyName: { ID: 'PT. DELTA NUSANTARA PERSADA', EN: 'PT. DELTA NUSANTARA PERSADA' },
     p1: {
-      ID: 'DELTA NUSANTARA PERSADA bermula dari Perusahaan Jasa Pengembangan SDM bidang Keselamatan Kesehatan Kerja (K3) dan bidang lain dengan menyesuaikan kebutuhan para pelanggan.',
-      EN: 'DELTA NUSANTARA PERSADA originated as an HR development & HSE training provider tailored to the evolving needs of industrial clients.',
+      ID: 'PT. DELTA NUSANTARA PERSADA bermula dari Perusahaan Jasa Pengembangan SDM bidang Keselamatan Kesehatan Kerja (K3) dan bidang lain dengan menyesuaikan kebutuhan para pelanggan.',
+      EN: 'PT. DELTA NUSANTARA PERSADA originated as an HR development & HSE training provider tailored to the evolving needs of industrial clients.',
     },
     p2: {
       ID: 'Berdiri sejak Tahun 1999 berbadan hukum Yayasan, pada Tahun 2006 berubah menjadi Perseroan Terbatas (PT) untuk meningkatkan profesionalitas usaha. Hingga saat ini kami terus berkembang sebagai Perusahaan Jasa Keselamatan dan Kesehatan Kerja (PJK3) bidang Pemeriksaan dan Pengujian yang ditunjuk resmi oleh Kementerian Ketenagakerjaan RI.',
@@ -520,7 +520,7 @@ export const translations = {
       ],
     },
     leadershipTitle: { ID: 'Struktur Organisasi & Manajemen', EN: 'Organizational Structure & Leadership' },
-    leadershipSubtitle: { ID: 'Jajaran Pimpinan dan Penanggung Jawab Teknis PT Delta Nusantara Persada', EN: 'Executive Leadership and Technical Directors of PT Delta Nusantara Persada' },
+    leadershipSubtitle: { ID: 'Jajaran Pimpinan dan Penanggung Jawab Teknis PT. DELTA NUSANTARA Persada', EN: 'Executive Leadership and Technical Directors of PT. DELTA NUSANTARA Persada' },
     partnersTitle: { ID: 'MITRA KAMI', EN: 'OUR PARTNERS' },
     partnersSubtitle: {
       ID: 'Dalam merespon kebutuhan sertifikasi kompetensi personal, DELTA NUSANTARA PERSADA bekerjasama dengan Lembaga Sertifikasi Profesi (LSP):',
@@ -558,8 +558,8 @@ export const translations = {
     },
     repOfficesTitle: { ID: 'Kantor Perwakilan', EN: 'Representative Offices' },
     repOfficesDesc: {
-      ID: 'PT Delta Nusantara Persada memiliki kantor perwakilan di 8 kota industri strategis di Indonesia.',
-      EN: 'PT Delta Nusantara Persada maintains representative branches across 8 strategic industrial cities in Indonesia.',
+      ID: 'PT DELTA NUSANTARA Persada memiliki kantor perwakilan di 8 kota industri strategis di Indonesia.',
+      EN: 'PT DELTA NUSANTARA Persada maintains representative branches across 8 strategic industrial cities in Indonesia.',
     },
     repOfficesNote: {
       ID: 'Untuk alamat dan kontak kantor perwakilan, silakan hubungi kantor pusat.',
@@ -568,7 +568,7 @@ export const translations = {
   },
   aboutModal: {
     badge: { ID: 'PROFIL PERUSAHAAN', EN: 'COMPANY PROFILE' },
-    title: { ID: 'PT Delta Nusantara Persada', EN: 'PT Delta Nusantara Persada' },
+    title: { ID: 'PT DELTA NUSANTARA Persada', EN: 'PT DELTA NUSANTARA Persada' },
     subtitle: {
       ID: 'Perusahaan Jasa Keselamatan dan Kesehatan Kerja (PJK3) Riksa Uji Resmi Kemnaker RI',
       EN: 'Statutory HSE Inspection & Testing Company (PJK3) Officially Appointed by Ministry of Manpower RI',
@@ -581,8 +581,8 @@ export const translations = {
     },
     overviewText: {
       p1: {
-        ID: 'PT. Delta Nusantara Persada adalah Perusahaan Jasa Keselamatan dan Kesehatan Kerja (PJK3) bidang pemeriksaan dan pengujian teknik yang berdedikasi tinggi dalam menjamin kelaikan peralatan industri dan keselamatan kerja di seluruh Indonesia.',
-        EN: 'PT. Delta Nusantara Persada is an Occupational Health & Safety Services Company (PJK3) specializing in technical inspection and testing, dedicated to ensuring industrial equipment safety and operational compliance throughout Indonesia.',
+        ID: 'PT. DELTA NUSANTARA Persada adalah Perusahaan Jasa Keselamatan dan Kesehatan Kerja (PJK3) bidang pemeriksaan dan pengujian teknik yang berdedikasi tinggi dalam menjamin kelaikan peralatan industri dan keselamatan kerja di seluruh Indonesia.',
+        EN: 'PT. DELTA NUSANTARA Persada is an Occupational Health & Safety Services Company (PJK3) specializing in technical inspection and testing, dedicated to ensuring industrial equipment safety and operational compliance throughout Indonesia.',
       },
       p2: {
         ID: 'Didirikan sejak tahun 1999 dan berbadan hukum PT pada tahun 2006, kami berkedudukan di Bekasi dan melayani berbagai kawasan industri strategis dari Jabodetabek hingga area remote seperti Morowali, Cilegon, dan Lampung.',

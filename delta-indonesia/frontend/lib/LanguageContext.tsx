@@ -25,8 +25,8 @@ export const translations = {
   },
   footer: {
     description: {
-      ID: 'Delta Indonesia Group menyelenggarakan Sertifikasi dan pembinaan pelatihan K3 untuk para karyawan maupun calon karyawan di seluruh Indonesia.',
-      EN: 'Delta Indonesia Group provides K3 certification and training programs for employees and job seekers throughout Indonesia.',
+      ID: 'PT. Delta Indonesia Group menyelenggarakan Sertifikasi dan pembinaan pelatihan K3 untuk para karyawan maupun calon karyawan di seluruh Indonesia.',
+      EN: 'PT. Delta Indonesia Group provides K3 certification and training programs for employees and job seekers throughout Indonesia.',
     },
     services: { ID: 'Layanan', EN: 'Services' },
     menu: { ID: 'Menu', EN: 'Menu' },
