@@ -58,8 +58,8 @@ export default function TestimonialCTA() {
                 &ldquo;{testimonial.quote[lang]}&rdquo;
               </p>
 
-              {/* Client Info (Direktur PT. DELTA NUSANTARA Persada) */}
-              <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+              {/* Client Info (Direktur PT. DELTA NUSANTARA Persada) - Hidden as requested */}
+              <div className="hidden items-center justify-between pt-2 border-t border-slate-100">
                 <div className="flex items-start gap-2">
                   <div className="w-1 h-7 bg-amber-400 rounded-full mt-0.5 shrink-0" />
                   <div>
