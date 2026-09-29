@@ -7,7 +7,7 @@ import { useLang, translations } from '@/lib/LanguageContext'
 const LEADERS = [
   {
     id: 1,
-    name: 'Pranan Jaya Barus, ST',
+    name: 'Pranan Jaya Barus, S.T.',
     memberKey: 'pranan' as const,
     photo: '/images/extracted/pak-pranan.png',
     photoScale: 'scale-[1.65] origin-[center_16%]',
@@ -41,7 +41,7 @@ export default function TeamSection() {
       <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-100/50 via-transparent to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Header matching exact reference */}
         <ScrollReveal delay={0}>
           <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
