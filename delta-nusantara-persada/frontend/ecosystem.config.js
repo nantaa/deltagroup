@@ -1,9 +1,11 @@
+const path = require('path')
+
 module.exports = {
   apps: [
     {
       name: 'dnp-frontend',
-      script: '.next/standalone/server.js',
-      cwd: '/var/www/delta-nusantara/deltagroup/delta-nusantara-persada/frontend',
+      script: path.join(__dirname, '.next/standalone/server.js'),
+      cwd: __dirname,
       instances: 1,
       exec_mode: 'fork',
       autorestart: true,
