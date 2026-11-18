@@ -32,7 +32,7 @@ test('TDD 2: TeamSection.tsx centers text vertically inside the card body', () =
   )
 })
 
-test('TDD 3: Navbar.tsx and Footer.tsx use DNP-Secondary-Logo-A3-(Hires)', () => {
+test('TDD 3: Navbar.tsx and Footer.tsx use DNP Logo Baru.png', () => {
   const navFile = path.join(FRONTEND_ROOT, 'components', 'layout', 'Navbar.tsx')
   const footFile = path.join(FRONTEND_ROOT, 'components', 'layout', 'Footer.tsx')
   assert.ok(fs.existsSync(navFile), 'Navbar.tsx must exist')
@@ -42,12 +42,12 @@ test('TDD 3: Navbar.tsx and Footer.tsx use DNP-Secondary-Logo-A3-(Hires)', () =>
   const footContent = fs.readFileSync(footFile, 'utf8')
 
   assert.ok(
-    navContent.includes('DNP-Secondary-Logo-A3-(Hires)'),
-    'Navbar.tsx must use DNP-Secondary-Logo-A3-(Hires)'
+    navContent.includes('DNP Logo Baru.png'),
+    'Navbar.tsx must use DNP Logo Baru.png'
   )
   assert.ok(
-    footContent.includes('DNP-Secondary-Logo-A3-(Hires)'),
-    'Footer.tsx must use DNP-Secondary-Logo-A3-(Hires)'
+    footContent.includes('DNP Logo Baru.png'),
+    'Footer.tsx must use DNP Logo Baru.png'
   )
 })
 
