@@ -34,9 +34,15 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: '/images/DNP.ico',
+    icon: [
+      { url: '/images/DNP.ico' },
+      { url: '/favicon.ico' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
     shortcut: '/images/DNP.ico',
-    apple: '/images/DNP.ico',
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 
   description:

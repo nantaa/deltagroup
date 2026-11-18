@@ -24,11 +24,16 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="bg-[#011E42] border-b border-white/10 relative z-50 transition-all">
+      <nav
+        className="border-b border-white/10 relative z-50 transition-all bg-[linear-gradient(90deg,#ffffff_0%,#ffffff_15%,#011E42_15%,#011E42_100%)]"
+        style={{
+          background: 'linear-gradient(90deg, #ffffff 0%, #ffffff max(15%, max(140px, calc((100vw - 1400px) / 2 + 180px))), #011E42 max(15%, max(140px, calc((100vw - 1400px) / 2 + 180px))), #011E42 100%)',
+        }}
+      >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-[72px]">
 
-            {/* Logo matching high-res DNP logo */}
+            {/* Logo matching high-res DNP logo on white section */}
             <Link href="/" className="flex items-center gap-3 shrink-0 group">
               <div className="h-12 relative flex items-center">
                 <Image
@@ -37,7 +42,7 @@ export default function Navbar() {
                   width={120}
                   height={125}
                   priority
-                  className="h-10 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                  className="h-11 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 />
               </div>
             </Link>

@@ -18,13 +18,15 @@ export default function Footer() {
           {/* Col 1: Logo, Bio & Social (2 cols) */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block group">
-              <Image
-                src="/images/DNP Logo Baru.png"
-                alt="Delta Nusantara Persada"
-                width={120}
-                height={125}
-                className="h-12 sm:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
-              />
+              <div className="bg-white rounded-xl p-3 inline-flex items-center justify-center shadow-md">
+                <Image
+                  src="/images/DNP Logo Baru.png"
+                  alt="Delta Nusantara Persada"
+                  width={120}
+                  height={125}
+                  className="h-12 sm:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                />
+              </div>
             </Link>
 
             <p className="text-gray-300 text-xs leading-relaxed max-w-sm">

@@ -110,3 +110,37 @@ test('TDD 7: LanguageContext.tsx and TestimonialCTA.tsx feature Director Commitm
   )
 })
 
+test('TDD 8: Footer logo sits in a white background block', () => {
+  const footFile = path.join(FRONTEND_ROOT, 'components', 'layout', 'Footer.tsx')
+  assert.ok(fs.existsSync(footFile), 'Footer.tsx must exist')
+  const content = fs.readFileSync(footFile, 'utf8')
+
+  assert.ok(
+    content.includes('bg-white') && content.includes('rounded-') && content.includes('shadow-'),
+    'Footer logo must be contained in a white background block with rounded corners and shadow'
+  )
+})
+
+test('TDD 9: Navbar features dualtone left white 15% and right blue 85% (#011E42)', () => {
+  const navFile = path.join(FRONTEND_ROOT, 'components', 'layout', 'Navbar.tsx')
+  assert.ok(fs.existsSync(navFile), 'Navbar.tsx must exist')
+  const content = fs.readFileSync(navFile, 'utf8')
+
+  assert.ok(
+    content.includes('linear-gradient(90deg') && content.includes('#ffffff') && content.includes('15%') && content.includes('#011E42'),
+    'Navbar.tsx must implement a dual-tone linear-gradient with 15% white and #011E42'
+  )
+})
+
+test('TDD 10: Multi-resolution favicons and icons exist', () => {
+  const dnpIco = path.join(FRONTEND_ROOT, 'public', 'images', 'DNP.ico')
+  const publicFavicon = path.join(FRONTEND_ROOT, 'public', 'favicon.ico')
+  const appFavicon = path.join(FRONTEND_ROOT, 'app', 'favicon.ico')
+  const appleIcon = path.join(FRONTEND_ROOT, 'public', 'apple-icon.png')
+
+  assert.ok(fs.existsSync(dnpIco) && fs.statSync(dnpIco).size > 1000, 'public/images/DNP.ico must exist')
+  assert.ok(fs.existsSync(publicFavicon) && fs.statSync(publicFavicon).size > 1000, 'public/favicon.ico must exist')
+  assert.ok(fs.existsSync(appFavicon) && fs.statSync(appFavicon).size > 1000, 'app/favicon.ico must exist')
+  assert.ok(fs.existsSync(appleIcon) && fs.statSync(appleIcon).size > 1000, 'public/apple-icon.png must exist')
+})
+
