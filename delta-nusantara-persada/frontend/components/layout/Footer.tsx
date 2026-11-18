@@ -19,11 +19,11 @@ export default function Footer() {
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block group">
               <Image
-                src="/images/DNP-Secondary-Logo-A3-(Hires).png"
+                src="/images/DNP Logo Baru.png"
                 alt="Delta Nusantara Persada"
-                width={230}
-                height={50}
-                className="h-10 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                width={120}
+                height={125}
+                className="h-12 sm:h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               />
             </Link>
 
