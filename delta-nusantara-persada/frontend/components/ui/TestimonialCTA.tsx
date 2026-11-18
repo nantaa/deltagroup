@@ -117,7 +117,7 @@ export default function TestimonialCTA() {
               {/* CTA Buttons Row */}
               <div className="pt-2 sm:pt-4">
                 <a
-                  href="https://wa.me/riksauji.dnp"
+                  href="https://wa.me/085117600097"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2.5 px-6 py-3 rounded-[10px] text-xs sm:text-sm font-bold bg-gradient-to-r from-[#04C5F4] to-[#0D5EC4] hover:brightness-105 text-white transition-all duration-200 shadow-lg shadow-[#008CE4]/30 hover:scale-[1.02] active:scale-[0.98]"
