@@ -87,4 +87,4 @@ export const MARKETING_CONTACTS: MarketingContact[] = [
   },
 ]
 
-export const RIKSANI_CONSULTATION_WA = 'https://wa.me/riksauji.dnp'
+export const RIKSANI_CONSULTATION_WA = 'https://wa.me/6285117600097'

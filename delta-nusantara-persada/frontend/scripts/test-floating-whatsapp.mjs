@@ -53,9 +53,9 @@ test('TDD 3: Root layout mounts FloatingWhatsApp component', () => {
   assert.match(content, /<FloatingWhatsApp\s*\/>/, 'Root layout must render FloatingWhatsApp');
 });
 
-test('TDD 4: TestimonialCTA.tsx links Konsultasi Gratis to riksauji WhatsApp', () => {
+test('TDD 4: TestimonialCTA.tsx links Konsultasi Gratis to WhatsApp 085117600097', () => {
   assert.ok(fs.existsSync(TESTIMONIAL_CTA_PATH), 'TestimonialCTA.tsx must exist');
   const content = fs.readFileSync(TESTIMONIAL_CTA_PATH, 'utf8');
-  assert.match(content, /wa\.me/i, 'TestimonialCTA must link Konsultasi Gratis to WhatsApp');
+  assert.match(content, /wa\.me.*(?:6285117600097|085117600097)/i, 'TestimonialCTA must link Konsultasi Gratis to WhatsApp 085117600097');
 });
 

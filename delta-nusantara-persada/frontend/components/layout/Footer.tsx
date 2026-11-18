@@ -75,6 +75,16 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a
+                  href="https://wa.me/6285117600097"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#00D2FF] transition-colors"
+                >
+                  WhatsApp: 0851-1760-0097
+                </a>
+              </li>
+              <li>
                 <a href="mailto:deltanusapersada@gmail.com" className="hover:text-[#00D2FF] transition-colors">
                   deltanusapersada@gmail.com
                 </a>
